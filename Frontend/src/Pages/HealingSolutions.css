@@ -1,0 +1,58 @@
+.healing-page {
+  background-color: #badfaf; /* Green background */
+  min-height: 100vh;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.healing-container {
+  background-color: #e1f3dc;;
+  border-radius: 12px;
+  padding: 30px 20px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* stack items vertically */
+  gap: 20px; /* space between items */
+}
+
+.healing-item {
+  display: flex;
+  gap: 15px;
+  padding: 12px 10px;
+  border-radius: 8px;
+  transition: background 0.2s;
+  align-items: flex-start; /* top align icon and text */
+}
+
+.healing-item:hover {
+  background: #dbefdb;
+}
+
+.icon {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #cfead1;
+  border-radius: 50%;
+  flex-shrink: 0; /* keep icon size fixed */
+}
+
+.healing-content h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f6f43;
+}
+
+.healing-content p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #2e5e40;
+}

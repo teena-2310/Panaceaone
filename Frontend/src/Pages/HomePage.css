@@ -1,0 +1,180 @@
+/* ------------------------------
+   GLOBAL BODY STYLING
+------------------------------ */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Arial", sans-serif;
+    background-color: #d2e8d2; /* full soft green background */
+    color: #276749; /* dark green text */
+    line-height: 1.6;
+}
+
+/* ------------------------------
+   HEADER
+------------------------------ */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #d2e8d2;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #276749;
+}
+
+header nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #276749;
+    font-weight: 500;
+}
+
+header nav a:hover {
+    color: #2f855a;
+}
+
+/* ------------------------------
+   DROPDOWN MENU
+------------------------------ */
+.group {
+    position: relative;
+    display: inline-block;
+}
+
+.group button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #276749;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.group button:hover {
+    color: #2f855a;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background: #c7e6c7; /* soft light-green dropdown */
+    padding: 15px;
+    min-width: 180px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    z-index: 999;
+}
+
+.group:hover .dropdown {
+    display: block;
+}
+
+.dropdown a {
+    display: block;
+    padding: 6px 0;
+    color: #276749;
+    text-decoration: none;
+}
+
+.dropdown a:hover {
+    color: #2f855a;
+}
+
+/* ------------------------------
+   HERO SECTION
+------------------------------ */
+.hero {
+    background-color: #d2e8d2;
+    padding: 80px 20px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hero h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #276749;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #276749;
+    margin-bottom: 20px;
+}
+
+.hero button {
+    padding: 12px 25px;
+    margin: 5px;
+    border: none;
+    background-color: #2f855a;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.hero button:hover {
+    background-color: #276749;
+}
+
+/* ------------------------------
+   MAIN CONTENT SECTIONS
+------------------------------ */
+.main-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 20px 60px 20px;
+    background-color: #d2e8d2; /* FULL GREEN */
+}
+
+.main-content h3,
+.main-content h4 {
+    color: #276749;
+    margin-bottom: 10px;
+}
+
+.main-content p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #276749;
+}
+
+/* ------------------------------
+   SERVICE CARDS (GREEN CARDS)
+------------------------------ */
+.box {
+    background: #c7e6c7; /* light green card */
+    padding: 25px;
+    border-radius: 10px;
+    color: #276749;
+    border-left: 8px solid #276749; 
+    margin-bottom: 25px;
+}
+
+.box .title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #276749;
+}
+
+/* ------------------------------
+   FOOTER
+------------------------------ */
+footer {
+    background-color: #276749;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
