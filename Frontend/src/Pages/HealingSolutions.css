@@ -1,58 +1,125 @@
-.healing-page {
-  background-color: #badfaf; /* Green background */
-  min-height: 100vh;
-  padding: 60px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+/* ===== PAGE BACKGROUND ===== */
+.healing-wrapper {
+  background-color: #c9eabc; /* soft green */
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
-.healing-container {
-  background-color: #e1f3dc;;
-  border-radius: 12px;
-  padding: 30px 20px;
-  width: 100%;
-  max-width: 600px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column; /* stack items vertically */
-  gap: 20px; /* space between items */
+.healing-unique-wrapper {
+  background-color: #c9eabc;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-radius: 25px 25px 0 0;
+  text-align: center;
 }
 
-.healing-item {
-  display: flex;
-  gap: 15px;
-  padding: 12px 10px;
-  border-radius: 8px;
-  transition: background 0.2s;
-  align-items: flex-start; /* top align icon and text */
+/* ===== CARD ===== */
+.healing-card {
+  background-color: #63b85b; /* darker green */
+  border-radius: 22px;
+  padding: 20px;
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.healing-item:hover {
-  background: #dbefdb;
+.healing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.15);
 }
 
+/* ===== ICON ===== */
 .icon {
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  background: #cfead1;
+  width: 65px;
+  height: 65px;
+  margin: 0 auto 15px;
+  background-color: #2f7d4c;
   border-radius: 50%;
-  flex-shrink: 0; /* keep icon size fixed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: #fff;
 }
 
-.healing-content h4 {
-  margin: 0;
-  font-size: 16px;
+/* ===== TEXT ===== */
+.card-title {
+  color: #0f2f1d;
   font-weight: 600;
-  color: #1f6f43;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+  text-transform: uppercase;
 }
 
-.healing-content p {
-  margin: 4px 0 0;
-  font-size: 14px;
-  color: #2e5e40;
+.card-text,
+.card ul li,
+.healing-wrapper p,
+.healing-unique-wrapper p {
+  color: #143d28;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+ul {
+  padding-left: 18px;
+  margin-top: 8px;
+}
+
+h1,
+h2 {
+  color: #245c3a;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+h5 {
+  color: #1e7a3f;
+  margin-bottom: 12px;
+}
+
+/* ===== CTA BUTTON ===== */
+.btn-success {
+  background-color: #2f7d4c;
+  border-color: #2f7d4c;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+
+.btn-success:hover {
+  background-color: #245c3a;
+  border-color: #245c3a;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .healing-card {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.8rem;
+  }
+  .icon {
+    width: 55px;
+    height: 55px;
+    font-size: 1.7rem;
+  }
+  .btn-success {
+    width: 90%;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.7rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
 }

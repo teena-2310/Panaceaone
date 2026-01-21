@@ -1,93 +1,176 @@
-import React from "react";
-import "./HomePage.css";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
-import Footer  from "../components/Footer";
+import Footer from "../components/Footer";
+import "./HomePage.css";
 
 export default function HomePage() {
-  return (
-    <div className="bg-white text-gray-800" id="home">
+  const [showModal, setShowModal] = useState(false);
 
-      {/* NAVBAR COMPONENT */}
+  const handleBookingClick = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+
+  return (
+    <div className="home-wrapper">
       <Navbar />
 
-      {/* HERO SECTION */}
-      <section className="text-center py-20 bg-gradient-to-br from-green-100 to-green-300 px-6">
-        <h2 className="text-4xl font-bold text-green-900 leading-snug">
-          Panacea One – மனம், உடல், ஆன்மா ஒரே அலைவரிசையில்.
-        </h2>
+      {/* HERO */}
+      <section className="hero">
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          Panacea One
+        </motion.h1>
 
-        <p className="text-xl mt-4 text-gray-700">
-          Holistic healing through Flower Medicine, Hypno,
-          Acupuncture, Reiki & Energy Therapy.
-        </p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        >
+          மனம் • உடல் • ஆன்மா ஒரே அலைவரிசையில்
+        </motion.p>
 
-        <p className="mt-2 text-lg text-gray-700">
-          மருத்துவ செலவு இல்லாமல் நெஞ்சுக்கு நிம்மதி தரும்
-          சிகிச்சை — தொலைபேசி மூலமும் கிடைக்கும்.
-        </p>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          className="primary-btn"
+          onClick={handleBookingClick} // Open modal
+        >
+          Book Healing Call
+        </motion.button>
+      </section>
 
-        <div className="mt-6 flex justify-center gap-4">
-          <button className="px-6 py-3 bg-green-700 text-white rounded shadow-lg hover:bg-green-800">
-            Book Healing Call
-          </button>
-          <button className="px-6 py-3 border border-green-700 text-green-700 rounded shadow hover:bg-green-50">
-            Know More
-          </button>
+      {/* VIDEO CAROUSEL */}
+      <section className="video-section">
+        <div id="videoCarousel" className="carousel slide" data-bs-ride="carousel">
+          <div className="carousel-inner">
+            {["healing1.mp4", "healing2.mp4", "healing3.mp4"].map(
+              (video, index) => (
+                <div
+                  key={index}
+                  className={`carousel-item ${index === 0 ? "active" : ""}`}
+                >
+                  <video
+                    className="carousel-video"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                  >
+                    <source src={`/${video}`} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              )
+            )}
+          </div>
         </div>
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="py-16 bg-gray-100 px-8">
-        <h2 className="text-3xl font-bold text-center text-green-800">
-          Healing Services
-        </h2>
+      <section className="services">
+        {[
+          ["Flower Medicine", "Emotional healing through natural remedies"],
+          ["Hypno Therapy", "Subconscious mind reprogramming"],
+          ["Reiki Healing", "Energy balance & stress release"],
+          ["Phone Healing", "Distance healing anywhere"],
+        ].map(([title, desc], i) => (
+          <motion.div
+            key={i}
+            className="service-card"
+            whileHover={{ scale: 1.03 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h3>{title}</h3>
+            <p>{desc}</p>
+          </motion.div>
+        ))}
+      </section>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10 max-w-6xl mx-auto">
-          <div className="box">
-            <h3 className="title">Flower Medicine</h3>
-            <p>பயம், guilt, stress ஆகியவற்றுக்கான மென்மையான மலர் மருந்துகள்.</p>
-          </div>
-
-          <div className="box">
-            <h3 className="title">Hypno & Mind Therapy</h3>
-            <p>Subconscious healing மூலம் மனஅழுத்தம் release.</p>
-          </div>
-
-          <div className="box">
-            <h3 className="title">Acupuncture</h3>
-            <p>Meridian balance for pain & physical issues.</p>
-          </div>
-
-          <div className="box">
-            <h3 className="title">Reiki Healing</h3>
-            <p>Energy channeling to heal mind & body.</p>
-          </div>
-
-          <div className="box">
-            <h3 className="title">Phone Healing</h3>
-            <p>எங்கு இருந்தாலும் தொலைபேசி மூலம் scan + guidance.</p>
-          </div>
+      {/* WHY US */}
+      <section className="why-us">
+        <h2>Why Panacea One?</h2>
+        <div className="why-grid">
+          <div>🌿 Root Cause Healing</div>
+          <div>🧠 Mind–Body–Soul Balance</div>
+          <div>📞 Distance Healing</div>
+          <div>💚 Natural & Safe</div>
+          <div>✨ Personalised Care</div>
+          <div>🙏 Confidential & Trusted</div>
         </div>
       </section>
 
-      {/* CONTACT */}
-      <section id="contact" className="py-16 px-8">
-        <h2 className="text-3xl font-bold text-center text-green-800">
-          Contact & Booking
-        </h2>
+      {/* CTA */}
+      <motion.section
+        className="cta"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+      >
+        <h2>Heal Naturally. Live Peacefully.</h2>
+        <button className="secondary-btn">WhatsApp Now</button>
+      </motion.section>
 
-        <p className="mt-6 text-center text-lg">Phone: +91-XXXXXXXXXX</p>
-        <p className="text-center text-lg">Email: yourmail@domain.com</p>
+      {/* Booking Modal */}
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2>Book a Healing Call</h2>
+              <button className="close-btn" onClick={handleCloseModal}>
+                &times;
+              </button>
+            </div>
+            <form className="booking-form">
+              <div className="mb-3">
+                <label htmlFor="name" className="form-label">Full Name</label>
+                <input type="text" className="form-control" id="name" placeholder="Enter your full name" />
+              </div>
 
-        <div className="flex justify-center mt-6">
-          <button className="px-6 py-3 bg-green-700 text-white rounded shadow hover:bg-green-800">
-            WhatsApp Message
-          </button>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">Email</label>
+                <input type="email" className="form-control" id="email" placeholder="Enter your email" />
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="phone" className="form-label">Phone Number</label>
+                <input type="tel" className="form-control" id="phone" placeholder="Enter your phone number" />
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="healingType" className="form-label">Healing Type</label>
+                <select className="form-select" id="healingType">
+                  <option selected>Select Healing Type</option>
+                  <option>Spiritual Healing</option>
+                  <option>Karmic Healing</option>
+                  <option>Past Life Healing</option>
+                  <option>Chakra Healing</option>
+                  <option>Energy Cleansing</option>
+                </select>
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="date" className="form-label">Preferred Date</label>
+                <input type="date" className="form-control" id="date" />
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="time" className="form-label">Preferred Time</label>
+                <input type="time" className="form-control" id="time" />
+              </div>
+
+              <div className="text-center">
+                <button type="submit" className="btn btn-success">Book Healing Call</button>
+              </div>
+            </form>
+          </div>
         </div>
-      </section>
+      )}
 
-       <Footer/>
-
+      <Footer />
     </div>
   );
 }

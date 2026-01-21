@@ -1,136 +1,146 @@
+/* ===== PAGE BACKGROUND ===== */
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .about-container {
-  margin-top: 100px; /* space for navbar */
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 40px 20px;
-  background-color: #bfe3b4;
-  border-radius: 10px;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #c9eabc; /* FULL green background */
+  padding: 120px 20px 80px; /* space for navbar */
+  box-sizing: border-box;
+  text-align: center;
 }
 
+/* ===== HEADINGS ===== */
 .about-container h1 {
-  color: #2f5f3e;
-  text-align: center;
-  margin-bottom: 20px;
-}
-/* Why Choose Us Section */
-/* Why Choose Us Section */
-.about-why-us {
-  text-align: center;
-  margin: 50px auto;
-  max-width: 900px;
-}
-
-.about-why-us h2 {
-  font-size: 2rem;
-  color: #1f7a3f;
-  margin-bottom: 30px;
-}
-
-/* Grid layout for cards */
-.why-us-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 25px;
-  justify-items: center;
-}
-
-/* Individual Card */
-.why-us-card {
-  background-color: #f0fdf4; /* soft green */
-  border-radius: 15px;
-  padding: 20px;
-  text-align: center;
-  border: 1px solid #c2e0c6;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.why-us-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-}
-
-/* Card Images/Icons */
-.why-us-card img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  margin-bottom: 15px;
-}
-
-/* Card Title */
-.why-us-card h3 {
-  color: #1f7a3f;
-  font-size: 18px;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #245c3a;
   margin-bottom: 10px;
-  font-weight: 600;
-}
-
-/* Card Text */
-.why-us-card p {
-  color: #2f4f2f;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-
-.tagline {
-  font-size: 1.2rem;
-  text-align: center;
-  color: #4a7f5a;
-  margin-bottom: 20px;
 }
 
 .about-container h2 {
-  margin-top: 30px;
-  color: #2f5f3e;
+  font-size: 2rem;
+  color: #245c3a;
+  margin-bottom: 12px;
 }
 
+/* ===== TEXT ===== */
+.tagline {
+  font-size: 1.2rem;
+  color: #2f6b45;
+  margin-bottom: 25px;
+}
+
+.intro,
 .about-container p {
-  margin-top: 10px;
-  line-height: 1.6;
-  color: #2f5f3e;
+  max-width: 900px;
+  margin: 0 auto 18px;
+  font-size: 1.05rem;
+  color: #1f3d2b;
+  line-height: 1.7;
 }
 
-/* Carousel Container */
+/* ===== HIGHLIGHT CARDS ===== */
 .about-highlights-carousel {
-  margin: 40px 0;
+  margin: 50px auto;
+  max-width: 1100px;
 }
 
-/* Highlight Cards inside Carousel */
 .highlight-card {
-  background-color: #f0fdf4; /* soft green */
-  border-radius: 15px;
-  padding: 20px;
+  background: #f4fff5;
+  border-radius: 18px;
+  padding: 25px;
+  margin: 10px;
   text-align: center;
-  border: 1px solid #c2e0c6;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  margin: 0 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
 }
 
 .highlight-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px);
 }
 
 .highlight-card img {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   object-fit: contain;
   margin-bottom: 15px;
 }
 
 .highlight-card h3 {
-  color: #1f7a3f;
-  font-size: 18px;
+  color: #1e7a3f;
   margin-bottom: 10px;
-  font-weight: 600;
 }
 
 .highlight-card p {
-  color: #2f4f2f;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 0.95rem;
+  color: #2f4f3a;
+}
+
+/* ===== VISION & MISSION ===== */
+#vision,
+#mission {
+  max-width: 900px;
+  margin: 60px auto 0;
+}
+
+/* ===== WHY CHOOSE US ===== */
+.about-why-us {
+  background: #c9eabc; /* SAME green */
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.about-why-us h2 {
+  color: #245c3a;
+  margin-bottom: 40px;
+}
+
+.why-us-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.why-us-card {
+  background: #f4fff5;
+  border-radius: 18px;
+  padding: 30px 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.why-us-card img {
+  width: 64px;
+  margin-bottom: 15px;
+}
+
+.why-us-card h3 {
+  color: #1e7a3f;
+  margin-bottom: 10px;
+}
+
+.why-us-card p {
+  font-size: 0.95rem;
+  color: #2f4f3a;
+}
+
+/* ===== SLICK DOTS ===== */
+.slick-dots li button:before {
+  color: #245c3a;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .about-container h1 {
+    font-size: 2.2rem;
+  }
+
+  .about-container h2 {
+    font-size: 1.6rem;
+  }
 }

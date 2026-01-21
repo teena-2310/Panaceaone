@@ -1,180 +1,195 @@
-/* ------------------------------
-   GLOBAL BODY STYLING
------------------------------- */
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: "Arial", sans-serif;
-    background-color: #d2e8d2; /* full soft green background */
-    color: #276749; /* dark green text */
-    line-height: 1.6;
+.home-wrapper {
+  background-color: #B2D6A9;
+  min-height: 100vh;
+  color: #1f3f2b;
+  font-family: "Poppins", sans-serif;
 }
 
-/* ------------------------------
-   HEADER
------------------------------- */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 50px;
-    background-color: #d2e8d2;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
-    font-size: 28px;
-    font-weight: bold;
-    color: #276749;
-}
-
-header nav a {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #276749;
-    font-weight: 500;
-}
-
-header nav a:hover {
-    color: #2f855a;
-}
-
-/* ------------------------------
-   DROPDOWN MENU
------------------------------- */
-.group {
-    position: relative;
-    display: inline-block;
-}
-
-.group button {
-    background: none;
-    border: none;
-    font-size: 16px;
-    color: #276749;
-    cursor: pointer;
-    font-weight: 500;
-}
-
-.group button:hover {
-    color: #2f855a;
-}
-
-.dropdown {
-    display: none;
-    position: absolute;
-    top: 30px;
-    left: 0;
-    background: #c7e6c7; /* soft light-green dropdown */
-    padding: 15px;
-    min-width: 180px;
-    border-radius: 6px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    z-index: 999;
-}
-
-.group:hover .dropdown {
-    display: block;
-}
-
-.dropdown a {
-    display: block;
-    padding: 6px 0;
-    color: #276749;
-    text-decoration: none;
-}
-
-.dropdown a:hover {
-    color: #2f855a;
-}
-
-/* ------------------------------
-   HERO SECTION
------------------------------- */
+/* HERO */
 .hero {
-    background-color: #d2e8d2;
-    padding: 80px 20px;
-    text-align: center;
-    margin-bottom: 40px;
+  text-align: center;
+  padding: 5rem 1.5rem;
 }
 
-.hero h2 {
-    font-size: 28px;
-    font-weight: bold;
-    color: #276749;
-    margin-bottom: 15px;
+.hero h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #1f4d3a;
 }
 
 .hero p {
-    font-size: 18px;
-    color: #276749;
-    margin-bottom: 20px;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #2f5d4a;
 }
 
-.hero button {
-    padding: 12px 25px;
-    margin: 5px;
-    border: none;
-    background-color: #2f855a;
-    color: #fff;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
+.primary-btn {
+  margin-top: 2rem;
+  padding: 0.8rem 2.4rem;
+  background-color: #1f6b4f;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.hero button:hover {
-    background-color: #276749;
+/* VIDEO */
+.video-section {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
-/* ------------------------------
-   MAIN CONTENT SECTIONS
------------------------------- */
-.main-content {
+.carousel-item {
+  height: 60vh;
+}
+
+.carousel-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* SERVICES */
+.services {
+  padding: 4rem 1.5rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.service-card {
+  background: rgba(255,255,255,0.35);
+  padding: 1.8rem;
+  border-radius: 22px;
+}
+
+.service-card h3 {
+  color: #1f4d3a;
+}
+
+/* WHY US */
+.why-us {
+  padding: 4rem 1.5rem;
+  text-align: center;
+}
+
+.why-us h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.why-grid {
+  display: grid;
+  gap: 1rem;
+  max-width: 900px;
+  margin: auto;
+}
+
+.why-grid div {
+  background: rgba(255,255,255,0.35);
+  padding: 1.2rem;
+  border-radius: 16px;
+}
+
+/* CTA */
+.cta {
+  text-align: center;
+  padding: 4rem 1.5rem;
+}
+
+.secondary-btn {
+  margin-top: 1.5rem;
+  padding: 0.8rem 2.6rem;
+  background: white;
+  color: #1f6b4f;
+  border: none;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* DESKTOP */
+@media (min-width: 768px) {
+  .services {
+    grid-template-columns: repeat(2, 1fr);
     max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 20px 60px 20px;
-    background-color: #d2e8d2; /* FULL GREEN */
+    margin: auto;
+  }
+
+  .why-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+}
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
-.main-content h3,
-.main-content h4 {
-    color: #276749;
-    margin-bottom: 10px;
+/* Modal Content */
+.modal-content {
+  background-color: #e8f6e8;
+  padding: 2rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
-.main-content p {
-    font-size: 16px;
-    margin-bottom: 15px;
-    color: #276749;
+/* Modal Header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
-/* ------------------------------
-   SERVICE CARDS (GREEN CARDS)
------------------------------- */
-.box {
-    background: #c7e6c7; /* light green card */
-    padding: 25px;
-    border-radius: 10px;
-    color: #276749;
-    border-left: 8px solid #276749; 
-    margin-bottom: 25px;
+.modal-header h2 {
+  margin: 0;
+  color: #1b3a2e;
 }
 
-.box .title {
-    font-size: 20px;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #276749;
+/* Close button */
+.close-btn {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #1b3a2e;
+  cursor: pointer;
 }
 
-/* ------------------------------
-   FOOTER
------------------------------- */
-footer {
-    background-color: #276749;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 40px;
+/* Booking Form Styling */
+.booking-form .form-control,
+.booking-form .form-select {
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.booking-form .btn-success {
+  border-radius: 50px;
+  padding: 0.7rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.booking-form .btn-success:hover {
+  background-color: #43a047;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
