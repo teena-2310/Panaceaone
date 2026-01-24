@@ -9,6 +9,50 @@ export default function HomePage() {
 
   const handleBookingClick = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
+  const handlePayment = async (amount) => {
+  try {
+    // 1️⃣ Create order from backend
+    const res = await fetch("http://localhost:5000/api/payment/create-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ amount }),
+    });
+    const order = await res.json();
+
+    // 2️⃣ Razorpay options
+    const options = {
+      key: "YOUR_RAZORPAY_KEY_ID", // Replace with your key
+      amount: order.amount,
+      currency: "INR",
+      name: "Panacea One",
+      order_id: order.id,
+      handler: async function (response) {
+        // 3️⃣ Send payment details to backend for verification
+        const verifyRes = await fetch("http://localhost:5000/api/payment/verify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(response),
+        });
+        const data = await verifyRes.json();
+
+        if (data.success) {
+          alert("Payment Successful!");
+          setShowModal(false); // close modal
+          window.location.href = "/payment-success"; // redirect
+        } else {
+          alert("Payment verification failed!");
+        }
+      },
+      theme: { color: "#3399cc" },
+    };
+
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  } catch (error) {
+    console.error("Payment error:", error);
+  }
+};
+
 
   return (
     <div className="home-wrapper">
@@ -35,7 +79,7 @@ export default function HomePage() {
         <motion.button
           whileHover={{ scale: 1.05 }}
           className="primary-btn"
-          onClick={handleBookingClick} // Open modal
+          onClick={handleBookingClick}
         >
           Book Healing Call
         </motion.button>
@@ -89,6 +133,40 @@ export default function HomePage() {
             <p>{desc}</p>
           </motion.div>
         ))}
+      </section>
+
+      {/* HEALING POINTS */}
+      <section className="healing-points">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          How Healing Helps You
+        </motion.h2>
+
+        <div className="points-grid">
+          {[
+            { icon: "🌱", text: "Reduces stress, anxiety, and emotional overload" },
+            { icon: "🧘", text: "Balances mind, body, and soul naturally" },
+            { icon: "🧠", text: "Improves focus, clarity, and inner peace" },
+            { icon: "💚", text: "Releases negative energy and emotional blocks" },
+            { icon: "✨", text: "Supports long-term mental and emotional wellness" },
+            { icon: "🌿", text: "Safe, gentle, and non-invasive healing approach" },
+          ].map((point, i) => (
+            <motion.div
+              key={i}
+              className="point-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.15 }}
+              viewport={{ once: true }}
+            >
+              <div className="point-icon">{point.icon}</div>
+              <p>{point.text}</p>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       {/* WHY US */}
@@ -163,12 +241,23 @@ export default function HomePage() {
               </div>
 
               <div className="text-center">
-                <button type="submit" className="btn btn-success">Book Healing Call</button>
+                <div className="text-center">
+  <button
+    type="button" // IMPORTANT: not "submit"
+    className="btn btn-success"
+    onClick={() => handlePayment(500)} // Replace 500 with your session price
+  >
+    Book Healing Call
+  </button>
+</div>
+
+                
               </div>
             </form>
           </div>
         </div>
       )}
+      
 
       <Footer />
     </div>
