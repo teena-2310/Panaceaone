@@ -117,6 +117,8 @@ export default function Navbar() {
             </div>
           )}
         </div>
+        // TEMP: forcing Git to detect change
+
 
         <Link to="/contact" onClick={closeMenu}>Contact</Link>
       </nav>
