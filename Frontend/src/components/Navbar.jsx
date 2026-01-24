@@ -21,7 +21,7 @@ export default function Navbar() {
 
   return (
     <header className="navbar">
-      {/* Logo on Left */}
+      {/* Logo */}
       <div className="nav-brand">
         <Link to="/" className="logo-link" onClick={closeMenu}>
           <img src="/panacea.png" alt="Panacea One Logo" />
@@ -31,99 +31,71 @@ export default function Navbar() {
 
       {/* Navigation Links */}
       <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
+
+        {/* Home */}
         <Link to="/" onClick={closeMenu}>Home</Link>
 
-        {/* ABOUT DROPDOWN */}
+        {/* About Dropdown */}
         <div
           className="mega-wrapper"
           onMouseEnter={() => toggleDropdown("about")}
           onMouseLeave={() => toggleDropdown(null)}
         >
-          <span className="mega-trigger">About Panacea One ▾</span>
+          <Link to="/about" className="mega-trigger" onClick={closeMenu}>
+            About Panacea One ▾
+          </Link>
           {openDropdown === "about" && (
             <div className="mega-menu">
-              <div className="mega-column">
-                <div className="mega-item">
-                  <div className="icon green">🌿</div>
-                  <div>
-                    <Link to="/vision-mission" onClick={closeMenu}>
-                      <h4>Vision & Mission</h4>
-                    </Link>
-                    <p>Balance mind, body & soul</p>
-                  </div>
-                </div>
-              </div>
+              <Link to="/vision-mission" onClick={closeMenu}>Vision & Mission</Link>
+              <Link to="/team" onClick={closeMenu}>Our Team</Link>
             </div>
           )}
         </div>
 
-        {/* HEALING SOLUTIONS DROPDOWN */}
+        {/* Healing Solutions Dropdown */}
         <div
           className="mega-wrapper"
           onMouseEnter={() => toggleDropdown("healing")}
           onMouseLeave={() => toggleDropdown(null)}
         >
-          <span className="mega-trigger">Healing Solutions ▾</span>
+          <Link to="/healingsolutions" className="mega-trigger" onClick={closeMenu}>
+            Healing Solutions ▾
+          </Link>
           {openDropdown === "healing" && (
             <div className="mega-menu">
-              <div className="mega-column">
-                <div className="mega-item">
-                  <Link to="/spiritual-healing" onClick={closeMenu}>
-                    <h4>Spiritual Healing</h4>
-                  </Link>
-                  <Link to="/karmic-healing" onClick={closeMenu}>
-                    <h4>Karmic Healing</h4>
-                  </Link>
-                  <Link to="/past-life-healing" onClick={closeMenu}>
-                    <h4>Past Life Healing</h4>
-                  </Link>
-                  <Link to="/energy-cleansing" onClick={closeMenu}>
-                    <h4>Energy Cleansing</h4>
-                  </Link>
-                </div>
-              </div>
+              <Link to="/spiritual-healing" onClick={closeMenu}>Spiritual Healing</Link>
+              <Link to="/karmic-healing" onClick={closeMenu}>Karmic Healing</Link>
+              <Link to="/past-life-healing" onClick={closeMenu}>Past Life Healing</Link>
+              <Link to="/energy-cleansing" onClick={closeMenu}>Energy Cleansing</Link>
             </div>
           )}
         </div>
 
-        {/* PANACEA OILS DROPDOWN */}
+        {/* Panacea Oils Dropdown */}
         <div
           className="mega-wrapper"
           onMouseEnter={() => toggleDropdown("oils")}
           onMouseLeave={() => toggleDropdown(null)}
         >
-          <span className="mega-trigger">Panacea Oils ▾</span>
+          <Link to="/panaceaoils" className="mega-trigger" onClick={closeMenu}>
+            Panacea Oils ▾
+          </Link>
           {openDropdown === "oils" && (
             <div className="mega-menu">
-              <div className="mega-column">
-                <div className="mega-item">
-                  <Link to="/Relaxation-Oil" onClick={closeMenu}>
-                    <h4>Relaxation Oil</h4>
-                  </Link>
-                  <Link to="/Energy-Boost-Oil" onClick={closeMenu}>
-                    <h4>Energy Boost Oil</h4>
-                  </Link>
-                  <Link to="/Healing-Oil" onClick={closeMenu}>
-                    <h4>Healing Oil</h4>
-                  </Link>
-                  <Link to="/Meditation-Oil" onClick={closeMenu}>
-                    <h4>Meditation Oil</h4>
-                  </Link>
-                  <Link to="/Detox-Oil" onClick={closeMenu}>
-                    <h4>Detox Oil</h4>
-                  </Link>
-                </div>
-              </div>
+              <Link to="/relaxation-oil" onClick={closeMenu}>Relaxation Oil</Link>
+              <Link to="/energy-boost-oil" onClick={closeMenu}>Energy Boost Oil</Link>
+              <Link to="/healing-oil" onClick={closeMenu}>Healing Oil</Link>
+              <Link to="/meditation-oil" onClick={closeMenu}>Meditation Oil</Link>
+              <Link to="/detox-oil" onClick={closeMenu}>Detox Oil</Link>
             </div>
           )}
         </div>
-        // TEMP: forcing Git to detect change
 
-
+        {/* Contact */}
         <Link to="/contact" onClick={closeMenu}>Contact</Link>
       </nav>
 
-      {/* Hamburger menu on RIGHT for mobile */}
+      {/* Hamburger for mobile */}
       <div className={`hamburger ${menuOpen ? "open" : ""}`} onClick={toggleMenu}>
         <span></span>
         <span></span>
