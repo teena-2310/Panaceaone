@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "./Contactpage.css";
-
+import { FaWhatsapp } from "react-icons/fa"; 
 export default function Contactpage() {
   return (
     <>
@@ -29,7 +29,7 @@ export default function Contactpage() {
             <input type="text" placeholder="Full Name" required />
             <input type="email" placeholder="Email Address" required />
             <input type="tel" placeholder="Phone Number" />
-            <select defaultValue="">
+            {/*<select defaultValue="">
               <option value="" disabled>
                 Select Healing Interest
               </option>
@@ -37,7 +37,7 @@ export default function Contactpage() {
               <option>Karmic Healing</option>
               <option>Past Life Healing</option>
               <option>Energy Cleansing</option>
-            </select>
+            </select>*/}
             <textarea rows="4" placeholder="Your Message"></textarea>
             <button type="submit">Send Message</button>
           </form>
@@ -54,13 +54,13 @@ export default function Contactpage() {
 
         {/* WHATSAPP FLOAT */}
         <a
-          href="https://wa.me/+91 94981 03668"
-          className="whatsapp-float"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          💬
-        </a>
+  href="https://wa.me/919498103668" // remove space in number
+  className="whatsapp-float"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <FaWhatsapp size={30} color="#25D366" />
+</a>
       </div>
 
       <Footer />
