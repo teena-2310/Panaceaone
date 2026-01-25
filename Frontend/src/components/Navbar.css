@@ -113,8 +113,10 @@
   color: #1f6f43;
   text-decoration: none;
 }
+/* Hide hamburger by default (desktop view) */
+
 .hamburger {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: space-around;
   width: 40px;
@@ -144,25 +146,45 @@
   transform: rotate(-50deg) translate(5px, -5px);
 }
 
-
-/* Show hamburger only on small screens */
-@media screen and (max-width: 768px) {
+/* Mobile view */
+@media (max-width: 768px) {
   .hamburger {
-    display: flex;
+    display: flex;     /* show hamburger */
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
   }
 
+  /* Hide normal nav links on mobile */
   .nav-links {
     display: none;
-    flex-direction: column;
-    width: 100%;
-    background: #fff;
-    position: absolute;
-    top: 60px;
-    left: 0;
   }
 
+  /* Show nav links when menu is open */
   .nav-links.open {
     display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 70px; /* adjust based on navbar height */
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 20px;
+    z-index: 1000;
   }
 }
 
+
+.logo-link {
+  text-decoration: none; /* remove underline */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* optional: space between logo image and text */
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  height: 45px;
+  color: #1f6f43; /* change color if needed */
+}

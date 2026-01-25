@@ -18,7 +18,7 @@ const Footer = () => {
             className="footer-logo-img"
           />
           <div>
-            <h2>GOLDEN EAGLE SOLUTIONS</h2>
+            <h2>Panacea One</h2>
             <p className="footer-tagline">EXCELLENCE IN EVERY TASK</p>
           </div>
         </div>
@@ -66,8 +66,8 @@ const Footer = () => {
           <div className="footer-contact">
             <h4>Connect</h4>
             <ul>
-              <li>📍 603 Ang Mo Kio Ave 5</li>
-              <li>📞 +65 9123 4557</li>
+              <li>📍62, M3 Black, Police Quarters,  S.M. Nagar, <br></br>    Avadi, Chennai 600062</li>
+              <li>📞 +91 94981 03668</li>
               <li>✉️ dhana@panaceaone.com</li>
             </ul>
           </div>
