@@ -70,47 +70,39 @@ export default function PanaceaOils() {
           <p>
             Explore our range of natural oils carefully crafted to enhance your
             well-being, boost energy, and promote relaxation. Each oil is
-            designed to support your mind, body, and spirit.
-          </p>
-        </div>
-
-        {/* Oils Section */}
-        <section className="oils-section">
-          <h2 className="oils-title">Panacea One Healing Oils</h2>
-          <p className="oils-subtitle">
+            designed to support your mind, body, and spirit.<br></br>
             Naturally crafted oils to support emotional, physical, and energetic balance
           </p>
+        </div>
+       
 
-          <div className="oils-grid staggered">
-            {oils.map((oil, index) => (
-              <div
-                className="oil-card overlay-card"
-                key={index}
-                style={{ backgroundImage: `url(${oil.img})` }}
-              >
-                <div className="overlay-layer">
-                  <h3>{oil.title}</h3>
-                  <p>{oil.desc}</p>
-                  <div className="oil-buttons">
-                    <button
-                      className="buy-now rounded-btn"
-                      onClick={() => handleBuyNow(oil)}
-                    >
-                      Buy Now
-                    </button>
-                    <button
-                      className="learn-more rounded-btn"
-                      onClick={() => handleLearnMore(oil)}
-                    >
-                      Learn More
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* Oils Section */}
+        
+          
 
+      <div className="oils-grid">
+  {oils.map((oil, index) => (
+    <div className="oil-card" key={index}>
+      <img src={oil.img} alt={oil.title} className="oil-img" />
+
+      <div className="oil-content">
+        <h3>{oil.title}</h3>
+        <p>{oil.desc}</p>
+
+        <div className="oil-buttons">
+          <button className="buy-now" onClick={() => handleBuyNow(oil)}>
+            Buy Now
+          </button>
+          <button className="learn-more" onClick={() => handleLearnMore(oil)}>
+            Learn More
+          </button>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+        
         {/* Modal */}
         {modalOpen && selectedOil && (
           <div className="modal-backdrop" onClick={handleCloseModal}>
