@@ -163,3 +163,54 @@
   border-radius: 50%;
   z-index: 1000;
 }
+/* INFO CARDS GRID - FIXED FOR CENTER ALIGNMENT */
+.contact-info-section {
+  display: flex;
+  flex-wrap: wrap;          /* allow cards to wrap on smaller screens */
+  justify-content: center;  /* center all cards horizontally */
+  gap: 2rem;                /* spacing between cards */
+  margin-bottom: 3rem;
+  padding: 1rem 0;
+}
+
+.info-card {
+  flex: 1 1 220px;          /* flexible width, min 220px */
+  max-width: 250px;         /* limit card width */
+  background: #ffffff;
+  padding: 1.5rem;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+}
+/* SUCCESS POPUP */
+/* SUCCESS POPUP CENTERED */
+/* SUCCESS POPUP - CENTERED TOP */
+.success-popup {
+  position: fixed;
+  top: 20px;               /* distance from top */
+  left: 50%;               /* horizontal center */
+  transform: translateX(-50%); /* center horizontally */
+  background-color: #2e7d32;  /* dark green */
+  color: white;
+  padding: 1.2rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 6px 20px rgba(0,0,0,0.25);
+  z-index: 10000;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  animation: fadeInOut 3s forwards;
+}
+
+/* Fade in and out animation */
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+}
