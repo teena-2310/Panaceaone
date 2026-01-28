@@ -36,7 +36,7 @@ export default function Contactpage() {
       <div className="contact-page">
         {/* HEADER */}
         <div className="contact-header">
-          <h1>Get in Touch</h1>
+          <h1>Connect with us for guidance and care.</h1>
           <p>We are here to support your wellness journey. Reach out anytime!</p>
         </div>
 

@@ -11,7 +11,7 @@
 
 .contact-header h1 {
   font-size: 36px;
-  color: #1b7f5c;
+  color: #2f6b45;
 }
 
 .contact-header p {
@@ -35,7 +35,7 @@
 }
 
 .contact-left h2 {
-  color: #1b7f5c;
+  color:#2f6b45;
   margin-bottom: 15px;
 }
 
@@ -71,7 +71,7 @@
 /* FORM */
 .contact-box {
   flex: 1;
-  background: white;
+  background: #7daa6f;
   padding: 25px;
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.08);
@@ -93,8 +93,8 @@
 
 .contact-form button {
   width: 100%;
-  background: #3ba776;
-  color: white;
+  background: #198e19;
+  color: rgb(255, 255, 255);
   border: none;
   padding: 12px;
   border-radius: 25px;
@@ -115,7 +115,7 @@
 }
 
 .info-card {
-  background: white;
+  background: rgb(51, 163, 68);
   padding: 25px;
   border-radius: 14px;
   text-align: center;
@@ -123,7 +123,7 @@
 
 .icon-circle {
   background: #3ba776;
-  color: white;
+  color: rgb(255, 255, 255);
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -176,11 +176,11 @@
 .info-card {
   flex: 1 1 220px;          /* flexible width, min 220px */
   max-width: 250px;         /* limit card width */
-  background: #ffffff;
+  background:#7daa6f;
   padding: 1.5rem;
   text-align: center;
   border-radius: 10px;
-  box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0px 4px 15px rgba(19, 221, 53, 0.1);
   transition: transform 0.3s;
 }
 

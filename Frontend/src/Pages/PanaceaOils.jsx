@@ -56,7 +56,6 @@ export default function PanaceaOils() {
   };
 
   const handleBuyNow = (oil) => {
-    // Replace with your real payment link
     window.open("https://your-payment-link.com/" + oil.title, "_blank");
   };
 
@@ -70,52 +69,38 @@ export default function PanaceaOils() {
           <p>
             Explore our range of natural oils carefully crafted to enhance your
             well-being, boost energy, and promote relaxation. Each oil is
-            designed to support your mind, body, and spirit.<br></br>
-            Naturally crafted oils to support emotional, physical, and energetic balance
+            designed to support your mind, body, and spirit.<br />
+            Naturally crafted oils to support emotional, physical, and energetic balance.
           </p>
         </div>
-       
 
-        {/* Oils Section */}
-        
-          
-
-      <div className="oils-grid">
-  {oils.map((oil, index) => (
-    <div className="oil-card" key={index}>
-      <img src={oil.img} alt={oil.title} className="oil-img" />
-
-      <div className="oil-content">
-        <h3>{oil.title}</h3>
-        <p>{oil.desc}</p>
-
-        <div className="oil-buttons">
-          <button className="buy-now" onClick={() => handleBuyNow(oil)}>
-            Buy Now
-          </button>
-          <button className="learn-more" onClick={() => handleLearnMore(oil)}>
-            Learn More
-          </button>
+        {/* Oils Grid: 4 + 3 layout with stagger */}
+        <div className="oils-grid custom-layout">
+          {oils.map((oil, index) => (
+            <div className="oil-card" key={index}>
+              <img src={oil.img} alt={oil.title} className="oil-img" />
+              <div className="oil-card-content">
+                <h3>{oil.title}</h3>
+                <p>{oil.desc}</p>
+                <div className="oil-buttons">
+                  <button className="buy-now" onClick={() => handleBuyNow(oil)}>
+                    Buy Now
+                  </button>
+                  <button className="learn-more" onClick={() => handleLearnMore(oil)}>
+                    Learn More
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    </div>
-  ))}
-</div>
 
-        
         {/* Modal */}
         {modalOpen && selectedOil && (
           <div className="modal-backdrop" onClick={handleCloseModal}>
-            <div
-              className="modal-content"
-              onClick={(e) => e.stopPropagation()}
-            >
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
               <h2>{selectedOil.title}</h2>
-              <img
-                src={selectedOil.img}
-                alt={selectedOil.title}
-                className="modal-img"
-              />
+              <img src={selectedOil.img} alt={selectedOil.title} className="modal-img" />
               <p>{selectedOil.desc}</p>
               <button className="close-modal" onClick={handleCloseModal}>
                 Close
