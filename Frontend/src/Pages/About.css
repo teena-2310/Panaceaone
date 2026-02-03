@@ -1,22 +1,20 @@
-/* ===== PAGE BACKGROUND ===== */
 body {
   margin: 0;
   padding: 0;
 }
 
+/* ===== CONTAINER ===== */
 .about-container {
   min-height: 100vh;
   width: 100%;
-  background-color: #c9eabc; /* FULL green background */
-  padding: 120px 20px 80px; /* space for navbar */
-  box-sizing: border-box;
+  background-color: #c9eabc;
+  padding: 120px 20px 80px;
   text-align: center;
 }
 
 /* ===== HEADINGS ===== */
 .about-container h1 {
   font-size: 2.8rem;
-  font-weight: 700;
   color: #245c3a;
   margin-bottom: 10px;
 }
@@ -24,7 +22,6 @@ body {
 .about-container h2 {
   font-size: 2rem;
   color: #245c3a;
-  margin-bottom: 12px;
 }
 
 /* ===== TEXT ===== */
@@ -34,7 +31,6 @@ body {
   margin-bottom: 25px;
 }
 
-.intro,
 .about-container p {
   max-width: 900px;
   margin: 0 auto 18px;
@@ -43,104 +39,152 @@ body {
   line-height: 1.7;
 }
 
-/* ===== HIGHLIGHT CARDS ===== */
+.about-highlights-carousel .slick-slide {
+  display: flex !important;
+  justify-content: center;
+}
+
+/* ===== CAROUSEL ===== */
 .about-highlights-carousel {
   margin: 50px auto;
   max-width: 1100px;
 }
 
+/* ===== CARD ===== */
 .highlight-card {
   background: #f4fff5;
   border-radius: 18px;
-  padding: 25px;
-  margin: 10px;
-  text-align: center;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+  padding: 30px;
+  margin: 10px auto;
+  width: 85%;              /* WIDER CARD */
+  max-width: 700px;       /* HORIZONTAL FEEL */
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  animation: floatCard 4s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
 }
 
 .highlight-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-10px);
 }
 
+/* ===== IMAGE ===== */
 .highlight-card img {
-  width: 70px;
-  height: 70px;
-  object-fit: contain;
-  margin-bottom: 15px;
+  width: 130px;              /* Medium size */
+  height: 130px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: #e6f5ea;
+  padding: 10px;
+  margin: 0 auto 18px auto;  /* CENTER IMAGE */
+  display: block;
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 0 4px #bfe3c8;
+}
+
+.highlight-card:hover img {
+  transform: scale(1.1);
 }
 
 .highlight-card h3 {
   color: #1e7a3f;
-  margin-bottom: 10px;
 }
 
 .highlight-card p {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: #2f4f3a;
+   line-height: 1.6;
 }
 
-/* ===== VISION & MISSION ===== */
-#vision,
-#mission {
-  max-width: 900px;
-  margin: 60px auto 0;
-}
-
-/* ===== WHY CHOOSE US ===== */
+/* ===== WHY US ===== */
 .about-why-us {
-  background: #c9eabc; /* SAME green */
   padding: 70px 20px;
-  text-align: center;
-}
-
-.about-why-us h2 {
-  color: #245c3a;
-  margin-bottom: 40px;
 }
 
 .why-us-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
   gap: 25px;
   max-width: 1100px;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .why-us-card {
   background: #f4fff5;
   border-radius: 18px;
   padding: 30px 20px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+.why-us-card:hover img {
+  transform: scale(1.1);
 }
 
 .why-us-card img {
   width: 64px;
   margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.why-us-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
 .why-us-card h3 {
   color: #1e7a3f;
-  margin-bottom: 10px;
 }
 
-.why-us-card p {
-  font-size: 0.95rem;
-  color: #2f4f3a;
-}
-
-/* ===== SLICK DOTS ===== */
+/* ===== DOTS ===== */
 .slick-dots li button:before {
   color: #245c3a;
 }
 
 /* ===== MOBILE ===== */
-@media (max-width: 768px) {
-  .about-container h1 {
-    font-size: 2.2rem;
+@media(max-width:768px){
+  .about-container h1{
+    font-size:2.2rem;
   }
 
-  .about-container h2 {
-    font-size: 1.6rem;
+  .about-container h2{
+    font-size:1.6rem;
   }
+}
+
+/* ===== VISION & MISSION CARDS ===== */
+
+.vision-mission-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 70px auto 40px;
+}
+
+.vm-card {
+  background: #f4fff5;
+  padding: 35px 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vm-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 35px rgba(0,0,0,0.15);
+}
+
+.vm-card h2 {
+  color: #245c3a;
+  margin-bottom: 15px;
+}
+
+.vm-card p {
+  font-size: 1rem;
+  color: #1f3d2b;
+  line-height: 1.7;
 }
