@@ -1,91 +1,114 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "./PanaceaOils.css";
 
+const oils = [
+  {
+    img: "oil-life-flow.png",
+    title: "Panacea One – Life Flow Oil",
+    desc: "Supports emotional release, energy flow, and life alignment. Helps remove stagnation and promotes positivity and clarity.",
+  },
+  {
+    img: "oil-pain-relief.png",
+    title: "Panacea One – Pain Relief Oil",
+    desc: "Helps reduce body pain, stiffness, and inflammation by calming nerves and improving energy circulation.",
+  },
+  {
+    img: "oil-nerve-spine.png",
+    title: "Panacea One – Nerve & Spine Care Oil",
+    desc: "Designed to support nerve strength, spine health, and chronic discomfort through gentle energetic balance.",
+  },
+  {
+    img: "oil-skin-glow.png",
+    title: "Panacea One – Skin Glow & Repair Oil",
+    desc: "Nourishes skin, improves glow, supports repair, and helps release emotional stress stored in the skin.",
+  },
+  {
+    img: "oil-mind-calm.png",
+    title: "Panacea One – Mind Calm & Sleep Oil",
+    desc: "Helps calm the mind, reduce anxiety, improve sleep quality, and support deep relaxation.",
+  },
+  {
+    img: "oil-women-balance.png",
+    title: "Panacea One – Women’s Balance Oil",
+    desc: "Supports hormonal balance, emotional well-being, and inner stability for women.",
+  },
+  {
+    img: "oil-immunity-energy.png",
+    title: "Panacea One – Immunity & Energy Oil",
+    desc: "Boosts energy levels, strengthens immunity, and supports overall vitality and resilience.",
+  },
+];
+
 export default function PanaceaOils() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedOil, setSelectedOil] = useState(null);
+
+  const handleLearnMore = (oil) => {
+    setSelectedOil(oil);
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedOil(null);
+  };
+
+  const handleBuyNow = (oil) => {
+    window.open("https://your-payment-link.com/" + oil.title, "_blank");
+  };
+
   return (
     <>
       <Navbar />
 
       <div className="panacea-page">
-        {/* Top Content */}
         <div className="panacea-top-content">
           <h1>Discover Panacea Oils</h1>
           <p>
             Explore our range of natural oils carefully crafted to enhance your
             well-being, boost energy, and promote relaxation. Each oil is
-            designed to support your mind, body, and spirit.
+            designed to support your mind, body, and spirit.<br />
+            Naturally crafted oils to support emotional, physical, and energetic balance.
           </p>
         </div>
 
-        {/* Cards Container */}
-        <div className="panacea-container">
-          <div className="panacea-card">
-            <img src="/relaxation.png" alt="Relaxation Oil" />
-            <h3>Relaxation Oil</h3>
-            <p>
-              Calms the nervous system, reduces stress, and promotes emotional
-              balance and deep relaxation.
-            </p>
-            <div className="card-buttons">
-              <button className="btn-outline">Learn More</button>
-              <button className="btn-solid">Buy Now</button>
+        {/* Oils Grid: 4 + 3 layout with stagger */}
+        <div className="oils-grid custom-layout">
+          {oils.map((oil, index) => (
+            <div className="oil-card" key={index}>
+              <img src={oil.img} alt={oil.title} className="oil-img" />
+              <div className="oil-card-content">
+                <h3>{oil.title}</h3>
+                <p>{oil.desc}</p>
+                <div className="oil-buttons">
+                  <button className="buy-now" onClick={() => handleBuyNow(oil)}>
+                    Buy Now
+                  </button>
+                  <button className="learn-more" onClick={() => handleLearnMore(oil)}>
+                    Learn More
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div className="panacea-card">
-            <img src="/energy-boost.png" alt="Energy Boost Oil" />
-            <h3>Energy Boost Oil</h3>
-            <p>
-              Refreshes the mind and body, improves focus, and supports
-              long-lasting energy throughout the day.
-            </p>
-            <div className="card-buttons">
-              <button className="btn-outline">Learn More</button>
-              <button className="btn-solid">Buy Now</button>
-            </div>
-          </div>
-
-          <div className="panacea-card">
-            <img src="/healing.png" alt="Healing Oil" />
-            <h3>Healing Oil</h3>
-            <p>
-              Helps relieve minor aches, muscle fatigue, and supports natural
-              recovery and wellness.
-            </p>
-            <div className="card-buttons">
-              <button className="btn-outline">Learn More</button>
-              <button className="btn-solid">Buy Now</button>
-            </div>
-          </div>
-
-          <div className="panacea-card">
-            <img src="/meditation.png" alt="Meditation Oil" />
-            <h3>Meditation Oil</h3>
-            <p>
-              Enhances focus, mindfulness, and spiritual clarity for deeper
-              meditation practices.
-            </p>
-            <div className="card-buttons">
-              <button className="btn-outline">Learn More</button>
-              <button className="btn-solid">Buy Now</button>
-            </div>
-          </div>
-
-          <div className="panacea-card">
-            <img src="/detox.png" alt="Detox Oil" />
-            <h3>Detox Oil</h3>
-            <p>
-              Supports cleansing, removes negative energy, and restores balance
-              to body and mind.
-            </p>
-            <div className="card-buttons">
-              <button className="btn-outline">Learn More</button>
-              <button className="btn-solid">Buy Now</button>
-            </div>
-          </div>
+          ))}
         </div>
+
+        {/* Modal */}
+        {modalOpen && selectedOil && (
+          <div className="modal-backdrop" onClick={handleCloseModal}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <h2>{selectedOil.title}</h2>
+              <img src={selectedOil.img} alt={selectedOil.title} className="modal-img" />
+              <p>{selectedOil.desc}</p>
+              <button className="close-modal" onClick={handleCloseModal}>
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+
         <div className="panacea-extra-content">
           <h2>Our Commitment to Quality</h2>
           <p>
@@ -95,7 +118,6 @@ export default function PanaceaOils() {
           </p>
         </div>
 
-        {/* Bottom Content */}
         <div className="panacea-bottom-content">
           <h2>Why Choose Panacea Oils?</h2>
           <p>

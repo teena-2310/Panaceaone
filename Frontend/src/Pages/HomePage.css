@@ -1,242 +1,282 @@
-.home-wrapper {
-  background-color: #B2D6A9;
-  min-height: 100vh;
-  color: #1f3f2b;
-  font-family: "Poppins", sans-serif;
+/* ================= GLOBAL ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
 }
 
-/* HERO */
+body {
+  background: #ffffff;
+  color: #333;
+}
+
+.home-wrapper {
+  overflow-x: hidden;
+}
+
+/* ================= HERO ================= */
 .hero {
+  height: 90vh;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.45)
+    ),
+    url("/images/hero-bg.jpg") center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 5rem 1.5rem;
+  color: #fff;
+  padding: 20px;
 }
 
 .hero h1 {
-  font-size: 2.6rem;
+  font-size: 3.2rem;
   font-weight: 700;
-  color: #1f4d3a;
 }
 
 .hero p {
-  margin-top: 1rem;
   font-size: 1.2rem;
-  color: #2f5d4a;
+  margin: 15px 0 30px;
 }
 
 .primary-btn {
-  margin-top: 2rem;
-  padding: 0.8rem 2.4rem;
-  background-color: #1f6b4f;
+  padding: 12px 30px;
+  background: #2f8f6b;
   color: #fff;
   border: none;
-  border-radius: 999px;
-  font-weight: 600;
+  border-radius: 30px;
+  font-size: 1rem;
   cursor: pointer;
 }
 
-/* VIDEO */
-.video-section {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+.primary-btn:hover {
+  background: #256f54;
 }
 
-.carousel-item {
-  height: 60vh;
+/* ================= SERVICES ================= */
+.service-section {
+  padding: 80px 10%;
 }
 
-.carousel-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 24px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+.service-row {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 70px;
 }
 
-/* SERVICES */
-.services {
-  padding: 4rem 1.5rem;
-  display: grid;
-  gap: 1.5rem;
+.service-row.reverse {
+  flex-direction: row-reverse;
 }
 
-.service-card {
-  background: rgba(255,255,255,0.35);
-  padding: 1.8rem;
-  border-radius: 22px;
+.service-row img {
+  width: 45%;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.service-card h3 {
-  color: #1f4d3a;
-}
-
-/* WHY US */
-.why-us {
-  padding: 4rem 1.5rem;
-  text-align: center;
-}
-
-.why-us h2 {
+.service-row h2 {
   font-size: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 12px;
+  color: #2f8f6b;
 }
 
-.why-grid {
-  display: grid;
-  gap: 1rem;
-  max-width: 900px;
-  margin: auto;
+.service-row p {
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
-.why-grid div {
-  background: rgba(255,255,255,0.35);
-  padding: 1.2rem;
-  border-radius: 16px;
+/* ================= HEALING BENEFITS ================= */
+.healing-benefits {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 80px 10%;
+  background: #f7fdf9;
 }
 
-/* CTA */
-.cta {
+.healing-benefits h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  color: #2f8f6b;
+}
+
+.healing-benefits ul {
+  list-style: none;
+  padding: 0;
+}
+
+.healing-benefits li {
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+}
+
+.benefits-image {
+  width: 40%;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ================= SPIRITUAL CONTENT ================= */
+.spiritual-content {
   text-align: center;
-  padding: 4rem 1.5rem;
+  padding: 90px 15%;
+}
+
+.spiritual-content h2 {
+  font-size: 2.3rem;
+  color: #2f8f6b;
+}
+
+.spiritual-content p {
+  font-size: 1.1rem;
+  margin-top: 18px;
+  line-height: 1.8;
+}
+
+/* ================= CTA ================= */
+.cta {
+  background: linear-gradient(135deg, #2f8f6b, #5cc7a0);
+  color: #fff;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.cta h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
 }
 
 .secondary-btn {
-  margin-top: 1.5rem;
-  padding: 0.8rem 2.6rem;
-  background: white;
-  color: #1f6b4f;
+  padding: 12px 30px;
+  background: #fff;
+  color: #2f8f6b;
   border: none;
-  border-radius: 999px;
-  font-weight: 600;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
-/* DESKTOP */
-@media (min-width: 768px) {
-  .services {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 900px;
-    margin: auto;
-  }
-
-  .why-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .hero h1 {
-    font-size: 3.5rem;
-  }
+.secondary-btn:hover {
+  background: #f1f1f1;
 }
-/* Modal Overlay */
+
+/* ================= MODAL ================= */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 999;
 }
 
-/* Modal Content */
 .modal-content {
-  background-color: #e8f6e8;
-  padding: 2rem;
+  background: #fff;
+  padding: 30px;
+  width: 420px;
   border-radius: 15px;
-  width: 90%;
-  max-width: 600px;
   position: relative;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* Modal Header */
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
 }
 
 .modal-header h2 {
-  margin: 0;
-  color: #1b3a2e;
+  color: #2f8f6b;
 }
 
-/* Close button */
 .close-btn {
-  font-size: 1.5rem;
   background: none;
   border: none;
-  color: #1b3a2e;
+  font-size: 26px;
   cursor: pointer;
 }
 
-/* Booking Form Styling */
-.booking-form .form-control,
-.booking-form .form-select {
-  border-radius: 10px;
-  margin-bottom: 1rem;
+/* ================= FORM ================= */
+.booking-form {
+  margin-top: 20px;
 }
 
-.booking-form .btn-success {
-  border-radius: 50px;
-  padding: 0.7rem 2rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  transition: transform 0.3s, box-shadow 0.3s;
+.booking-form input,
+.booking-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
 }
 
-.booking-form .btn-success:hover {
-  background-color: #43a047;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-/* ===== HEALING POINTS ===== */
-.healing-points {
-  background-color: #d6f5d6; /* soft green background */
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.healing-points h2 {
-  font-size: 2.2rem;
-  color: #0b3d0b; /* dark green text */
-  margin-bottom: 40px;
-  font-weight: 700;
-}
-
-.points-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.point-card {
-  background: #f0fff0; /* very light green */
-  border-radius: 15px;
-  padding: 25px;
-  text-align: center;
-  box-shadow: 0 8px 25px rgba(0, 128, 0, 0.2);
-  transition: all 0.3s ease;
-  cursor: default;
-}
-
-.point-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 12px 30px rgba(0, 128, 0, 0.4);
-}
-
-.point-icon {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
-}
-
-.point-card p {
+.booking-form button {
+  width: 100%;
+  padding: 12px;
+  background: #2f8f6b;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
   font-size: 1rem;
-  color: #0b3d0b;
-  line-height: 1.6;
+  cursor: pointer;
+}
+
+.booking-form button:hover {
+  background: #256f54;
+}
+
+/* ================= WHATSAPP FLOAT ================= */
+.whatsapp-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #25d366;
+  color: #fff;
+  font-size: 26px;
+  padding: 14px 16px;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  text-decoration: none;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .service-row,
+  .service-row.reverse {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .service-row img {
+    width: 100%;
+  }
+
+  .healing-benefits {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .benefits-image {
+    width: 100%;
+  }
+
+  .spiritual-content {
+    padding: 60px 8%;
+  }
+
+  .modal-content {
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
 }

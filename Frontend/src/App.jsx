@@ -5,7 +5,7 @@ import Home from "./Pages/HomePage";
 import About from "./Pages/About";
 import HealingSolutions  from "./Pages/HealingSolutions";
 import PanaceaOils from "./Pages/PanaceaOils";
-
+import ContactPage  from "./Pages/Contactpage";
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/healingsolutions" element={<HealingSolutions />} /> 
         <Route path="/panaceaoils" element={<PanaceaOils />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </Router>
   );

@@ -113,8 +113,7 @@ export default function About() {
             தீர்த்து முழுமையான நலநிலைக்குக் கொண்டு செல்லுதல்.
           </p>
         </section>
-      </div>
-      {/* Why Choose Us Section */}
+             {/* Why Choose Us Section */}
 <div className="about-why-us">
   <h2>Why Choose Us?</h2>
   <div className="why-us-grid">
@@ -140,10 +139,8 @@ export default function About() {
     </div>
   </div>
 </div>
-
-
-
-      <Footer />
+      </div>
+       <Footer />
     </>
   );
 }
