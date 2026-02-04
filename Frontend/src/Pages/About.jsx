@@ -93,28 +93,49 @@ export default function About() {
           </Slider>
         </div>
 
-      {/* Vision & Mission Cards */}
-<div className="vision-mission-container">
+       {/* Vision & Mission Section with Images */}
 
-  <div className="vm-card">
-    <h2>Vision</h2>
-    <p>
-      மனிதர்களின் வாழ்க்கையில் அமைதி, தெளிவு மற்றும்
-      உள்நல சமநிலையை உருவாக்குவதே Panacea One-ன்
-      நீண்டகால நோக்கமாகும்.
-    </p>
+<div className="vm-section">
+
+  {/* Mission */}
+  <div className="vm-row">
+    <img
+      src="/images/mission.jpg"
+      alt="Mission"
+      className="vm-image"
+    />
+
+    <div className="vm-text">
+      <h2>Mission</h2>
+      <p>
+        Healing-ஐ ஒரு வணிகமாக அல்லாமல், ஆன்மீக சேவையாக
+        வழங்கி மனஅழுத்தம், பயம் மற்றும் வாழ்க்கை குழப்பங்களை
+        தீர்த்து முழுமையான நலநிலைக்குக் கொண்டு செல்லுதல்.
+      </p>
+    </div>
   </div>
 
-  <div className="vm-card">
-    <h2>Mission</h2>
-    <p>
-      Healing-ஐ ஒரு வணிகமாக அல்லாமல், ஆன்மீக சேவையாக
-      வழங்கி மனஅழுத்தம், பயம் மற்றும் வாழ்க்கை குழப்பங்களை
-      தீர்த்து முழுமையான நலநிலைக்குக் கொண்டு செல்லுதல்.
-    </p>
+  {/* Vision */}
+  <div className="vm-row reverse">
+    <div className="vm-text">
+      <h2>Vision</h2>
+      <p>
+        மனிதர்களின் வாழ்க்கையில் அமைதி, தெளிவு மற்றும்
+        உள்நல சமநிலையை உருவாக்குவதே Panacea One-ன்
+        நீண்டகால நோக்கமாகும்.
+      </p>
+    </div>
+
+    <img
+      src="/images/vision.png"
+      alt="Vision"
+      className="vm-image"
+    />
   </div>
 
 </div>
+
+
 
 
         {/* Why Choose Us */}

@@ -155,36 +155,57 @@ body {
   }
 }
 
-/* ===== VISION & MISSION CARDS ===== */
-
-.vision-mission-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  max-width: 1000px;
-  margin: 70px auto 40px;
+.vm-section {
+  max-width: 1100px;
+  margin: 80px auto 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
 }
 
-.vm-card {
-  background: #f4fff5;
-  padding: 35px 30px;
+.vm-row {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.vm-image {
+  width: 45%;
+  max-width: 420px;
   border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-.vm-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 14px 35px rgba(0,0,0,0.15);
+.vm-text {
+  width: 55%;
+  text-align: left;
 }
 
-.vm-card h2 {
+.vm-text h2 {
   color: #245c3a;
   margin-bottom: 15px;
 }
 
-.vm-card p {
-  font-size: 1rem;
-  color: #1f3d2b;
+.vm-text p {
+  font-size: 1.05rem;
   line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+
+  .vm-row {
+    flex-direction: column;
+  }
+
+  .vm-text {
+    order: 1;       /* TEXT FIRST */
+    width: 100%;
+    text-align: center;
+  }
+
+  .vm-image {
+    order: 2;       /* IMAGE SECOND */
+    width: 100%;
+  }
+
 }
