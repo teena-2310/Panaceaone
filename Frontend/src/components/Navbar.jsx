@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-export default function Navbar() {
+export default function Navbar({ cartCount }) {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -31,11 +31,9 @@ export default function Navbar() {
 
       {/* Navigation Links */}
       <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
-
-        {/* Home */}
         <Link to="/" onClick={closeMenu}>Home</Link>
 
-        {/* About Dropdown */}
+        {/* About */}
         <div
           className="mega-wrapper"
           onMouseEnter={() => toggleDropdown("about")}
@@ -52,7 +50,7 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Healing Solutions Dropdown */}
+        {/* Healing */}
         <div
           className="mega-wrapper"
           onMouseEnter={() => toggleDropdown("healing")}
@@ -71,7 +69,7 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Panacea Oils Dropdown */}
+        {/* Oils */}
         <div
           className="mega-wrapper"
           onMouseEnter={() => toggleDropdown("oils")}
@@ -91,11 +89,20 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* Contact */}
         <Link to="/contact" onClick={closeMenu}>Contact</Link>
       </nav>
 
-      {/* Hamburger for mobile */}
+      {/* 🛒 CART ICON */}
+      <div className="nav-cart">
+        <Link to="/cart" className="nav-cart" onClick={closeMenu}>
+  🛒
+  {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+</Link>
+
+        
+      </div>
+
+      {/* Hamburger */}
       <div className={`hamburger ${menuOpen ? "open" : ""}`} onClick={toggleMenu}>
         <span></span>
         <span></span>

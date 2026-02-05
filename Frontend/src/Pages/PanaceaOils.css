@@ -1,10 +1,11 @@
+/* ================= PAGE ================= */
 .panacea-page {
   background: #b9e3a5;
   padding: 60px 30px;
   min-height: 100vh;
 }
 
-/* Top section */
+/* ================= TOP ================= */
 .panacea-top-content {
   text-align: center;
   margin-bottom: 40px;
@@ -20,19 +21,23 @@
   margin: auto;
 }
 
-/* Grid */
+/* ================= GRID ================= */
 .oils-wrapper {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;   /* ⭐ MAGIC */
   gap: 30px;
+  max-width: calc(260px * 4 + 30px * 3); /* 4 cards width */
+  margin: 0 auto;
 }
 
-/* Card */
+/* ================= CARD ================= */
 .oil-card {
   background: #eaf7e2;
   border-radius: 22px;
   padding: 22px;
   text-align: center;
+  width: 260px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
 }
@@ -41,7 +46,18 @@
   transform: translateY(-6px);
 }
 
-/* Image */
+/* ⭐ CENTER SECOND ROW (3 ITEMS) */
+.oil-card:nth-child(5) {
+  grid-column: 2;
+}
+.oil-card:nth-child(6) {
+  grid-column: 3;
+}
+.oil-card:nth-child(7) {
+  grid-column: 4;
+}
+
+/* ================= IMAGE ================= */
 .oil-img-box {
   background: #f6fff1;
   border-radius: 16px;
@@ -55,8 +71,35 @@
   object-fit: cover;
   border-radius: 12px;
 }
+.cart-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2f6f4e;
+  color: #fff;
+  padding: 14px 26px;
+  border-radius: 30px;
+  font-size: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  animation: slideDown 0.5s ease;
+  z-index: 9999;
+}
 
-/* Text */
+
+/* Slide from top */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* ================= TEXT ================= */
 .oil-card h3 {
   color: #1b7c3a;
   font-size: 18px;
@@ -69,35 +112,96 @@
   line-height: 1.6;
 }
 
-/* Buttons */
-.oil-buttons {
+/* ================= BUTTONS ================= */
+.oil-action-buttons {
   display: flex;
   justify-content: center;
-  gap: 14px;
-  margin-top: 18px;
+  gap: 12px;
+  margin-top: 15px;
 }
 
-.learn-more {
-  background: transparent;
-  border: 1.5px solid #1b7c3a;
-  color: #1b7c3a;
-  padding: 8px 18px;
+.add-to-cart-btn {
+  background: #e6f4ee;
+  color: #2f6f4e;
+  border: 1px solid #2f6f4e;
+  padding: 9px 14px;
   border-radius: 22px;
+  font-size: 14px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.buy-now {
-  background: #1b7c3a;
-  color: white;
+.add-to-cart-btn:hover {
+  background: #2f6f4e;
+  color: #fff;
+}
+
+.buy-now-btn {
+  background: #2f6f4e;
+  color: #fff;
   border: none;
-  padding: 8px 18px;
+  padding: 9px 18px;
   border-radius: 22px;
+  font-size: 14px;
   cursor: pointer;
 }
 
-/* Bottom */
-.panacea-bottom-content {
+.buy-now-btn:hover {
+  background: #245840;
+  transform: scale(1.05);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .oils-wrapper {
+    grid-template-columns: repeat(2, 260px);
+  }
+
+  /* reset manual centering */
+  .oil-card:nth-child(5),
+  .oil-card:nth-child(6),
+  .oil-card:nth-child(7) {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .oils-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .oil-card {
+    width: 100%;
+  }
+}
+
+/* ================= BOTTOM ================= */
+.why-panacea {
+  background: #b9e3a5;
+  padding: 40px 20px;
   text-align: center;
-  margin-top: 60px;
+}
+
+.why-panacea h2 {
+  color: #1b7c3a;
+  margin-bottom: 20px;
+}
+
+.why-list {
+  list-style: none;
+  padding: 0;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.why-list.center li {
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* 🔑 centers whole line */
+  gap: 12px;
+  font-size: 17px;
   color: #2f5f3f;
+  text-align: center;
 }

@@ -1,13 +1,13 @@
 .navbar {
-  background: #7daa6f;
-  padding: 18px 40px;
+  height: 70px;                 /* fixed height */
   display: flex;
+  align-items: center;          /* center everything vertically */
   justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  padding: 0 30px;              /* remove vertical padding */
+  background-color: #7fb069;
 }
+
+
 /* LOGO IMAGE FIX */
 .navbar img {
   width: 48px;
@@ -25,8 +25,8 @@
 
 .nav-links {
   display: flex;
+  align-items: center;      /* 🔥 aligns Home, About, etc */
   gap: 28px;
-  align-items: center;
 }
 
 .nav-links a,
@@ -188,3 +188,27 @@
   height: 45px;
   color: #1f6f43; /* change color if needed */
 }
+.nav-cart {
+  position: relative;
+  font-size: 22px;
+  color: #1b5e20;       /* 🌿 dark green */
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nav-cart:hover {
+  color: #0f3d1c;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: #ff3b3b;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
