@@ -1,0 +1,20 @@
+.oil-details-page {
+  max-width: 800px;
+  margin: auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.details-img {
+  width: 260px;
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  margin-left: 10px;
+  background: transparent;
+  border: 1px solid #4caf50;
+  color: #4caf50;
+  padding: 8px 16px;
+  cursor: pointer;
+}

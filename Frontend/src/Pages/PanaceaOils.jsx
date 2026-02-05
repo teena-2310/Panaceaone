@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "./PanaceaOils.css";
@@ -42,21 +42,12 @@ const oils = [
 ];
 
 export default function PanaceaOils() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedOil, setSelectedOil] = useState(null);
-
-  const handleLearnMore = (oil) => {
-    setSelectedOil(oil);
-    setModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setModalOpen(false);
-    setSelectedOil(null);
-  };
-
   const handleBuyNow = (oil) => {
     window.open("https://your-payment-link.com/" + oil.title, "_blank");
+  };
+
+  const handleLearnMore = (oil) => {
+    alert(oil.title + "\n\n" + oil.desc);
   };
 
   return (
@@ -64,70 +55,50 @@ export default function PanaceaOils() {
       <Navbar />
 
       <div className="panacea-page">
+        {/* Top Content */}
         <div className="panacea-top-content">
           <h1>Discover Panacea Oils</h1>
           <p>
-            Explore our range of natural oils carefully crafted to enhance your
-            well-being, boost energy, and promote relaxation. Each oil is
-            designed to support your mind, body, and spirit.<br />
-            Naturally crafted oils to support emotional, physical, and energetic balance.
+            Naturally crafted oils to support emotional, physical, and energetic
+            balance.
           </p>
         </div>
 
-        {/* Oils Grid: 4 + 3 layout with stagger */}
-        <div className="oils-grid custom-layout">
+        {/* Oils Layout */}
+        <div className="oils-wrapper">
           {oils.map((oil, index) => (
             <div className="oil-card" key={index}>
-              <img src={oil.img} alt={oil.title} className="oil-img" />
-              <div className="oil-card-content">
-                <h3>{oil.title}</h3>
-                <p>{oil.desc}</p>
-                <div className="oil-buttons">
-                  <button className="buy-now" onClick={() => handleBuyNow(oil)}>
-                    Buy Now
-                  </button>
-                  <button className="learn-more" onClick={() => handleLearnMore(oil)}>
-                    Learn More
-                  </button>
-                </div>
+              <div className="oil-img-box">
+                <img src={oil.img} alt={oil.title} />
+              </div>
+
+              <h3>{oil.title}</h3>
+              <p>{oil.desc}</p>
+
+              <div className="oil-buttons">
+                <button
+                  className="learn-more"
+                  onClick={() => handleLearnMore(oil)}
+                >
+                  Learn More
+                </button>
+                <button
+                  className="buy-now"
+                  onClick={() => handleBuyNow(oil)}
+                >
+                  Buy Now
+                </button>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Modal */}
-        {modalOpen && selectedOil && (
-          <div className="modal-backdrop" onClick={handleCloseModal}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <h2>{selectedOil.title}</h2>
-              <img src={selectedOil.img} alt={selectedOil.title} className="modal-img" />
-              <p>{selectedOil.desc}</p>
-              <button className="close-modal" onClick={handleCloseModal}>
-                Close
-              </button>
-            </div>
-          </div>
-        )}
-
-        <div className="panacea-extra-content">
-          <h2>Our Commitment to Quality</h2>
-          <p>
-            All Panacea Oils are made from 100% natural ingredients, ethically
-            sourced, and blended for maximum benefit. We ensure purity,
-            sustainability, and environmental care in every bottle.
-          </p>
-        </div>
-
+        {/* Bottom Content */}
         <div className="panacea-bottom-content">
           <h2>Why Choose Panacea Oils?</h2>
           <p>
-            Our oils are made from 100% natural ingredients. Each blend is
-            carefully formulated to support your health, improve focus, and
-            bring harmony to your body and mind.
-          </p>
-          <p>
-            Experience the difference with oils that nourish your senses and
-            elevate your daily rituals.
+            All Panacea Oils are made from 100% natural ingredients, ethically
+            sourced, and blended to support complete well-being.
           </p>
         </div>
       </div>
