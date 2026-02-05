@@ -37,7 +37,7 @@ export default function Contactpage() {
         {/* HEADER */}
         <div className="contact-header">
           <h1>Connect with us for guidance and care.</h1>
-          <p>We are here to support your wellness journey. Reach out anytime!</p>
+          <p>We are Panacea One here to support your wellness journey. Reach out anytime!</p>
         </div>
 
         {/* MAIN SECTION */}
