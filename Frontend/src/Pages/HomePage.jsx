@@ -1,22 +1,30 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "./HomePage.css";
 
 export default function HomePage() {
   const [showModal, setShowModal] = useState(false);
+  const [showProcessing, setShowProcessing] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const handleBookingClick = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
   const handlePayment = async (amount) => {
     try {
-      const res = await fetch("http://localhost:5000/api/payment/create-order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount }),
-      });
+      setShowProcessing(true);
+
+      const res = await fetch(
+        "http://localhost:5000/api/payment/create-order",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount }),
+        }
+      );
 
       const order = await res.json();
 
@@ -27,6 +35,7 @@ export default function HomePage() {
         name: "Panacea One",
         order_id: order.id,
         handler: async function (response) {
+          setShowProcessing(false);
           const verifyRes = await fetch(
             "http://localhost:5000/api/payment/verify",
             {
@@ -39,11 +48,12 @@ export default function HomePage() {
           const data = await verifyRes.json();
 
           if (data.success) {
-            alert("Payment Successful!");
+            setShowSuccess(true);
             setShowModal(false);
-            window.location.href = "/payment-success";
+            setTimeout(() => setShowSuccess(false), 3000);
           } else {
-            alert("Payment verification failed!");
+            setShowError(true);
+            setTimeout(() => setShowError(false), 3000);
           }
         },
         theme: { color: "#2f8f6b" },
@@ -52,6 +62,9 @@ export default function HomePage() {
       const rzp = new window.Razorpay(options);
       rzp.open();
     } catch (error) {
+      setShowProcessing(false);
+      setShowError(true);
+      setTimeout(() => setShowError(false), 3000);
       console.error("Payment error:", error);
     }
   };
@@ -65,7 +78,6 @@ export default function HomePage() {
         <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           Panacea One
         </motion.h1>
-
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -73,67 +85,70 @@ export default function HomePage() {
         >
           மனம் • உடல் • ஆன்மா ஒரே அலைவரிசையில்
         </motion.p>
-
         <button className="primary-btn" onClick={handleBookingClick}>
           Book Healing Call
         </button>
       </section>
 
-      {/* SERVICES WITH IMAGES */}
-      <section className="service-section">
-        <div className="service-row">
-          <img src="/images/flower-healing.jpg" alt="Flower Healing" />
-          <div>
-            <h2>Flower Medicine Healing</h2>
-            <p>
-              Gentle emotional healing using natural flower vibrations to
-              release stress, fear, and emotional trauma.
-            </p>
-          </div>
-        </div>
+      {/* SERVICES */}
+     <section className="service-section">
+  {/* Flower Medicine Healing */}
+  <div className="service-row">
+    <img src="/images/flower-essence.png" alt="Flower Healing" />
+    <div>
+      <h2>Flower Medicine Healing</h2>
+      <h4>Gentle emotional healing using natural flower vibrations to release stress, fear, and emotional trauma.</h4>
+      <p>
+        Flower Medicine Healing is a gentle, natural therapy that uses the vibrational energy of flowers to restore emotional balance.
+        It helps release stress, fear, and emotional trauma, allowing your mind and heart to feel lighter and more peaceful.
+      </p>
+    </div>
+  </div>
 
-        <div className="service-row reverse">
-          <img src="/images/hypno.jpg" alt="Hypno Therapy" />
-          <div>
-            <h2>Hypno Therapy</h2>
-            <p>
-              Heal subconscious patterns, remove inner blocks, and gain clarity
-              and confidence through guided hypnotherapy.
-            </p>
-          </div>
-        </div>
+  {/* Hypno Therapy */}
+  <div className="service-row reverse">
+    <img src="/images/hypno-therapy.png" alt="Hypno Therapy" />
+    <div>
+      <h2>Hypno Therapy</h2>
+      <h4>Heal subconscious patterns, remove inner blocks, and gain clarity and confidence through guided hypnotherapy.</h4>
+      <p>
+        Hypno Therapy is a guided therapy that works with the subconscious mind to heal limiting beliefs and overcome inner obstacles.
+        It helps remove mental blocks, reduce anxiety, and improve clarity and focus.
+        Each session is tailored to your personal challenges, ensuring a safe and supportive environment.
+      </p>
+    </div>
+  </div>
 
-        <div className="service-row">
-          <img src="/images/reiki.jpg" alt="Reiki Healing" />
-          <div>
-            <h2>Reiki & Energy Healing</h2>
-            <p>
-              Balance your energy, calm the mind, and restore harmony across
-              mind, body, and soul.
-            </p>
-          </div>
-        </div>
-      </section>
+  {/* Reiki & Energy Healing */}
+  <div className="service-row">
+    <img src="/images/reiki.png" alt="Reiki Healing" />
+    <div>
+      <h2>Reiki & Energy Healing</h2>
+      <h4>Balance your energy, calm the mind, and restore harmony across mind, body, and soul.</h4>
+      <p>
+        Reiki & Energy Healing is a holistic therapy that restores harmony between mind, body, and spirit.
+        It balances energy flow, reduces stress, and enhances overall well-being.
+        It is safe, natural, and can be combined with other healing practices for enhanced benefits.
+        Experience deep relaxation, spiritual alignment, and a renewed sense of harmony in everyday life.
+      </p>
+    </div>
+  </div>
+</section>
 
       {/* HEALING BENEFITS */}
       <section className="healing-benefits">
         <div>
           <h2>How Healing Helps You</h2>
           <ul>
-            🌱 Reduces stress and anxiety<br></br>
-            🧘 Emotional and mental balance<br></br>
-            🧠 Improved clarity and focus<br></br>
-            💚 Releases negative energy<br></br>
-            🌟 Long-term inner peace<br></br>
+            🌱 Reduces stress and anxiety<br />
+            🧘 Emotional and mental balance<br />
+            🧠 Improved clarity and focus<br />
+            💚 Releases negative energy<br />
+            🌟 Long-term inner peace<br />
             🌿 Safe and natural process
           </ul>
         </div>
-
-        <img
-          src="/images/meditation.jpg"
-          alt="Meditation"
-          className="benefits-image"
-        />
+        <img src="/meditation.png" alt="Meditation" className="benefits-image" />
       </section>
 
       {/* SPIRITUAL CONTENT */}
@@ -156,41 +171,86 @@ export default function HomePage() {
       </section>
 
       {/* BOOKING MODAL */}
-      {showModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h2>Book a Healing Call</h2>
-              <button className="close-btn" onClick={handleCloseModal}>
-                &times;
-              </button>
-            </div>
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            className="modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={(e) => {
+              if (e.target.className === "modal-overlay") setShowModal(false);
+            }}
+          >
+            <motion.div
+              className="modal-content"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <div className="modal-header">
+                <h2>Book a Healing Call</h2>
+                <button className="close-btn" onClick={handleCloseModal}>
+                  &times;
+                </button>
+              </div>
 
-            <form className="booking-form">
-              <input type="text" placeholder="Full Name" />
-              <input type="email" placeholder="Email" />
-              <input type="tel" placeholder="Phone Number" />
-              <select>
-                <option>Select Healing Type</option>
-                <option>Spiritual Healing</option>
-                <option>Chakra Healing</option>
-                <option>Past Life Healing</option>
-                <option>Energy Cleansing</option>
-              </select>
-              <input type="date" />
-              <input type="time" />
+              <form className="booking-form">
+                <input type="text" placeholder="Full Name" />
+                <input type="email" placeholder="Email" />
+                <input type="tel" placeholder="Phone Number" />
+                <select>
+                  <option>Select Healing Type</option>
+                  <option>Spiritual Healing</option>
+                  <option>Chakra Healing</option>
+                  <option>Past Life Healing</option>
+                  <option>Energy Cleansing</option>
+                </select>
+                <input type="date" />
+                <input type="time" />
+                <button type="button" onClick={() => handlePayment(500)}>
+                  Pay ₹500 & Book
+                </button>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-              <button
-                type="button"
-                className="btn btn-success"
-                onClick={() => handlePayment(500)}
-              >
-                Pay ₹500 & Book
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
+      {/* TOASTS */}
+      <AnimatePresence>
+        {showProcessing && (
+          <motion.div
+            className="processing-toast"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+          >
+            ⏳ Processing Payment...
+          </motion.div>
+        )}
+        {showSuccess && (
+          <motion.div
+            className="success-toast"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+          >
+            ✅ Healing session booked successfully!
+          </motion.div>
+        )}
+        {showError && (
+          <motion.div
+            className="error-toast"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+          >
+            ❌ Payment failed. Please try again.
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Footer />
     </div>
