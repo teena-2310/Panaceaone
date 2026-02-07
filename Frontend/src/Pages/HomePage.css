@@ -7,49 +7,183 @@
 }
 
 body {
-  background: #ffffff;
+  background: #b9e3a5;
   color: #333;
 }
 
 .home-wrapper {
   overflow-x: hidden;
+  background: #b9e3a5;
+}
+
+/* ================= TOAST BOOKING POPUP ================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.modal-content {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 320px;
+  background: linear-gradient(135deg, #c9f1bb, #b2e5a2);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+  pointer-events: auto;
+  animation: toastIn 0.35s ease-out;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.modal-header h2 {
+  font-size: 1.2rem;
+  color: #1f5c3a;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #1f5c3a;
+}
+
+/* ================= BOOKING FORM ================= */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.booking-form input,
+.booking-form select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #7fbf94;
+  font-size: 0.9rem;
+  background: #f6fff3;
+}
+
+.booking-form button {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #2f8f6b, #5cc7a0);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 18px rgba(47, 143, 107, 0.7);
+  transition: 0.3s;
+}
+
+.booking-form button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 26px rgba(47, 143, 107, 0.9);
+}
+
+/* Mobile toast center */
+@media (max-width: 480px) {
+  .modal-content {
+    right: 50%;
+    transform: translateX(50%);
+    width: 92%;
+    bottom: 16px;
+  }
+}
+
+/* ================= SUCCESS TOAST ================= */
+.success-toast {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  background: linear-gradient(135deg, #d7f6c8, #bfe8ad);
+  color: #1f5c3a;
+  padding: 14px 18px;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+  font-size: 0.95rem;
+  font-weight: 600;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: toastSuccessIn 0.4s ease-out;
+}
+
+.success-toast span {
+  font-size: 1.3rem;
+}
+
+@keyframes toastSuccessIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .success-toast {
+    right: 50%;
+    transform: translateX(50%);
+    width: 90%;
+    justify-content: center;
+  }
 }
 
 /* ================= HERO ================= */
 .hero {
-  height: 90vh;
-  background: linear-gradient(
-      rgba(0, 0, 0, 0.45),
-      rgba(0, 0, 0, 0.45)
-    ),
-    url("/images/hero-bg.jpg") center/cover no-repeat;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  background: #bfe8ad;
+  padding: 40px 20px 35px;
   text-align: center;
-  color: #fff;
-  padding: 20px;
-}
-
-.hero h1 {
-  font-size: 3.2rem;
-  font-weight: 700;
 }
 
 .hero p {
-  font-size: 1.2rem;
-  margin: 15px 0 30px;
+  margin: 4px 0;
+  color: #4a4a4a;
+  line-height: 1.6;
 }
 
+.hero h1 {
+  margin: 16px 0 8px;
+  color: #1f5c3a;
+}
+
+/* ================= BUTTONS ================= */
 .primary-btn {
-  padding: 12px 30px;
+  padding: 12px 32px;
   background: #2f8f6b;
   color: #fff;
   border: none;
   border-radius: 30px;
-  font-size: 1rem;
   cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
 }
 
 .primary-btn:hover {
@@ -58,14 +192,19 @@ body {
 
 /* ================= SERVICES ================= */
 .service-section {
-  padding: 80px 10%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 70px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
 }
 
 .service-row {
   display: flex;
   align-items: center;
-  gap: 40px;
-  margin-bottom: 70px;
+  justify-content: space-between;
+  gap: 60px;
 }
 
 .service-row.reverse {
@@ -73,210 +212,189 @@ body {
 }
 
 .service-row img {
-  width: 45%;
-  border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  width: 460px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 22px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+.service-row div {
+  max-width: 520px;
 }
 
 .service-row h2 {
-  font-size: 2rem;
-  margin-bottom: 12px;
+  font-size: 30px;
+  font-weight: 600;
   color: #2f8f6b;
+  margin-bottom: 12px;
 }
 
 .service-row p {
-  font-size: 1.05rem;
+  font-size: 17px;
   line-height: 1.7;
+  color: #555;
 }
 
 /* ================= HEALING BENEFITS ================= */
 .healing-benefits {
+  background: #b9e3a5;
+  padding: 70px 20px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 50px;
-  padding: 80px 10%;
-  background: #f7fdf9;
-}
-
-.healing-benefits h2 {
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-  color: #2f8f6b;
-}
-
-.healing-benefits ul {
-  list-style: none;
-  padding: 0;
-}
-
-.healing-benefits li {
-  font-size: 1.05rem;
-  margin-bottom: 14px;
+  gap: 60px;
 }
 
 .benefits-image {
-  width: 40%;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  width: 420px;
+  border-radius: 22px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
 }
 
 /* ================= SPIRITUAL CONTENT ================= */
 .spiritual-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 70px 20px;
   text-align: center;
-  padding: 90px 15%;
-}
-
-.spiritual-content h2 {
-  font-size: 2.3rem;
-  color: #2f8f6b;
-}
-
-.spiritual-content p {
-  font-size: 1.1rem;
-  margin-top: 18px;
-  line-height: 1.8;
 }
 
 /* ================= CTA ================= */
 .cta {
-  background: linear-gradient(135deg, #2f8f6b, #5cc7a0);
-  color: #fff;
+  background: #b9e3a5;
   text-align: center;
-  padding: 80px 20px;
-}
-
-.cta h2 {
-  font-size: 2.2rem;
-  margin-bottom: 20px;
+  padding: 60px 20px;
 }
 
 .secondary-btn {
-  padding: 12px 30px;
-  background: #fff;
-  color: #2f8f6b;
+  padding: 12px 32px;
+  background: #0d2501;
+  color: #bfe8ad;
   border: none;
   border-radius: 30px;
-  font-size: 1rem;
   cursor: pointer;
 }
-
-.secondary-btn:hover {
-  background: #f1f1f1;
+/* Auto fade-out */
+.success-toast.hide {
+  animation: toastOut 0.4s ease-in forwards;
 }
 
-/* ================= MODAL ================= */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.modal-content {
-  background: #fff;
-  padding: 30px;
-  width: 420px;
-  border-radius: 15px;
-  position: relative;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.modal-header h2 {
-  color: #2f8f6b;
-}
-
-.close-btn {
-  background: none;
-  border: none;
-  font-size: 26px;
-  cursor: pointer;
-}
-
-/* ================= FORM ================= */
-.booking-form {
-  margin-top: 20px;
-}
-
-.booking-form input,
-.booking-form select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 0.95rem;
-}
-
-.booking-form button {
-  width: 100%;
-  padding: 12px;
-  background: #2f8f6b;
-  color: #fff;
-  border: none;
-  border-radius: 25px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.booking-form button:hover {
-  background: #256f54;
-}
-
-/* ================= WHATSAPP FLOAT ================= */
-.whatsapp-float {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: #25d366;
-  color: #fff;
-  font-size: 26px;
-  padding: 14px 16px;
-  border-radius: 50%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  z-index: 999;
-  text-decoration: none;
-}
-
-/* ================= MOBILE RESPONSIVE ================= */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.2rem;
+@keyframes toastOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
+  to {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+}
+/* ================= PROCESSING TOAST ================= */
+.processing-toast {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  background: linear-gradient(135deg, #e7f9dc, #cdeec0);
+  color: #1f5c3a;
+  padding: 14px 18px;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+  font-size: 0.95rem;
+  font-weight: 600;
+  z-index: 2000;
 
-  .service-row,
-  .service-row.reverse {
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.processing-toast::before {
+  content: "⏳";
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* ================= ERROR TOAST ================= */
+.error-toast {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  background: linear-gradient(135deg, #ffd6d6, #ffbcbc);
+  color: #7a1f1f;
+  padding: 14px 18px;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+  font-size: 0.95rem;
+  font-weight: 600;
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  animation: toastSuccessIn 0.4s ease-out;
+}
+@media (max-width: 480px) {
+  .success-toast,
+  .processing-toast,
+  .error-toast {
+    right: 50%;
+    transform: translateX(50%);
+    width: 92%;
+    justify-content: center;
     text-align: center;
   }
+}
+.service-section h4 {
+  color: #2f8f6b;           /* Panacea green */
+  font-size: 1.4rem;         /* Slightly larger than paragraph */
+  font-weight: 600;          
+  margin-bottom: 10px;       
+  line-height: 1.5;          
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  padding-left: 20px;
+  transition: all 0.3s ease; /* Smooth animation */
+}
 
-  .service-row img {
-    width: 100%;
-  }
+/* Green bullet before h3 */
+.service-section h4::before {
+  content: "•";
+  color: #2f8f6b;
+  position: absolute;
+  left: 0;
+  font-size: 1.4rem;
+  transition: all 0.3s ease;
+}
 
+/* Hover effect */
+.service-section h4:hover {
+  color: #1f5c3a;                  /* Darker green on hover */
+  transform: translateY(-4px);     /* Slight lift */
+}
+
+.service-section h4:hover::before {
+  color: #1f5c3a;                  /* Bullet also changes color */
+  transform: scale(1.2);           /* Bullet grows slightly */
+}
+
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .service-row,
+  .service-row.reverse,
   .healing-benefits {
     flex-direction: column;
     text-align: center;
   }
 
+  .service-row img,
   .benefits-image {
     width: 100%;
-  }
-
-  .spiritual-content {
-    padding: 60px 8%;
-  }
-
-  .modal-content {
-    width: 95%;
-    max-height: 90vh;
-    overflow-y: auto;
+    height: auto;
   }
 }
