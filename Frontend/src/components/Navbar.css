@@ -54,7 +54,7 @@
   position: absolute;
   top: 38px;
   left: 0;
-  background: #ffffff;
+  background-color:#ffffff;
   border-radius: 12px;
   padding: 16px;
   min-width: 220px;
@@ -65,7 +65,7 @@
 }
 
 .mega-menu a {
-  color: #1f6f43;
+  color:#1f6f43;
 }
 
 .mobile-cart {
@@ -110,7 +110,7 @@
 .hamburger span {
   width: 26px;
   height: 3px;
-  background: #1f6f43;
+  background: #317851;
   border-radius: 4px;
 }
 
@@ -129,7 +129,7 @@
     top: 70px;
     left: 0;
     width: 100%;
-    background: #ffffff;
+    background: #8acb6c;
     padding: 24px;
     gap: 18px;
     z-index: 1000;
@@ -139,7 +139,7 @@
   .mobile-cart {
     display: block !important;
     font-weight: 600;
-    color: #1f6f43;
+    color: #0d3720;
     text-decoration: none;
   }
 
@@ -148,6 +148,7 @@
     display: none;
   }
 
+  /* Hamburger spacing */
   .hamburger {
     display: flex;
   }
