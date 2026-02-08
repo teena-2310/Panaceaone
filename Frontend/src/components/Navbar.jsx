@@ -4,16 +4,13 @@ import "./Navbar.css";
 
 export default function Navbar({ cartCount }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-    setOpenDropdown(null);
   };
 
   const closeMenu = () => {
     setMenuOpen(false);
-    setOpenDropdown(null);
   };
 
   return (
@@ -29,60 +26,13 @@ export default function Navbar({ cartCount }) {
       {/* RIGHT: Navigation */}
       <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
         <Link to="/" onClick={closeMenu}>Home</Link>
-
-        <div
-          className="mega-wrapper"
-          onMouseEnter={() => setOpenDropdown("about")}
-          onMouseLeave={() => setOpenDropdown(null)}
-        >
-          <span className="mega-trigger">About Panacea One ▾</span>
-          {openDropdown === "about" && (
-            <div className="mega-menu">
-              <Link to="/vision-mission" onClick={closeMenu}>Vision & Mission</Link>
-              <Link to="/team" onClick={closeMenu}>Our Team</Link>
-            </div>
-          )}
-        </div>
-
-        <div
-          className="mega-wrapper"
-          onMouseEnter={() => setOpenDropdown("healing")}
-          onMouseLeave={() => setOpenDropdown(null)}
-        >
-          <span className="mega-trigger">Healing Solutions ▾</span>
-          {openDropdown === "healing" && (
-            <div className="mega-menu">
-              <Link to="/spiritual-healing" onClick={closeMenu}>Spiritual Healing</Link>
-              <Link to="/karmic-healing" onClick={closeMenu}>Karmic Healing</Link>
-              <Link to="/past-life-healing" onClick={closeMenu}>Past Life Healing</Link>
-              <Link to="/energy-cleansing" onClick={closeMenu}>Energy Cleansing</Link>
-            </div>
-          )}
-        </div>
-
-        <div
-          className="mega-wrapper"
-          onMouseEnter={() => setOpenDropdown("oils")}
-          onMouseLeave={() => setOpenDropdown(null)}
-        >
-          <span className="mega-trigger">Panacea Oils ▾</span>
-          {openDropdown === "oils" && (
-            <div className="mega-menu">
-              <Link to="/relaxation-oil" onClick={closeMenu}>Relaxation Oil</Link>
-              <Link to="/energy-boost-oil" onClick={closeMenu}>Energy Boost Oil</Link>
-              <Link to="/healing-oil" onClick={closeMenu}>Healing Oil</Link>
-              <Link to="/meditation-oil" onClick={closeMenu}>Meditation Oil</Link>
-              <Link to="/detox-oil" onClick={closeMenu}>Detox Oil</Link>
-            </div>
-          )}
-        </div>
-
+        <Link to="/about" onClick={closeMenu}>About</Link>
+        <Link to="/healingsolutions" onClick={closeMenu}>Healing Solutions</Link>
+        <Link to="/panaceaoils" onClick={closeMenu}>Panacea Oils</Link>
         <Link to="/contact" onClick={closeMenu}>Contact</Link>
 
-        {/* ✅ MOBILE CART TEXT */}
-        <Link to="/cart" className="mobile-cart" onClick={closeMenu}>
-          Cart
-        </Link>
+        {/* MOBILE CART TEXT */}
+        <Link to="/cart" className="mobile-cart" onClick={closeMenu}>Cart</Link>
       </nav>
 
       {/* CART ICON (DESKTOP ONLY) */}
