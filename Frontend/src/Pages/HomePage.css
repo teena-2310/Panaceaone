@@ -19,23 +19,35 @@ body {
 /* ================= TOAST BOOKING POPUP ================= */
 .modal-overlay {
   position: fixed;
-  inset: 0;
-  background: transparent;
-  pointer-events: none;
-  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  z-index: 9999;
 }
 
+/* 🔽 COMPACTED POPUP */
 .modal-content {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 320px;
+  position: relative;
+  width: 150px;                /* reduced width */
+  max-width: 60vh;
+  max-height: 100vh;          /* 🔑 prevents full-page height */
+  overflow-y: auto;          /* 🔑 scroll inside if needed */
+
   background: linear-gradient(135deg, #c9f1bb, #b2e5a2);
-  border-radius: 18px;
-  padding: 18px;
+  border-radius: 16px;
+  padding: 14px;               /* reduced padding */
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
-  pointer-events: auto;
   animation: toastIn 0.35s ease-out;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes toastIn {
@@ -53,11 +65,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .modal-header h2 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #1f5c3a;
 }
 
@@ -73,26 +85,29 @@ body {
 .booking-form {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;  
+  width: 100%;                  /* reduced gap */
 }
 
 .booking-form input,
 .booking-form select {
-  padding: 8px 10px;
-  border-radius: 8px;
+  width: 100%;
+  padding: 8px 10px;            /* reduced height */
+  border-radius: 10px;
   border: 1px solid #7fbf94;
-  font-size: 0.9rem;
+  font-size: 0.9rem;          /* smaller text */
   background: #f6fff3;
 }
 
 .booking-form button {
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 20px;
+  margin-top: 6px;
+  padding: 8px;                /* reduced button height */
+  border-radius: 22px;
   background: linear-gradient(135deg, #2f8f6b, #5cc7a0);
   color: #fff;
   font-weight: 600;
-  border: none;
+  font-size: 0.85rem;
+  border: rgb(37, 112, 73);
   cursor: pointer;
   box-shadow: 0 0 18px rgba(47, 143, 107, 0.7);
   transition: 0.3s;
@@ -275,113 +290,6 @@ body {
   border-radius: 30px;
   cursor: pointer;
 }
-/* Auto fade-out */
-.success-toast.hide {
-  animation: toastOut 0.4s ease-in forwards;
-}
-
-@keyframes toastOut {
-  from {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-  }
-}
-/* ================= PROCESSING TOAST ================= */
-.processing-toast {
-  position: fixed;
-  bottom: 26px;
-  right: 26px;
-  background: linear-gradient(135deg, #e7f9dc, #cdeec0);
-  color: #1f5c3a;
-  padding: 14px 18px;
-  border-radius: 16px;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.25);
-  font-size: 0.95rem;
-  font-weight: 600;
-  z-index: 2000;
-
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.processing-toast::before {
-  content: "⏳";
-  animation: spin 1.2s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-/* ================= ERROR TOAST ================= */
-.error-toast {
-  position: fixed;
-  bottom: 26px;
-  right: 26px;
-  background: linear-gradient(135deg, #ffd6d6, #ffbcbc);
-  color: #7a1f1f;
-  padding: 14px 18px;
-  border-radius: 16px;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.25);
-  font-size: 0.95rem;
-  font-weight: 600;
-  z-index: 2000;
-
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  animation: toastSuccessIn 0.4s ease-out;
-}
-@media (max-width: 480px) {
-  .success-toast,
-  .processing-toast,
-  .error-toast {
-    right: 50%;
-    transform: translateX(50%);
-    width: 92%;
-    justify-content: center;
-    text-align: center;
-  }
-}
-.service-section h4 {
-  color: #2f8f6b;           /* Panacea green */
-  font-size: 1.4rem;         /* Slightly larger than paragraph */
-  font-weight: 600;          
-  margin-bottom: 10px;       
-  line-height: 1.5;          
-  font-family: 'Segoe UI', sans-serif;
-  position: relative;
-  padding-left: 20px;
-  transition: all 0.3s ease; /* Smooth animation */
-}
-
-/* Green bullet before h3 */
-.service-section h4::before {
-  content: "•";
-  color: #2f8f6b;
-  position: absolute;
-  left: 0;
-  font-size: 1.4rem;
-  transition: all 0.3s ease;
-}
-
-/* Hover effect */
-.service-section h4:hover {
-  color: #1f5c3a;                  /* Darker green on hover */
-  transform: translateY(-4px);     /* Slight lift */
-}
-
-.service-section h4:hover::before {
-  color: #1f5c3a;                  /* Bullet also changes color */
-  transform: scale(1.2);           /* Bullet grows slightly */
-}
-
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
