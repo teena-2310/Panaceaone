@@ -1,7 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import paymentRoutes from "./routes/paymentRoutes.js";
+import bookingRoutes from "./routes/bookingRoutes.js";
+import contactRoutes from "./routes/contactRoutes.js";
+//import paymentRoutes from "./routes/paymentRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -17,7 +19,10 @@ mongoose
   });
 
 // ROUTES (BEFORE listen)
-app.use("/api/payment", paymentRoutes);
+app.use("/api/booking", bookingRoutes);
+app.use("/api/contact", contactRoutes);
+//app.use("/api/payment", paymentRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

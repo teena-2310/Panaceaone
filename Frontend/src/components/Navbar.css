@@ -43,6 +43,8 @@
   color: #1f6f43;
   font-weight: 500;
   cursor: pointer;
+  padding: 10px 15px; /* top-bottom, left-right */
+  border-radius: 5px; /* optional, for a smoother look */
 }
 
 /* DROPDOWN */
