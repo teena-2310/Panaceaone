@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import PaymentSection from "../components/PaymentSection";
+
 import "./HomePage.css";
 
 export default function HomePage() {
@@ -13,61 +15,6 @@ export default function HomePage() {
   const handleBookingClick = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
-  const handlePayment = async (amount) => {
-    try {
-      setShowProcessing(true);
-
-      const res = await fetch(
-        "http://localhost:5000/api/payment/create-order",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ amount }),
-        }
-      );
-
-      const order = await res.json();
-
-      const options = {
-        key: "YOUR_RAZORPAY_KEY_ID",
-        amount: order.amount,
-        currency: "INR",
-        name: "Panacea One",
-        order_id: order.id,
-        handler: async function (response) {
-          setShowProcessing(false);
-          const verifyRes = await fetch(
-            "http://localhost:5000/api/payment/verify",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(response),
-            }
-          );
-
-          const data = await verifyRes.json();
-
-          if (data.success) {
-            setShowSuccess(true);
-            setShowModal(false);
-            setTimeout(() => setShowSuccess(false), 3000);
-          } else {
-            setShowError(true);
-            setTimeout(() => setShowError(false), 3000);
-          }
-        },
-        theme: { color: "#2f8f6b" },
-      };
-
-      const rzp = new window.Razorpay(options);
-      rzp.open();
-    } catch (error) {
-      setShowProcessing(false);
-      setShowError(true);
-      setTimeout(() => setShowError(false), 3000);
-      console.error("Payment error:", error);
-    }
-  };
 
   return (
     <div className="home-wrapper">
@@ -209,9 +156,34 @@ export default function HomePage() {
                 </select>
                 <input type="date" />
                 <input type="time" />
-                <button type="button" onClick={() => handlePayment(500)}>
-                  Pay ₹500 & Book
-                </button>
+                <div style={{ marginBottom: "15px", textAlign: "left" }}>
+  <p><strong>Payment Amount:</strong> ₹500</p>
+  <p><strong>UPI ID:</strong> dhanasekar@okaxis</p>
+  <p><strong>Bank:</strong> SBI</p>
+  <p><strong>Account Name:</strong> Dhanasekar</p>
+  <p>
+    <strong>PayPal:</strong>{" "}
+    <a
+      href="https://www.paypal.me/YOURUSERNAME"
+      target="_blank"
+      rel="noreferrer"
+    >
+      Click Here
+    </a>
+  </p>
+</div>
+
+            <button
+  type="button"
+  onClick={() => {
+    setShowModal(false);
+    setShowSuccess(true);
+    setTimeout(() => setShowSuccess(false), 3000);
+  }}
+>
+  I Have Completed Payment ₹500
+</button>
+
               </form>
             </motion.div>
           </motion.div>
