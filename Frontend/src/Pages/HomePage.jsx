@@ -118,77 +118,53 @@ export default function HomePage() {
       </section>
 
       {/* BOOKING MODAL */}
-      <AnimatePresence>
-        {showModal && (
-          <motion.div
-            className="modal-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={(e) => {
-              if (e.target.className === "modal-overlay") setShowModal(false);
-            }}
-          >
-            <motion.div
-              className="modal-content"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-            >
-              <div className="modal-header">
-                <h2>Book a Healing Call</h2>
-                <button className="close-btn" onClick={handleCloseModal}>
-                  &times;
-                </button>
-              </div>
-
-              <form className="booking-form">
-                <input type="text" placeholder="Full Name" />
-                <input type="email" placeholder="Email" />
-                <input type="tel" placeholder="Phone Number" />
-                <select>
-                  <option>Select Healing Type</option>
-                  <option>Spiritual Healing</option>
-                  <option>Chakra Healing</option>
-                  <option>Past Life Healing</option>
-                  <option>Energy Cleansing</option>
-                </select>
-                <input type="date" />
-                <input type="time" />
-                <div style={{ marginBottom: "15px", textAlign: "left" }}>
-  <p><strong>Payment Amount:</strong> ₹500</p>
-  <p><strong>UPI ID:</strong> dhanasekar@okaxis</p>
-  <p><strong>Bank:</strong> SBI</p>
-  <p><strong>Account Name:</strong> Dhanasekar</p>
-  <p>
-    <strong>PayPal:</strong>{" "}
-    <a
-      href="https://www.paypal.me/YOURUSERNAME"
-      target="_blank"
-      rel="noreferrer"
+<AnimatePresence>
+  {showModal && (
+    <motion.div
+      className="modal-overlay"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={handleCloseModal}
     >
-      Click Here
-    </a>
-  </p>
-</div>
+      <motion.div
+        className="modal-content"
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 30, opacity: 0 }}
+        transition={{ duration: 0.25 }}
+        onClick={(e) => e.stopPropagation()} // ✅ prevents closing when clicking inside
+      >
+        <div className="modal-header">
+          <h2>Book Healing Call</h2>
+          <button className="close-btn" onClick={handleCloseModal}>
+            &times;
+          </button>
+        </div>
 
-            <button
-  type="button"
-  onClick={() => {
-    setShowModal(false);
-    setShowSuccess(true);
-    setTimeout(() => setShowSuccess(false), 3000);
-  }}
->
-  I Have Completed Payment ₹500
-</button>
+        <form className="booking-form">
+          <input type="text" placeholder="Full Name" />
+          <input type="email" placeholder="Email" />
+          <input type="tel" placeholder="Phone Number" />
 
-              </form>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          <select>
+            <option>Select Healing Type</option>
+            <option>Flower Medicine Healing</option>
+            <option>Hypno Therapy</option>
+            <option>Reiki & Energy Healing</option>
+          </select>
+
+          <input type="date" />
+          <input type="time" />
+
+          <button type="button" onClick={() => handlePayment(500)}>
+            Pay ₹500 & Book
+          </button>
+        </form>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
 
       {/* TOASTS */}
       <AnimatePresence>

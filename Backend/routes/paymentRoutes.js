@@ -1,13 +1,10 @@
 import express from "express";
-import Razorpay from "razorpay";
+import razorpay from "../config/razorpay.js";
 import crypto from "crypto";
+import Booking from "../models/Booking.js";
+
 
 const router = express.Router();
-
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
 
 router.post("/create-order", async (req, res) => {
   try {
@@ -24,8 +21,8 @@ router.post("/create-order", async (req, res) => {
   }
 });
 
-router.post("/verify", (req, res) => {
-  const { order_id, payment_id, signature } = req.body;
+router.post("/verify", async (req, res) => {
+  const { order_id, payment_id, signature, bookingId } = req.body;
 
   const body = order_id + "|" + payment_id;
   const expectedSignature = crypto
@@ -33,7 +30,16 @@ router.post("/verify", (req, res) => {
     .update(body)
     .digest("hex");
 
-  res.json({ success: expectedSignature === signature });
+  if (expectedSignature !== signature) {
+    return res.status(400).json({ success: false, message: "Invalid signature" });
+  }
+
+  await Booking.findByIdAndUpdate(bookingId, {
+    status: "paid",
+  });
+
+  res.json({ success: true, message: "Payment verified & booking updated" });
 });
+
 
 export default router;
