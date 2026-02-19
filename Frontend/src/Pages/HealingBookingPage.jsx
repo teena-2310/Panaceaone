@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./HealingBookingPage.css";
+import { useNavigate } from "react-router-dom";
 
 const HealingBookingPage = () => {
   const [step, setStep] = useState("select");
@@ -7,9 +8,30 @@ const HealingBookingPage = () => {
   const [transactionId, setTransactionId] = useState("");
   const [screenshot, setScreenshot] = useState(null);
 
+  const navigate = useNavigate(); // ✅ Added
+
+  // ✅ Auto redirect after success (3 seconds)
+  useEffect(() => {
+    if (step === "success") {
+      const timer = setTimeout(() => {
+        navigate("/");
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [step, navigate]);
+
   return (
     <div className="healing-container">
       <div className="healing-card">
+
+        {/* 🔙 Back Button */}
+        <button
+          className="back-button"
+          onClick={() => navigate("/")}
+        >
+          ←
+        </button>
 
         {/* STEP 1 */}
         {step === "select" && (
@@ -118,6 +140,7 @@ const HealingBookingPage = () => {
           <div className="healing-success">
             <h3>Payment Submitted Successfully 🎉</h3>
             <p>Waiting for admin verification.</p>
+            <p>Redirecting to Home...</p>
           </div>
         )}
 

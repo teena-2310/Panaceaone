@@ -23,6 +23,41 @@
   animation: fadeInBooking 0.4s ease-out;
 }
 
+
+/* 🔙 Back Button Styling */
+.back-button {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: linear-gradient(135deg, #198430, #379455);
+  color: #ffffff;
+
+  font-size: 20px;
+  font-weight: bold;
+
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(58, 192, 56, 0.4);
+}
+
+/* Hover Effect */
+.back-button:hover {
+  transform: translateX(-3px) scale(1.08);
+  box-shadow: 0 10px 25px rgba(23, 88, 80, 0.6);
+}
+
+
 @keyframes fadeInBooking {
   from {
     opacity: 0;
