@@ -1,14 +1,15 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import bookingRoutes from "./routes/bookingRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
+import healingBookingRoutes from "./routes/healingBookingRoutes.js";
+import cors from "cors";
 //import paymentRoutes from "./routes/paymentRoutes.js";
 dotenv.config();
 
 const app = express();
 app.use(express.json());
-
+app.use(cors());
 // MongoDB
 mongoose
   .connect(process.env.MONGO_URI)
@@ -19,7 +20,8 @@ mongoose
   });
 
 // ROUTES (BEFORE listen)
-app.use("/api/booking", bookingRoutes);
+app.use("/uploads", express.static("uploads"));
+app.use("/api/bookings", healingBookingRoutes);
 app.use("/api/contact", contactRoutes);
 //app.use("/api/payment", paymentRoutes);
 

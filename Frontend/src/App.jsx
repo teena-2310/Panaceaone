@@ -7,6 +7,7 @@ import HealingSolutions from "./Pages/HealingSolutions";
 import PanaceaOils from "./Pages/PanaceaOils";
 import ContactPage from "./Pages/Contactpage";
 import Cart from "./Pages/Cart";
+import HealingBookingPage from "./Pages/HealingBookingPage";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -24,6 +25,7 @@ function App() {
         <Route path="/healingsolutions" element={<HealingSolutions />} />
         <Route path="/panaceaoils" element={<PanaceaOils />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/healing-booking" element={<HealingBookingPage />} />
         <Route
           path="/cart"
           element={

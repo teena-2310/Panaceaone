@@ -1,0 +1,174 @@
+/* ================= HEALING BOOKING PAGE ================= */
+
+.healing-container {
+  min-height: 100vh;
+  background: #699753; /* match site background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+/* Card */
+.healing-card {
+  width: 100%;
+  max-width: 520px;
+  background: linear-gradient(135deg, #c9f1bb, #b2e5a2);
+  padding: 40px;
+  border-radius: 22px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  animation: fadeInBooking 0.4s ease-out;
+}
+
+@keyframes fadeInBooking {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Titles */
+.healing-title {
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+  color: #1f5c3a;
+}
+
+.healing-title-small {
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  color: #1f5c3a;
+}
+
+.healing-subtitle {
+  text-align: center;
+  color: #3f684f;
+  margin-bottom: 10px;
+}
+
+/* Fields */
+.healing-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.healing-field label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f5c3a;
+}
+
+.healing-field input,
+.healing-field select {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #7fbf94;
+  font-size: 0.95rem;
+  background: #f6fff3;
+  transition: 0.3s ease;
+}
+
+.healing-field input:focus,
+.healing-field select:focus {
+  border-color: #2f8f6b;
+  outline: none;
+  box-shadow: 0 0 12px rgba(47, 143, 107, 0.4);
+}
+
+/* Payment Box */
+.healing-payment-box {
+  background: #f6fff3;
+  padding: 18px;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #1f5c3a;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.healing-payment-box strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 1.05rem;
+  color: #2f8f6b;
+}
+
+/* Buttons */
+.healing-button {
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 0 18px rgba(47, 143, 107, 0.5);
+}
+
+/* Primary button */
+.healing-button.primary {
+  background: linear-gradient(135deg, #2f8f6b, #5cc7a0);
+  color: #ffffff;
+}
+
+.healing-button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(47, 143, 107, 0.8);
+}
+
+/* Success button */
+.healing-button.success {
+  background: linear-gradient(135deg, #2f8f6b, #4bb58f);
+  color: #ffffff;
+}
+
+.healing-button.success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(47, 143, 107, 0.8);
+}
+
+/* Secondary button */
+.healing-button.secondary {
+  background: #1f5c3a;
+  color: #bfe8ad;
+}
+
+.healing-button.secondary:hover {
+  background: #14482c;
+  transform: translateY(-2px);
+}
+
+/* Success Box */
+.healing-success {
+  text-align: center;
+  padding: 24px;
+  background: #d7f6c8;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.healing-success h3 {
+  color: #1f5c3a;
+  margin-bottom: 8px;
+}
+
+.healing-success p {
+  color: #2f6d4a;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .healing-card {
+    padding: 25px;
+  }
+}
