@@ -15,19 +15,35 @@
 }
 
 .quantity-controls {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
   margin: 10px 0;
 }
 
-.quantity-controls button {
-  width: 30px;
-  height: 30px;
+.qty-btn {
+  width: 38px;
+  height: 38px;
   border: none;
-  background: #1e3a8a;
-  color: white;
+  background: #f3f4f6;
   font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
-  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.qty-btn:hover {
+  background: #1e3a8a;
+  color: #ffffff;
+}
+
+.qty-value {
+  width: 45px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  background: #ffffff;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
-
+import "./Cart.css";
 export default function Cart({ cartItems = [], removeFromCart, updateQuantity }) {
   const navigate = useNavigate();
 
@@ -44,9 +44,21 @@ export default function Cart({ cartItems = [], removeFromCart, updateQuantity })
                   <h3>{item.title}</h3>
                   <p>₹{item.price}</p>
                   <div className="quantity-controls">
-                     <button onClick={() => updateQuantity(item.id, "decrease")}>−</button>
-                     <span>{item.quantity}</span>
-                     <button onClick={() => updateQuantity(item.id, "increase")}>+</button>
+                     <button 
+                        className="qty-btn"
+                        onClick={() => updateQuantity(item.id, "decrease")}
+                     >
+                         −
+                     </button>
+
+                       <span className="qty-value">{item.quantity}</span>
+
+                      <button 
+                        className="qty-btn"
+                        onClick={() => updateQuantity(item.id, "increase")}
+                      >
+                          +
+                         </button>
                   </div>
                 </div>
               </div>
