@@ -31,7 +31,7 @@ export default function Contactpage() {
 
   return (
     <>
-      <Navbar />
+
 
       <div className="contact-page">
         {/* HEADER */}

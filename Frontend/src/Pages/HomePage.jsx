@@ -26,7 +26,7 @@ export default function HomePage() {
 
   return (
     <div className="home-wrapper">
-      <Navbar />
+    
 
       {/* HERO */}
       <section className="hero">

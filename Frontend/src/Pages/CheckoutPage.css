@@ -1,0 +1,21 @@
+.checkout-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.checkout-form input,
+.checkout-form select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.checkout-form button {
+  background: #1e3a8a;
+  color: white;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}

@@ -13,3 +13,21 @@
   padding: 2px 6px;
   font-size: 12px;
 }
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.quantity-controls button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: #1e3a8a;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 4px;
+}

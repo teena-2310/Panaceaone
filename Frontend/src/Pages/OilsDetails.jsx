@@ -33,7 +33,7 @@ export default function OilDetails() {
 
   return (
     <>
-      <Navbar />
+ 
 
       <div className="oil-details-page">
         <img src={oil.img} alt={oil.title} className="details-img" />
