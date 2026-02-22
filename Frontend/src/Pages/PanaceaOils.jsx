@@ -10,56 +10,49 @@ const oils = [
     img: "/oil-life-flow.png",
     title: "Panacea One – Life Flow Oil",
     desc: "Supports emotional release, energy flow, and life alignment.",
-    price: 999,
-    rating: 4.8,
+    price: 599,
   },
   {
     id: 2,
     img: "/oil-pain-relief.png",
     title: "Panacea One – Pain Relief Oil",
     desc: "Helps reduce body pain, stiffness, and inflammation.",
-    price: 899,
-    rating: 4.6,
+    price: 699,
   },
   {
     id: 3,
     img: "/oil-nerve-spine.png",
     title: "Panacea One – Nerve & Spine Care Oil",
     desc: "Supports nerve strength and spine health.",
-    price: 1099,
-    rating: 4.7,
+    price: 599,
   },
   {
     id: 4,
     img: "/oil-skin-glow.png",
     title: "Panacea One – Skin Glow & Repair Oil",
     desc: "Improves skin glow and supports repair.",
-    price: 799,
-    rating: 4.5,
+    price: 599,
   },
   {
     id: 5,
     img: "/oil-mind-calm.png",
     title: "Panacea One – Mind Calm & Sleep Oil",
     desc: "Calms the mind and improves sleep quality.",
-    price: 999,
-    rating: 4.9,
+    price: 699,
   },
   {
     id: 6,
     img: "/oil-women-balance.png",
     title: "Panacea One – Women’s Balance Oil",
     desc: "Supports hormonal and emotional balance.",
-    price: 1199,
-    rating: 4.8,
+    price: 699,
   },
   {
     id: 7,
     img: "/oil-immunity-energy.png",
     title: "Panacea One – Immunity & Energy Oil",
     desc: "Boosts immunity and energy levels.",
-    price: 1299,
-    rating: 4.9,
+    price: 599,
   },
 ];
 
@@ -108,7 +101,6 @@ export default function PanaceaOils({ addToCart }) {
 
               <div className="price-rating">
                 <span className="price">₹{oil.price}</span>
-                <span className="rating">⭐ {oil.rating}</span>
               </div>
 
               <div className="oil-action-buttons">

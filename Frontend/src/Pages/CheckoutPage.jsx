@@ -72,8 +72,8 @@ export default function CheckoutPage({ cartItems }) {
         />
 
         <select name="payment" onChange={handleChange}>
-          <option value="COD">Cash on Delivery</option>
-          <option value="Online">Online Payment</option>
+          <option value="UPI">UPI</option>
+          <option value="Bank">Bank Transfer</option>
         </select>
 
         <button onClick={handlePlaceOrder}>
