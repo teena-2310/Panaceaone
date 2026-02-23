@@ -14,20 +14,45 @@ import {
 
 export default function Contactpage() {
   const [showSuccess, setShowSuccess] = useState(false);
+  const [formData, setFormData] = useState({
+  name: "",
+  email: "",
+  message: "",
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you can handle sending data to backend
+  const handleChange = (e) => {
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value,
+  });
+ };
 
-    // Show success popup
-    setShowSuccess(true);
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // Hide popup after 3 seconds
-    setTimeout(() => setShowSuccess(false), 3000);
+  try {
+    const response = await fetch("http://localhost:5000/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
 
-    // Reset form
-    e.target.reset();
-  };
+    const data = await response.json();
+
+    if (data.success) {
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+      setFormData({ name: "", email: "", message: "" });
+    } else {
+      alert("Something went wrong");
+    }
+   } catch (error) {
+    console.error("Error:", error);
+    alert("Server error");
+ }
+ };
 
   return (
     <>
@@ -64,16 +89,37 @@ export default function Contactpage() {
             <h2>Message Us</h2>
             <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-row">
-                <input type="text" placeholder="Full Name" required />
+                <input
+                   type="text"
+                   name="name"
+                   placeholder="Full Name"
+                   value={formData.name}
+                   onChange={handleChange}
+                   required
+                />
               </div>
               <div className="form-row">
-                <input type="email" placeholder="Email Address" required />
+                 <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
               </div>
               <div className="form-row">
                 <input type="tel" placeholder="Phone Number" required />
               </div>
               <div className="form-row">
-                <textarea rows="4" placeholder="Your Message" required />
+                 <textarea
+                     rows="4"
+                     name="message"
+                     placeholder="Your Message"
+                     value={formData.message}
+                     onChange={handleChange}
+                     required
+                  />
               </div>
               <button type="submit">Send Message</button>
             </form>
