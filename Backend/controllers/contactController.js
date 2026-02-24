@@ -44,7 +44,9 @@ export const createContact = async (req, res) => {
          `,
       };
 
-    await transporter.sendMail(mailOptions);
+     transporter.sendMail(mailOptions)
+      .then(() => console.log("Email sent successfully"))
+      .catch((err) => console.error("Email send error:", err));
 
     res.status(201).json({
       success: true,
