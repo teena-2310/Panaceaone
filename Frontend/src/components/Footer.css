@@ -1,6 +1,6 @@
 .footer {
   background:#7daa6f;
-  color: #66c674;
+  color:#1f6f43;
   padding: 0.3rem 2rem 0.3rem;
   font-family: "Poppins", sans-serif;
   border-top: 2px solid rgb(91, 171, 98);
@@ -33,12 +33,12 @@
   font-size: clamp(1.2rem, 2vw, 1.5rem);
   font-weight: 700;
   margin: 0;
-  color: #33b059;
+  color: #1f6f43;
 }
 
 .footer-tagline {
   margin-top: 4px;
-  color: #49e44b;
+  color: #1f6f43;
   font-weight: 600;
   font-size: clamp(0.75rem, 1.5vw, 0.9rem);
   letter-spacing: 1px;
@@ -70,7 +70,7 @@
 
 .footer-links a {
   text-decoration: none;
-  color: #ccc;
+  color:#1f6f43;
   transition: color 0.3s;
 }
 
@@ -87,7 +87,7 @@
 
 .footer-bottom {
   text-align: center;
-  color: #aaa;
+  color: #1f6f43;
 }
 
 /* SOCIAL ICONS */
@@ -99,7 +99,7 @@
   display: inline-block;
   margin: 0 8px;
   font-size: 1.25rem;
-  color: #f0f0f0;
+  color: #1f6f43;
   transition: 0.3s;
 }
 
