@@ -21,25 +21,28 @@ export const createContact = async (req, res) => {
 
     // Email Transporter
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: process.env.EMAIL_HOST,
+      port: Number(process.env.EMAIL_PORT),
+      secure: true, // true because 465 uses SSL
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+     },
     });
 
     // Email Content
-    const mailOptions = {
-      from: email,
-      to: "dhana@panacea-one.com",
-      subject: "New Contact Message - Panacea One",
-      html: `
-        <h3>New Contact Message</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong> ${message}</p>
-      `,
-    };
+     const mailOptions = {
+        from: `"Panacea One Website" <${process.env.EMAIL_USER}>`,
+        to: process.env.EMAIL_USER,
+        replyTo: email, // user email goes here
+        subject: "New Contact Message - Panacea One",
+        html: `
+          <h3>New Contact Message</h3>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message:</strong> ${message}</p>
+         `,
+      };
 
     await transporter.sendMail(mailOptions);
 
