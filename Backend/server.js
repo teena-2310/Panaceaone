@@ -1,11 +1,16 @@
+import dotenv from "dotenv";
+dotenv.config({ path: "./.env" });
+
+console.log("Loaded EMAIL_USER:", process.env.EMAIL_USER);
+console.log("Loaded EMAIL_PASS:", process.env.EMAIL_PASS);
+
+
 import express from "express";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 import contactRoutes from "./routes/contactRoutes.js";
 import healingBookingRoutes from "./routes/healingBookingRoutes.js";
 import cors from "cors";
-//import paymentRoutes from "./routes/paymentRoutes.js";
-dotenv.config();
+
 
 const app = express();
 app.use(express.json());
@@ -23,7 +28,7 @@ mongoose
 app.use("/uploads", express.static("uploads"));
 app.use("/api/bookings", healingBookingRoutes);
 app.use("/api/contact", contactRoutes);
-//app.use("/api/payment", paymentRoutes);
+
 
 
 const PORT = process.env.PORT || 5000;

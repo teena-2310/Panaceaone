@@ -1,38 +1,38 @@
 // HomePage.jsx
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
-
 import "./HomePage.css";
 
 export default function HomePage() {
   const [showModal, setShowModal] = useState(false);
+
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    healingType: "",
+    date: "",
+    time: "",
+  });
 
   const navigate = useNavigate();
 
   const handleBookingClick = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
-  // ✅ Proper Form Submit Handler
-  const handleSubmit = (e) => {
-    e.preventDefault(); // stop page reload
-
-    // If all fields are valid (browser checks because of "required")
-    setShowModal(false);
-    navigate("/healing-booking");
-  };
-
   return (
     <div className="home-wrapper">
-    
+      
 
       {/* HERO */}
       <section className="hero">
         <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           Panacea One
         </motion.h1>
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -40,6 +40,7 @@ export default function HomePage() {
         >
           மனம் • உடல் • ஆன்மா ஒரே அலைவரிசையில்
         </motion.p>
+
         <button className="primary-btn" onClick={handleBookingClick}>
           Book Healing Call
         </button>
@@ -120,35 +121,128 @@ export default function HomePage() {
                 &times;
               </button>
 
-              {/* ✅ FORM WITH PROPER SUBMIT */}
-              <form className="booking-form" onSubmit={handleSubmit}>
+              <form
+                className="booking-form"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+
+                  try {
+                    const response = await fetch(
+                      "http://localhost:5000/api/bookings/create",
+                      {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                          ...formData,
+                          amount: 500,
+                        }),
+                      }
+                    );
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                      setShowModal(false);
+
+                      // Reset form
+                      setFormData({
+                        fullName: "",
+                        email: "",
+                        phone: "",
+                        healingType: "",
+                        date: "",
+                        time: "",
+                      });
+
+                      navigate(`/healing-booking/${data.bookingId}`);
+                    } else {
+                      alert("Booking failed");
+                    }
+                  } catch (error) {
+                    alert("Server error. Please try again.");
+                  }
+                }}
+              >
                 <input
                   type="text"
                   placeholder="Full Name"
                   required
+                  value={formData.fullName}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      fullName: e.target.value,
+                    })
+                  }
                 />
 
                 <input
                   type="email"
                   placeholder="Email"
                   required
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      email: e.target.value,
+                    })
+                  }
                 />
 
                 <input
                   type="tel"
                   placeholder="Phone Number"
                   required
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      phone: e.target.value,
+                    })
+                  }
                 />
 
-                <select required>
+                <select
+                  required
+                  value={formData.healingType}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      healingType: e.target.value,
+                    })
+                  }
+                >
                   <option value="">Select Healing Type</option>
                   <option>Flower Medicine Healing</option>
                   <option>Hypno Therapy</option>
                   <option>Reiki & Energy Healing</option>
                 </select>
 
-                <input type="date" required />
-                <input type="time" required />
+                <input
+                  type="date"
+                  required
+                  value={formData.date}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      date: e.target.value,
+                    })
+                  }
+                />
+
+                <input
+                  type="time"
+                  required
+                  value={formData.time}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      time: e.target.value,
+                    })
+                  }
+                />
 
                 <button type="submit">
                   Pay ₹500 & Book

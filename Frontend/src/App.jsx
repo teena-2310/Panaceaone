@@ -82,7 +82,7 @@ function App() {
         />
 
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/healing-booking" element={<HealingBookingPage />} />
+        <Route path="/healing-booking/:bookingId" element={<HealingBookingPage />} />
 
         <Route
           path="/cart"

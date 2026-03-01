@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./HealingBookingPage.css";
 import { useNavigate } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 const HealingBookingPage = () => {
   const [step, setStep] = useState("select");
   const [paymentMethod, setPaymentMethod] = useState("");
   const [transactionId, setTransactionId] = useState("");
   const [screenshot, setScreenshot] = useState(null);
-
+  const { bookingId } = useParams();
+  console.log("Booking ID:", bookingId);
   const navigate = useNavigate(); // ✅ Added
 
   // ✅ Auto redirect after success (3 seconds)
@@ -122,13 +123,37 @@ const HealingBookingPage = () => {
 
             <button
               className="healing-button secondary"
-              onClick={() => {
-                if (!transactionId || !screenshot) {
-                  alert("Please fill all fields");
-                  return;
-                }
-                setStep("success");
-              }}
+               onClick={async () => {
+  if (!transactionId || !screenshot) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  try {
+    const formDataObj = new FormData();
+    formDataObj.append("transactionId", transactionId);
+    formDataObj.append("screenshot", screenshot);
+
+    const response = await fetch(
+      `http://localhost:5000/api/bookings/${bookingId}/upload-proof`,
+      {
+        method: "POST",
+        body: formDataObj,
+      }
+    );
+
+    const data = await response.json();
+
+    if (data.success) {
+      setStep("success");
+    } else {
+      alert("Upload failed");
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Server error");
+  }
+}}
             >
               Submit Payment
             </button>

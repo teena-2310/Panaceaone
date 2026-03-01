@@ -1,6 +1,7 @@
 import express from "express";
 import HealingBooking from "../models/HealingBooking.js";
 import multer from "multer";
+import { sendAdminEmail, sendUserConfirmationEmail } from "../utils/sendEmail.js";
 
 const router = express.Router();
 
@@ -60,18 +61,27 @@ router.post("/:id/upload-proof", upload.single("screenshot"), async (req, res) =
     }
 
     booking.transactionId = req.body.transactionId;
-    booking.paymentScreenshot = req.file.path;
+    booking.paymentScreenshot = req.file?.path;
     booking.paymentStatus = "Pending";
 
     await booking.save();
 
+    // ✅ SEND EMAILS
+    try {
+  await sendAdminEmail(booking);
+  await sendUserConfirmationEmail(booking);
+} catch (emailError) {
+  console.error("EMAIL ERROR:", emailError);
+}
+
     res.json({
       success: true,
-      message: "Payment proof uploaded"
+      message: "Payment proof uploaded & emails sent"
     });
 
   } catch (error) {
-    res.status(500).json({ message: "Upload failed" });
+     console.error("UPLOAD ERROR:", error);
+     res.status(500).json({ message: error.message });
   }
 });
 
