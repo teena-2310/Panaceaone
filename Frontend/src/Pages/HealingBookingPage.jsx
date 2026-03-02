@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./HealingBookingPage.css";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 const HealingBookingPage = () => {
   const [step, setStep] = useState("select");
   const [paymentMethod, setPaymentMethod] = useState("");
   const [transactionId, setTransactionId] = useState("");
   const [screenshot, setScreenshot] = useState(null);
   const { bookingId } = useParams();
-  console.log("Booking ID:", bookingId);
-  const navigate = useNavigate(); // ✅ Added
+  const navigate = useNavigate();
 
-  // ✅ Auto redirect after success (3 seconds)
   useEffect(() => {
     if (step === "success") {
       const timer = setTimeout(() => {
         navigate("/");
       }, 3000);
-
       return () => clearTimeout(timer);
     }
   }, [step, navigate]);
@@ -26,11 +23,7 @@ const HealingBookingPage = () => {
     <div className="healing-container">
       <div className="healing-card">
 
-        {/* 🔙 Back Button */}
-        <button
-          className="back-button"
-          onClick={() => navigate("/")}
-        >
+        <button className="back-button" onClick={() => navigate("/")}>
           ←
         </button>
 
@@ -69,24 +62,44 @@ const HealingBookingPage = () => {
           </>
         )}
 
-        {/* STEP 2 */}
+        {/* STEP 2 - PAYMENT DETAILS */}
         {step === "details" && (
           <>
             <h3 className="healing-title-small">Payment Details</h3>
 
             {paymentMethod === "UPI" && (
               <div className="healing-payment-box">
-                <p>Pay ₹500 to this UPI ID:</p>
-                <strong>yourupi@bank</strong>
+                <p className="pay-instruction">
+                  Scan QR or pay ₹500 to:
+                </p>
+
+                <div className="upi-id-box">
+                  <strong>9498103668@sbi</strong>
+                </div>
+
+                <div className="qr-wrapper">
+                  <img
+                    src="/images/gpay-qr.png"
+                    alt="UPI QR"
+                    className="qr-image"
+                  />
+                </div>
+
+                <p className="pay-note">
+                  After payment, click "I Have Paid"
+                </p>
               </div>
             )}
 
             {paymentMethod === "Bank" && (
               <div className="healing-payment-box">
-                <p><strong>Account Name:</strong> Your Name</p>
-                <p><strong>Account Number:</strong> 1234567890</p>
-                <p><strong>IFSC:</strong> ABCD0001234</p>
-                <p><strong>Bank:</strong> Your Bank Name</p>
+                <p><strong>Account Name:</strong> DHANASEKAR S</p>
+                <p><strong>Bank:</strong> State Bank of India</p>
+                <p><strong>Account Number:</strong> ******4404</p>
+                <p><strong>IFSC:</strong> SBIN0018292</p>
+                <p className="pay-note">
+                  Please transfer ₹500 and keep screenshot.
+                </p>
               </div>
             )}
 
@@ -99,7 +112,7 @@ const HealingBookingPage = () => {
           </>
         )}
 
-        {/* STEP 3 */}
+        {/* STEP 3 - UPLOAD */}
         {step === "upload" && (
           <>
             <h3 className="healing-title-small">Upload Payment Proof</h3>
@@ -123,44 +136,43 @@ const HealingBookingPage = () => {
 
             <button
               className="healing-button secondary"
-               onClick={async () => {
-  if (!transactionId || !screenshot) {
-    alert("Please fill all fields");
-    return;
-  }
+              onClick={async () => {
+                if (!transactionId || !screenshot) {
+                  alert("Please fill all fields");
+                  return;
+                }
 
-  try {
-    const formDataObj = new FormData();
-    formDataObj.append("transactionId", transactionId);
-    formDataObj.append("screenshot", screenshot);
+                try {
+                  const formDataObj = new FormData();
+                  formDataObj.append("transactionId", transactionId);
+                  formDataObj.append("screenshot", screenshot);
 
-    const response = await fetch(
-      `http://localhost:5000/api/bookings/${bookingId}/upload-proof`,
-      {
-        method: "POST",
-        body: formDataObj,
-      }
-    );
+                  const response = await fetch(
+                    `http://localhost:5000/api/bookings/${bookingId}/upload-proof`,
+                    {
+                      method: "POST",
+                      body: formDataObj,
+                    }
+                  );
 
-    const data = await response.json();
+                  const data = await response.json();
 
-    if (data.success) {
-      setStep("success");
-    } else {
-      alert("Upload failed");
-    }
-  } catch (error) {
-    console.error(error);
-    alert("Server error");
-  }
-}}
+                  if (data.success) {
+                    setStep("success");
+                  } else {
+                    alert("Upload failed");
+                  }
+                } catch (error) {
+                  alert("Server error");
+                }
+              }}
             >
               Submit Payment
             </button>
           </>
         )}
 
-        {/* STEP 4 */}
+        {/* STEP 4 - SUCCESS */}
         {step === "success" && (
           <div className="healing-success">
             <h3>Payment Submitted Successfully 🎉</h3>
@@ -168,7 +180,6 @@ const HealingBookingPage = () => {
             <p>Redirecting to Home...</p>
           </div>
         )}
-
       </div>
     </div>
   );

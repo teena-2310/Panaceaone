@@ -202,6 +202,35 @@
   color: #2f6d4a;
 }
 
+.upi-id-box {
+  background: #f1f5f2;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.qr-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+
+.qr-image {
+  width: 220px;
+  border-radius: 12px;
+}
+
+.pay-note {
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
+}
+
+.pay-instruction {
+  font-weight: 500;
+}
+
 /* Mobile */
 @media (max-width: 480px) {
   .healing-card {
