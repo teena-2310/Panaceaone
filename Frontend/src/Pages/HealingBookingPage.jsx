@@ -95,7 +95,7 @@ const HealingBookingPage = () => {
               <div className="healing-payment-box">
                 <p><strong>Account Name:</strong> DHANASEKAR S</p>
                 <p><strong>Bank:</strong> State Bank of India</p>
-                <p><strong>Account Number:</strong> ******4404</p>
+                <p><strong>Account Number:</strong> 20078164404</p>
                 <p><strong>IFSC:</strong> SBIN0018292</p>
                 <p className="pay-note">
                   Please transfer ₹500 and keep screenshot.

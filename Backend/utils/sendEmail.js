@@ -10,11 +10,12 @@ const transporter = nodemailer.createTransport({
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
-  }, 
-   tls: {
+  },
+  tls: {
     rejectUnauthorized: false,
   },
 });
+
 transporter.verify(function (error, success) {
   if (error) {
     console.log("SMTP CONNECTION ERROR:", error);
@@ -25,6 +26,10 @@ transporter.verify(function (error, success) {
 
 console.log("EMAIL_USER inside mail file:", process.env.EMAIL_USER);
 console.log("EMAIL_PASS inside mail file:", process.env.EMAIL_PASS);
+
+/* ============================= */
+/* HEALING BOOKING EMAILS */
+/* ============================= */
 
 export const sendAdminEmail = async (booking) => {
   await transporter.sendMail({
@@ -45,11 +50,7 @@ export const sendAdminEmail = async (booking) => {
       <p><strong>Status:</strong> ${booking.paymentStatus}</p>
     `,
     attachments: booking.paymentScreenshot
-      ? [
-          {
-            path: booking.paymentScreenshot,
-          },
-        ]
+      ? [{ path: booking.paymentScreenshot }]
       : [],
   });
 };
@@ -72,5 +73,47 @@ export const sendUserConfirmationEmail = async (booking) => {
       <p>We will reach out to you soon.</p>
       <p>Warm regards,<br/>Panacea One</p>
     `,
+  });
+};
+
+/* ============================= */
+/* NEW: PRODUCT ORDER EMAIL */
+/* ============================= */
+
+export const sendOrderEmail = async (order) => {
+  await transporter.sendMail({
+    from: `"Panacea One" <${process.env.EMAIL_USER}>`,
+    to: "dhana@panacea-one.com",
+    subject: "🛒 New Product Order Received",
+    html: `
+      <h3>New Product Order</h3>
+      <p><strong>Name:</strong> ${order.name}</p>
+      <p><strong>Phone:</strong> ${order.phone}</p>
+      <p><strong>Address:</strong> ${order.address}</p>
+      <p><strong>Payment Method:</strong> ${order.payment}</p>
+      <p><strong>Transaction ID:</strong> ${order.transactionId || "N/A"}</p>
+      <hr/>
+      <h4>Items Ordered:</h4>
+      <ul>
+        ${order.items
+          .map(
+            (item) =>
+              `<li>${item.title} × ${item.quantity} = ₹${
+                item.price * item.quantity
+              }</li>`
+          )
+          .join("")}
+      </ul>
+      <hr/>
+      <h3>Total: ₹${order.total}</h3>
+    `,
+    attachments: order.screenshot
+      ? [
+          {
+            filename: order.screenshot.originalname,
+            content: order.screenshot.buffer,
+          },
+        ]
+      : [],
   });
 };
