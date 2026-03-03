@@ -49,9 +49,15 @@ export const sendAdminEmail = async (booking) => {
       <p><strong>Transaction ID:</strong> ${booking.transactionId}</p>
       <p><strong>Status:</strong> ${booking.paymentStatus}</p>
     `,
-    attachments: booking.paymentScreenshot
-      ? [{ path: booking.paymentScreenshot }]
-      : [],
+     attachments: booking.paymentScreenshot
+  ? [
+      {
+        filename: booking.paymentScreenshot.originalname,
+        content: booking.paymentScreenshot.buffer,
+        contentType: booking.paymentScreenshot.mimetype,
+      },
+    ]
+  : [],
   });
 };
 

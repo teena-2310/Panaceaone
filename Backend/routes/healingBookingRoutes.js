@@ -5,31 +5,32 @@ import { sendAdminEmail, sendUserConfirmationEmail } from "../utils/sendEmail.js
 
 const router = express.Router();
 
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + "-" + file.originalname);
-  }
+/* =======================================
+   USE MEMORY STORAGE (NO FILE SAVING)
+======================================= */
+const upload = multer({
+  storage: multer.memoryStorage(),
 });
 
-const upload = multer({ storage });
- 
-
+/* =======================================
+   CREATE BOOKING
+======================================= */
 router.post("/create", async (req, res) => {
   try {
     const booking = await HealingBooking.create(req.body);
+
     res.status(201).json({
       success: true,
-      bookingId: booking._id
+      bookingId: booking._id,
     });
   } catch (error) {
     res.status(500).json({ message: "Error creating booking" });
   }
 });
 
+/* =======================================
+   UPDATE PAYMENT METHOD
+======================================= */
 router.put("/:id/payment-method", async (req, res) => {
   try {
     const booking = await HealingBooking.findById(req.params.id);
@@ -39,19 +40,20 @@ router.put("/:id/payment-method", async (req, res) => {
     }
 
     booking.paymentMethod = req.body.paymentMethod;
-
     await booking.save();
 
     res.json({
       success: true,
-      message: "Payment method updated"
+      message: "Payment method updated",
     });
-
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
 });
 
+/* =======================================
+   UPLOAD PAYMENT PROOF (EMAIL ONLY)
+======================================= */
 router.post("/:id/upload-proof", upload.single("screenshot"), async (req, res) => {
   try {
     const booking = await HealingBooking.findById(req.params.id);
@@ -60,32 +62,43 @@ router.post("/:id/upload-proof", upload.single("screenshot"), async (req, res) =
       return res.status(404).json({ message: "Booking not found" });
     }
 
-    booking.transactionId = req.body.transactionId;
-    booking.paymentScreenshot = req.file?.path;
-    booking.paymentStatus = "Pending";
+    if (!req.body.transactionId || !req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "Transaction ID and screenshot required",
+      });
+    }
 
+    // ✅ Update only required fields
+    booking.transactionId = req.body.transactionId;
+    booking.paymentStatus = "Pending";
     await booking.save();
 
-    // ✅ SEND EMAILS
+    // ✅ Send emails with screenshot buffer (NOT saved anywhere)
     try {
-  await sendAdminEmail(booking);
-  await sendUserConfirmationEmail(booking);
-} catch (emailError) {
-  console.error("EMAIL ERROR:", emailError);
-}
+      await sendAdminEmail({
+        ...booking.toObject(),
+        paymentScreenshot: req.file, // buffer
+      });
+
+      await sendUserConfirmationEmail(booking);
+    } catch (emailError) {
+      console.error("EMAIL ERROR:", emailError);
+    }
 
     res.json({
       success: true,
-      message: "Payment proof uploaded & emails sent"
+      message: "Payment proof submitted successfully",
     });
-
   } catch (error) {
-     console.error("UPLOAD ERROR:", error);
-     res.status(500).json({ message: error.message });
+    console.error("UPLOAD ERROR:", error);
+    res.status(500).json({ message: error.message });
   }
 });
 
-// Admin verify payment
+/* =======================================
+   ADMIN VERIFY PAYMENT
+======================================= */
 router.put("/:id/verify", async (req, res) => {
   try {
     const booking = await HealingBooking.findById(req.params.id);
@@ -93,31 +106,26 @@ router.put("/:id/verify", async (req, res) => {
     if (!booking) {
       return res.status(404).json({
         success: false,
-        message: "Booking not found"
+        message: "Booking not found",
       });
     }
 
-    booking.paymentStatus = "verified";
-    booking.status = "confirmed";
+    booking.paymentStatus = "Verified";
+    booking.status = "Confirmed";
 
     await booking.save();
 
     res.json({
       success: true,
       message: "Booking verified successfully",
-      booking
+      booking,
     });
-
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: error.message
+      message: error.message,
     });
   }
 });
-
-
-
-
 
 export default router;
