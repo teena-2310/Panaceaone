@@ -1,7 +1,7 @@
 import express from "express";
 import HealingBooking from "../models/HealingBooking.js";
 import multer from "multer";
-import { sendAdminEmail, sendUserConfirmationEmail } from "../utils/sendEmail.js";
+import { sendAdminNotification, sendAutoReply } from "../utils/sendEmail.js";
 
 const router = express.Router();
 
@@ -69,22 +69,41 @@ router.post("/:id/upload-proof", upload.single("screenshot"), async (req, res) =
       });
     }
 
-    // ✅ Update only required fields
     booking.transactionId = req.body.transactionId;
     booking.paymentStatus = "Pending";
     await booking.save();
 
-    // ✅ Send emails with screenshot buffer (NOT saved anywhere)
-    try {
-      await sendAdminEmail({
-        ...booking.toObject(),
-        paymentScreenshot: req.file, // buffer
-      });
+    /* ===============================
+       SEND ADMIN NOTIFICATION
+    =============================== */
+    await sendAdminNotification({
+      subject: "New Healing Booking Payment - Panacea One",
+      replyTo: booking.email,
+      html: `
+        <h3>New Healing Booking Payment</h3>
+        <p><strong>Name:</strong> ${booking.name}</p>
+        <p><strong>Email:</strong> ${booking.email}</p>
+        <p><strong>Phone:</strong> ${booking.phone}</p>
+        <p><strong>Payment Method:</strong> ${booking.paymentMethod}</p>
+        <p><strong>Transaction ID:</strong> ${booking.transactionId}</p>
+        <p><strong>Status:</strong> ${booking.paymentStatus}</p>
+      `,
+      attachments: [
+        {
+          filename: req.file.originalname,
+          content: req.file.buffer,
+        },
+      ],
+    });
 
-      await sendUserConfirmationEmail(booking);
-    } catch (emailError) {
-      console.error("EMAIL ERROR:", emailError);
-    }
+    /* ===============================
+       SEND AUTO REPLY TO USER
+    =============================== */
+    await sendAutoReply({
+      type: "healing",
+      name: booking.name,
+      email: booking.email,
+    });
 
     res.json({
       success: true,
