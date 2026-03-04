@@ -67,7 +67,7 @@ const healings = [
 export default function HealingSolutions() {
   return (
     <>
-      <Navbar />
+     
 
       <div className="healing-wrapper py-5">
         <div className="container">

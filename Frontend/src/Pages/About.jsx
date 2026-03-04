@@ -61,7 +61,7 @@ export default function About() {
 
   return (
     <>
-      <Navbar />
+
 
       <div className="about-container">
         <h1 id="about">About Panacea One</h1>

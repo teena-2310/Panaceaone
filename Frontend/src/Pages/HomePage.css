@@ -61,26 +61,6 @@ body {
   }
 }
 
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.modal-header h2 {
-  font-size: 1.1rem;
-  color: #1f5c3a;
-}
-
-.close-btn {
-  background: none;
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-  color: #1f5c3a;
-}
-
 /* ================= BOOKING FORM ================= */
 .booking-form {
   display: flex;
@@ -107,7 +87,7 @@ body {
   color: #fff;
   font-weight: 600;
   font-size: 0.85rem;
-  border: rgb(37, 112, 73);
+  border: rgb(34, 87, 60);
   cursor: pointer;
   box-shadow: 0 0 18px rgba(47, 143, 107, 0.7);
   transition: 0.3s;
@@ -117,6 +97,62 @@ body {
   transform: translateY(-1px);
   box-shadow: 0 0 26px rgba(47, 143, 107, 0.9);
 }
+
+.modal-content {
+  position: relative;   /* IMPORTANT */
+  background: white;
+  padding: 40px 30px 30px 30px;  /* extra top padding */
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+}
+
+/* Proper close button positioning */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: #555;
+  transition: 0.3s ease;
+}
+
+.close-btn:hover {
+  color: #ff4d4f;
+  transform: rotate(90deg);
+}
+
+/* Primary Button - Book Healing Call */
+.primary-btn {
+  background: linear-gradient(135deg, #287041, #228046);
+  color: #ffffff;
+  padding: 14px 32px;
+  font-size: 17px;
+  font-weight: 600;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  box-shadow: 0 8px 20px rgba(12, 130, 40, 0.35);
+  letter-spacing: 0.5px;
+}
+
+/* Hover Effect */
+.primary-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  background: linear-gradient(135deg, #125a3e, #0c4a32);
+  box-shadow: 0 14px 30px rgba(13, 100, 49, 0.6);
+}
+
+/* Click Effect */
+.primary-btn:active {
+  transform: scale(0.97);
+}
+
+
 
 /* Mobile toast center */
 @media (max-width: 480px) {
@@ -204,6 +240,29 @@ body {
 .primary-btn:hover {
   background: #256f54;
 }
+
+.pay-btn {
+  background: linear-gradient(135deg, #0f750a, #399f6c);
+  color: white;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 20px rgba(11, 71, 36, 0.3);
+  letter-spacing: 0.5px;
+}
+
+/* Bright hover effect */
+.pay-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  background: linear-gradient(135deg, #0c4725, #1e8752);
+  box-shadow: 0 12px 30px rgba(28, 124, 81, 0.6);
+}
+
+
 
 /* ================= SERVICES ================= */
 .service-section {

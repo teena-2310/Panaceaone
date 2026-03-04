@@ -1,30 +1,38 @@
-import React, { useState } from "react";
+// HomePage.jsx
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import PaymentSection from "../components/PaymentSection";
-
+import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
 
 export default function HomePage() {
   const [showModal, setShowModal] = useState(false);
-  const [showProcessing, setShowProcessing] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [showError, setShowError] = useState(false);
+
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    healingType: "",
+    date: "",
+    time: "",
+  });
+
+  const navigate = useNavigate();
 
   const handleBookingClick = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
-
   return (
     <div className="home-wrapper">
-      <Navbar />
+      
 
       {/* HERO */}
       <section className="hero">
         <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           Panacea One
         </motion.h1>
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -32,83 +40,57 @@ export default function HomePage() {
         >
           மனம் • உடல் • ஆன்மா ஒரே அலைவரிசையில்
         </motion.p>
+
         <button className="primary-btn" onClick={handleBookingClick}>
           Book Healing Call
         </button>
       </section>
 
       {/* SERVICES */}
-     <section className="service-section">
-  {/* Flower Medicine Healing */}
-  <div className="service-row">
-    <img src="/images/flower-essence.png" alt="Flower Healing" />
-    <div>
-      <h2>Flower Medicine Healing</h2>
-      <h4>Gentle emotional healing using natural flower vibrations to release stress, fear, and emotional trauma.</h4>
-      <p>
-        Flower Medicine Healing is a gentle, natural therapy that uses the vibrational energy of flowers to restore emotional balance.
-        It helps release stress, fear, and emotional trauma, allowing your mind and heart to feel lighter and more peaceful.
-      </p>
-    </div>
-  </div>
-
-  {/* Hypno Therapy */}
-  <div className="service-row reverse">
-    <img src="/images/hypno-therapy.png" alt="Hypno Therapy" />
-    <div>
-      <h2>Hypno Therapy</h2>
-      <h4>Heal subconscious patterns, remove inner blocks, and gain clarity and confidence through guided hypnotherapy.</h4>
-      <p>
-        Hypno Therapy is a guided therapy that works with the subconscious mind to heal limiting beliefs and overcome inner obstacles.
-        It helps remove mental blocks, reduce anxiety, and improve clarity and focus.
-        Each session is tailored to your personal challenges, ensuring a safe and supportive environment.
-      </p>
-    </div>
-  </div>
-
-  {/* Reiki & Energy Healing */}
-  <div className="service-row">
-    <img src="/images/reiki.png" alt="Reiki Healing" />
-    <div>
-      <h2>Reiki & Energy Healing</h2>
-      <h4>Balance your energy, calm the mind, and restore harmony across mind, body, and soul.</h4>
-      <p>
-        Reiki & Energy Healing is a holistic therapy that restores harmony between mind, body, and spirit.
-        It balances energy flow, reduces stress, and enhances overall well-being.
-        It is safe, natural, and can be combined with other healing practices for enhanced benefits.
-        Experience deep relaxation, spiritual alignment, and a renewed sense of harmony in everyday life.
-      </p>
-    </div>
-  </div>
-</section>
-
-      {/* HEALING BENEFITS */}
-      <section className="healing-benefits">
-        <div>
-          <h2>How Healing Helps You</h2>
-          <ul>
-            🌱 Reduces stress and anxiety<br />
-            🧘 Emotional and mental balance<br />
-            🧠 Improved clarity and focus<br />
-            💚 Releases negative energy<br />
-            🌟 Long-term inner peace<br />
-            🌿 Safe and natural process
-          </ul>
+      <section className="service-section">
+        <div className="service-row">
+          <img src="/images/flower-essence.png" alt="Flower Healing" />
+          <div>
+            <h2>Flower Medicine Healing</h2>
+            <h4>
+              Gentle emotional healing using natural flower vibrations to
+              release stress, fear, and emotional trauma.
+            </h4>
+            <p>
+              Flower Medicine Healing restores emotional balance using natural
+              flower vibrations.
+            </p>
+          </div>
         </div>
-        <img src="/meditation.png" alt="Meditation" className="benefits-image" />
-      </section>
 
-      {/* SPIRITUAL CONTENT */}
-      <section className="spiritual-content">
-        <h2>Healing Is a Journey Within</h2>
-        <p>
-          At Panacea One, healing is about reconnecting with your true self,
-          releasing emotional burdens, and aligning your inner energy.
-        </p>
-        <p>
-          Each session is personalised, confidential, and guided with compassion
-          and spiritual awareness.
-        </p>
+        <div className="service-row reverse">
+          <img src="/images/hypno-therapy.png" alt="Hypno Therapy" />
+          <div>
+            <h2>Hypno Therapy</h2>
+            <h4>
+              Heal subconscious patterns and remove inner blocks through guided
+              hypnotherapy.
+            </h4>
+            <p>
+              Hypno Therapy works with the subconscious mind to overcome
+              limiting beliefs.
+            </p>
+          </div>
+        </div>
+
+        <div className="service-row">
+          <img src="/images/reiki.png" alt="Reiki Healing" />
+          <div>
+            <h2>Reiki & Energy Healing</h2>
+            <h4>
+              Balance your energy and restore harmony across mind, body, and
+              soul.
+            </h4>
+            <p>
+              Reiki enhances overall well-being by restoring energetic harmony.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* CTA */}
@@ -118,84 +100,155 @@ export default function HomePage() {
       </section>
 
       {/* BOOKING MODAL */}
-<AnimatePresence>
-  {showModal && (
-    <motion.div
-      className="modal-overlay"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={handleCloseModal}
-    >
-      <motion.div
-        className="modal-content"
-        initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 30, opacity: 0 }}
-        transition={{ duration: 0.25 }}
-        onClick={(e) => e.stopPropagation()} // ✅ prevents closing when clicking inside
-      >
-        <div className="modal-header">
-          <h2>Book Healing Call</h2>
-          <button className="close-btn" onClick={handleCloseModal}>
-            &times;
-          </button>
-        </div>
-
-        <form className="booking-form">
-          <input type="text" placeholder="Full Name" />
-          <input type="email" placeholder="Email" />
-          <input type="tel" placeholder="Phone Number" />
-
-          <select>
-            <option>Select Healing Type</option>
-            <option>Flower Medicine Healing</option>
-            <option>Hypno Therapy</option>
-            <option>Reiki & Energy Healing</option>
-          </select>
-
-          <input type="date" />
-          <input type="time" />
-
-          <button type="button" onClick={() => handlePayment(500)}>
-            Pay ₹500 & Book
-          </button>
-        </form>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
-
-      {/* TOASTS */}
       <AnimatePresence>
-        {showProcessing && (
+        {showModal && (
           <motion.div
-            className="processing-toast"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
+            className="modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={handleCloseModal}
           >
-            ⏳ Processing Payment...
-          </motion.div>
-        )}
-        {showSuccess && (
-          <motion.div
-            className="success-toast"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-          >
-            ✅ Healing session booked successfully!
-          </motion.div>
-        )}
-        {showError && (
-          <motion.div
-            className="error-toast"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-          >
-            ❌ Payment failed. Please try again.
+            <motion.div
+              className="modal-content"
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 30, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className="close-btn" onClick={handleCloseModal}>
+                &times;
+              </button>
+
+              <form
+                className="booking-form"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+
+                  try {
+                    const response = await fetch(
+                      "http://localhost:5000/api/bookings/create",
+                      {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                          ...formData,
+                          amount: 500,
+                        }),
+                      }
+                    );
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                      setShowModal(false);
+
+                      // Reset form
+                      setFormData({
+                        fullName: "",
+                        email: "",
+                        phone: "",
+                        healingType: "",
+                        date: "",
+                        time: "",
+                      });
+
+                      navigate(`/healing-booking/${data.bookingId}`);
+                    } else {
+                      alert("Booking failed");
+                    }
+                  } catch (error) {
+                    alert("Server error. Please try again.");
+                  }
+                }}
+              >
+                <input
+                  type="text"
+                  placeholder="Full Name"
+                  required
+                  value={formData.fullName}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      fullName: e.target.value,
+                    })
+                  }
+                />
+
+                <input
+                  type="email"
+                  placeholder="Email"
+                  required
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      email: e.target.value,
+                    })
+                  }
+                />
+
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  required
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      phone: e.target.value,
+                    })
+                  }
+                />
+
+                <select
+                  required
+                  value={formData.healingType}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      healingType: e.target.value,
+                    })
+                  }
+                >
+                  <option value="">Select Healing Type</option>
+                  <option>Flower Medicine Healing</option>
+                  <option>Hypno Therapy</option>
+                  <option>Reiki & Energy Healing</option>
+                </select>
+
+                <input
+                  type="date"
+                  required
+                  value={formData.date}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      date: e.target.value,
+                    })
+                  }
+                />
+
+                <input
+                  type="time"
+                  required
+                  value={formData.time}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      time: e.target.value,
+                    })
+                  }
+                />
+
+                <button type="submit">
+                  Pay ₹500 & Book
+                </button>
+              </form>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
