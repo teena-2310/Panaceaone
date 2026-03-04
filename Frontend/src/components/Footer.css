@@ -1,50 +1,44 @@
 .footer {
-  background:#7daa6f;
-  color:#1f6f43;
-  padding: 0.3rem 2rem 0.3rem;
+  background: #7daa6f;
+  color: #1f6f43;
+  padding: 1.2rem 2rem;
   font-family: "Poppins", sans-serif;
   border-top: 2px solid rgb(91, 171, 98);
 }
 
-/* TOP CONTAINER */
+/* ================= TOP CONTAINER ================= */
 .footer-top {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items:center;
   gap: 2.5rem;
   max-width: 1200px;
-  margin: 0 auto 0.8rem;
+  margin: 0 auto 1rem;
 }
 
+/* ================= LOGO SECTION ================= */
 .footer-logo {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 14px;
   flex: 1 1 250px;
 }
 
 .footer-logo-img {
-  width: 60px;
-  height: 60px;
+  height: 180px;
+  width: auto;
   object-fit: contain;
 }
 
-.footer-logo h2 {
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
+.footer-logo-text h2 {
+  font-size: 1.6rem;
   font-weight: 700;
   margin: 0;
   color: #1f6f43;
 }
 
-.footer-tagline {
-  margin-top: 4px;
-  color: #1f6f43;
-  font-weight: 600;
-  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
-  letter-spacing: 1px;
-}
-
-/* LINKS AREA */
+/* ================= LINKS SECTION ================= */
 .footer-links {
   display: flex;
   flex: 2 1 400px;
@@ -62,52 +56,56 @@
 .footer-links ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .footer-links li {
-  margin: 0.4rem 0;
+  margin: 0.5rem 0;
 }
 
-.footer-links a {
+.footer-links a,
+.footer-link {
   text-decoration: none;
-  color:#1f6f43;
-  transition: color 0.3s;
+  color: #1f6f43;
+  transition: 0.3s ease;
 }
 
-.footer-links a:hover {
+.footer-links a:hover,
+.footer-link:hover {
   color: #d4af37;
 }
 
-/* BOTTOM LINE */
+/* ================= DIVIDER ================= */
 .footer-divider {
   border: none;
-  border-top: 1px solid #333;
-  margin: 0.8rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  margin: 1rem 0;
 }
 
+/* ================= BOTTOM ================= */
 .footer-bottom {
   text-align: center;
   color: #1f6f43;
 }
 
-/* SOCIAL ICONS */
+/* ================= SOCIAL ICONS ================= */
 .social-icons {
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .social-icons a {
   display: inline-block;
-  margin: 0 8px;
-  font-size: 1.25rem;
+  margin: 0 10px;
+  font-size: 1.3rem;
   color: #1f6f43;
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 
 .social-icons a:hover {
   color: #d4af37;
 }
 
-/* RESPONSIVE */
+/* ================= RESPONSIVE ================= */
 @media (max-width: 900px) {
   .footer-top {
     text-align: center;
@@ -126,16 +124,16 @@
 
 @media (max-width: 600px) {
   .footer {
-    padding: 2.5rem 1.5rem;
+    padding: 2rem 1.5rem;
   }
 
   .footer-links {
     flex-direction: column;
-    gap: 1.3rem;
+    gap: 1.5rem;
   }
 
   .social-icons a {
-    margin: 0 5px;
+    margin: 0 6px;
     font-size: 1.1rem;
   }
 }

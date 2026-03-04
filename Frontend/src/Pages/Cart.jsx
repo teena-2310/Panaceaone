@@ -11,14 +11,14 @@ export default function Cart({ cartItems = [], removeFromCart, updateQuantity })
   );
 
   return (
-    <div style={{ padding: "40px", textAlign: "center" }}>
+   <div className="cart-page">
       <h1 style={{ marginBottom: "20px" }}>Your Cart</h1>
 
       {cartItems.length === 0 ? (
-        <div style={{ color: "#555" }}>
+        <div style={{ color: "#084d10" }}>
           <FaShoppingCart
             size={80}
-            style={{ marginBottom: "20px", color: "#888" }}
+            style={{ marginBottom: "20px", color: "#084d10" }}
           />
           <h2>Oops! Your cart is empty.</h2>
           <p>Add some products to get started.</p>

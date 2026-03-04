@@ -19,7 +19,7 @@ export default function Navbar({ cartCount }) {
       <div className="nav-left">
         <Link to="/" className="logo-link" onClick={closeMenu}>
           <img src="/panacea.png" alt="Panacea One Logo" />
-          <span className="nav-logo">Panacea One</span>
+          <span className="nav-logo">PANACEA ONE</span>
         </Link>
       </div>
 

@@ -1,12 +1,13 @@
+/* ================= NAVBAR ================= */
 .navbar {
-  height: 70px;
+  height: 85px;   /* Increased from 70px */
   background: #7fb069;
   display: flex;
   align-items: center;
   padding: 0 56px;
 }
 
-/* LEFT LOGO */
+/* ================= LEFT LOGO ================= */
 .nav-left {
   display: flex;
   align-items: center;
@@ -19,17 +20,19 @@
   text-decoration: none;
 }
 
+/* 🔥 Bigger Logo */
 .logo-link img {
-  width: 42px;
+  height: 100px;   /* Increased logo height */
+  width: auto;
 }
 
 .nav-logo {
-  font-size: 20px;
+  font-size: 20px;   /* Slightly bigger brand name */
   font-weight: 700;
   color: #1f6f43;
 }
 
-/* RIGHT MENU */
+/* ================= RIGHT MENU ================= */
 .nav-links {
   display: flex;
   align-items: center;
@@ -43,20 +46,20 @@
   color: #1f6f43;
   font-weight: 500;
   cursor: pointer;
-  padding: 10px 15px; /* top-bottom, left-right */
-  border-radius: 5px; /* optional, for a smoother look */
+  padding: 10px 15px;
+  border-radius: 5px;
 }
 
-/* DROPDOWN */
+/* ================= DROPDOWN ================= */
 .mega-wrapper {
   position: relative;
 }
 
 .mega-menu {
   position: absolute;
-  top: 38px;
+  top: 50px;
   left: 0;
-  background-color:#ffffff;
+  background-color: #ffffff;
   border-radius: 12px;
   padding: 16px;
   min-width: 220px;
@@ -67,18 +70,18 @@
 }
 
 .mega-menu a {
-  color:#1f6f43;
+  color: #1f6f43;
 }
 
 .mobile-cart {
   display: none !important;
 }
-/* CART ICON (DESKTOP) */
+
+/* ================= CART ICON ================= */
 .nav-cart {
   margin-left: 18px;
   margin-right: 6px;
   position: relative;
-   position: relative;
   display: flex;
   align-items: center;
 }
@@ -100,7 +103,7 @@
   border-radius: 50%;
 }
 
-/* HAMBURGER */
+/* ================= HAMBURGER ================= */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -128,7 +131,7 @@
     flex-direction: column;
     align-items: center;
     position: absolute;
-    top: 70px;
+    top: 110px;   /* Updated from 70px */
     left: 0;
     width: 100%;
     background: #8acb6c;
@@ -137,7 +140,7 @@
     z-index: 1000;
   }
 
-  /* ✅ SHOW CART TEXT */
+  /* Show Cart Text */
   .mobile-cart {
     display: block !important;
     font-weight: 600;
@@ -145,14 +148,13 @@
     text-decoration: none;
   }
 
-  /* HIDE DESKTOP CART ICON */
+  /* Hide Desktop Cart Icon */
   .nav-cart {
     display: none;
   }
 
-  /* Hamburger spacing */
+  /* Show Hamburger */
   .hamburger {
     display: flex;
   }
 }
-

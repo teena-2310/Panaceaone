@@ -4,71 +4,64 @@ import {
   FaFacebookF,
   FaTwitter,
   FaInstagram,
-  FaLinkedinIn,
 } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-top">
+
+        {/* Logo Section */}
         <div className="footer-logo">
           <img
             src="/panacea.png"
-            alt="Golden Eagle Logo"
+            alt="Panacea One Logo"
             className="footer-logo-img"
           />
-          <div>
-            <h2>Panacea One</h2>
-           {/*<p className="footer-tagline">EXCELLENCE IN EVERY TASK</p>*/}
+          <div className="footer-logo-text">
+            <h2>PANACEA ONE</h2>
+            <p>Heal from within , Glow from outside</p>
           </div>
         </div>
 
+        {/* Links Section */}
         <div className="footer-links">
           <div>
             <h4>Company</h4>
             <ul>
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li>
-                <a href="/about">About Panacea One</a>
-              </li>
-              <li>
-                <a href="/healingsolutions">Healing Solutions</a>
-              </li>
-              <li>
-                <a href="/Panaceaoils">Panacea Oils</a>
-              </li>
-              <li>
-                <a href="/contact">Contact</a>
-              </li>
+              <li><a href="/">Home</a></li>
+              <li><a href="/about">About Panacea One</a></li>
+              <li><a href="/healingsolutions">Healing Solutions</a></li>
+              <li><a href="/Panaceaoils">Panacea Oils</a></li>
+              <li><a href="/contact">Contact</a></li>
             </ul>
           </div>
 
-          {/*<div>
-            <h4>Support</h4>
-            <ul>
-              <li>
-                <a href="/faq">FAQ</a>
-              </li>
-              <li>
-                <a href="/feedback">Feedback</a>
-              </li>
-              <li>
-                <a href="/terms">Terms</a>
-              </li>
-              <li>
-                <a href="/privacy">Privacy</a>
-              </li>
-            </ul>
-          </div>*/}
-
+          {/* Contact Section */}
           <div className="footer-contact">
             <h4>Connect</h4>
             <ul>
-              <li>📍62, M3 Black, Police Quarters,  S.M. Nagar, <br></br>    Avadi, Chennai 600062</li>
-              <li>📞 +91 94981 03668</li>
-              <li>✉️ dhana@panaceaone.com</li>
+              <li>
+                📍 62, M3 Black, Police Quarters, S.M. Nagar,<br />
+                Avadi, Chennai 600062
+              </li>
+
+              <li>
+                📞{" "}
+                <a href="tel:+919498103668" className="footer-link">
+                  +91 94981 03668
+                </a>
+              </li>
+
+              <li>
+                ✉️{" "}
+                <a
+                  href="mailto:dhana@panacea-one.com"
+                  className="footer-link"
+                >
+                  dhana@panacea-one.com
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -88,6 +81,7 @@ const Footer = () => {
             <FaInstagram />
           </a>
         </div>
+
         <p>
           © {new Date().getFullYear()} Panacea One — All Rights Reserved.
         </p>
