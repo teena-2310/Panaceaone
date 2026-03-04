@@ -215,9 +215,11 @@ export default function HomePage() {
                   }
                 >
                   <option value="">Select Healing Type</option>
-                  <option>Flower Medicine Healing</option>
-                  <option>Hypno Therapy</option>
-                  <option>Reiki & Energy Healing</option>
+                  <option value="Nerve & Spine Care">Nerve & Spine Care</option>
+                  <option value="Stress & Relaxation">Stress & Relaxation</option>
+                  <option value="Muscle & Joint Therapy">Muscle & Joint Therapy</option>
+                   <option value="Energy & Wellness">Energy & Wellness</option>
+
                 </select>
 
                 <input
@@ -245,7 +247,7 @@ export default function HomePage() {
                 />
 
                 <button type="submit">
-                  Pay ₹500 & Book
+                  Pay ₹200 & Book
                 </button>
               </form>
             </motion.div>

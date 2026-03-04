@@ -6,3 +6,17 @@
 body {
   font-family: "Poppins", sans-serif;
 }
+
+/* ================= GLOBAL RESPONSIVE IMAGES ================= */
+
+img {
+  @apply max-w-full h-auto;
+}
+
+@media (max-width: 768px) {
+  img {
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

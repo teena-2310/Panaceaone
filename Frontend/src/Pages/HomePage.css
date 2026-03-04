@@ -296,7 +296,38 @@ body {
 .service-row div {
   max-width: 520px;
 }
+/* ================= HEALING DROPDOWN ================= */
 
+.healing-select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 2px solid #a5d6a7;
+  background-color: #f1f8f4;
+  color: #1f6f43;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Hover Effect */
+.healing-select:hover {
+  border-color: #66bb6a;
+}
+
+/* Focus Effect */
+.healing-select:focus {
+  border-color: #2e7d32;
+  box-shadow: 0 0 6px rgba(46, 125, 50, 0.3);
+}
+
+/* Dropdown Options */
+.healing-select option {
+  background: white;
+  color: #1f6f43;
+}
 .service-row h2 {
   font-size: 30px;
   font-weight: 600;
