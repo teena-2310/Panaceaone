@@ -32,7 +32,7 @@ const HealingBookingPage = () => {
           <>
             <h2 className="healing-title">Healing Session</h2>
             <p className="healing-subtitle">
-              One-to-One Energy Healing • ₹500
+              One-to-One Energy Healing • ₹200
             </p>
 
             <div className="healing-field">
@@ -70,7 +70,7 @@ const HealingBookingPage = () => {
             {paymentMethod === "UPI" && (
               <div className="healing-payment-box">
                 <p className="pay-instruction">
-                  Scan QR or pay ₹500 to:
+                  Scan QR or pay ₹200 to:
                 </p>
 
                 <div className="upi-id-box">
