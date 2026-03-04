@@ -1,10 +1,11 @@
 /* ================= NAVBAR ================= */
 .navbar {
-  height: 85px;   /* Increased from 70px */
+  height: 90px;
   background: #7fb069;
   display: flex;
   align-items: center;
   padding: 0 56px;
+  position: relative;   /* ADD THIS */
 }
 
 /* ================= LEFT LOGO ================= */
@@ -30,7 +31,11 @@
   font-size: 20px;   /* Slightly bigger brand name */
   font-weight: 700;
   color: #1f6f43;
+ 
+  font-family: 'Segoe UI', sans-serif;
+  text-transform: uppercase;
 }
+
 
 /* ================= RIGHT MENU ================= */
 .nav-links {

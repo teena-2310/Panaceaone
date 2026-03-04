@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import "./Cart.css";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 export default function Cart({ cartItems = [], removeFromCart, updateQuantity }) {
   const navigate = useNavigate();
 
