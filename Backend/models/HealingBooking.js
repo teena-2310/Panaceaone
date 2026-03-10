@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const healingBookingSchema = new mongoose.Schema({
-  fullName: String,
+  name: String,
   email: String,
   phone: String,
   healingType: String,
@@ -11,18 +11,24 @@ const healingBookingSchema = new mongoose.Schema({
 
   paymentMethod: {
     type: String,
-    enum: ["UPI", "BANK"],
+    enum: ["UPI", "Bank"],
     default: null
   },
 
   transactionId: String,
   paymentScreenshot: String,
 
-  paymentStatus: {
-    type: String,
-    enum: ["Pending", "Paid", "Rejected","verified"],
-    default: "Pending"
-  }
+   paymentStatus: {
+  type: String,
+  enum: ["Pending", "Paid", "Rejected", "Verified"],
+  default: "Pending"
+},
+
+status: {
+  type: String,
+  enum: ["Pending", "Confirmed", "Completed"],
+  default: "Pending"
+}
 
 }, { timestamps: true });
 

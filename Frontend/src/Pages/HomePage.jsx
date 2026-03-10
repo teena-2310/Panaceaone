@@ -169,11 +169,11 @@ export default function HomePage() {
                   type="text"
                   placeholder="Full Name"
                   required
-                  value={formData.fullName}
+                  value={formData.name}
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      fullName: e.target.value,
+                      name: e.target.value,
                     })
                   }
                 />
