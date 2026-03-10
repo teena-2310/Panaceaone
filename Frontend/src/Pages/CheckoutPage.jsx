@@ -15,6 +15,7 @@ export default function CheckoutPage({ cartItems }) {
 
   const [customer, setCustomer] = useState({
     name: "",
+    email: "",
     address: "",
     phone: ""
   });
@@ -57,6 +58,12 @@ export default function CheckoutPage({ cartItems }) {
 
     if (!customer.name.trim()) {
       newErrors.name = "Full name is required";
+    }
+
+    if (!customer.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(customer.email)) {
+      newErrors.email = "Enter a valid email";
     }
 
     if (!customer.address.trim()) {
@@ -115,6 +122,7 @@ export default function CheckoutPage({ cartItems }) {
       const formDataObj = new FormData();
 
       formDataObj.append("name", customer.name.trim());
+      formDataObj.append("email", customer.email.trim());
       formDataObj.append("address", customer.address.trim());
       formDataObj.append("phone", customer.phone.trim());
       formDataObj.append("payment", paymentMethod);
@@ -147,6 +155,7 @@ export default function CheckoutPage({ cartItems }) {
 
   const isDetailsValid =
     customer.name.trim() &&
+    customer.email.trim() &&
     customer.address.trim() &&
     /^[0-9]{10}$/.test(customer.phone) &&
     paymentMethod;
@@ -179,6 +188,15 @@ export default function CheckoutPage({ cartItems }) {
               onChange={handleCustomerChange}
             />
             {errors.name && <span className="error">{errors.name}</span>}
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={customer.email}
+              onChange={handleCustomerChange}
+            />
+            {errors.email && <span className="error">{errors.email}</span>}
 
             <input
               type="text"
@@ -301,6 +319,7 @@ export default function CheckoutPage({ cartItems }) {
         {step === "success" && (
           <div className="success-box">
             <h3>Order Submitted Successfully 🎉</h3>
+            <p>Order confirmation email sent.</p>
             <p>Waiting for admin verification.</p>
             <p>Redirecting to Home...</p>
           </div>

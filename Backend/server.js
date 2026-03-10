@@ -45,6 +45,7 @@ app.post("/api/send-order", upload.single("screenshot"), async (req, res) => {
   try {
     const {
       name,
+      email,
       phone,
       address,
       payment,
@@ -53,7 +54,7 @@ app.post("/api/send-order", upload.single("screenshot"), async (req, res) => {
       items,
     } = req.body;
 
-    if (!name || !phone || !address || !payment || !total || !items) {
+    if (!name || !email || !phone || !address || !payment || !total || !items) {
       return res.status(400).json({
         success: false,
         message: "Missing fields",
@@ -71,6 +72,7 @@ app.post("/api/send-order", upload.single("screenshot"), async (req, res) => {
       html: `
         <h3>New Order Received</h3>
         <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
         <p><strong>Phone:</strong> ${phone}</p>
         <p><strong>Address:</strong> ${address}</p>
         <p><strong>Payment Method:</strong> ${payment}</p>
