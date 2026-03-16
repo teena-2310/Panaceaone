@@ -49,13 +49,32 @@ const HealingBookingPage = () => {
 
             <button
               className="healing-button primary"
-              onClick={() => {
-                if (!paymentMethod) {
-                  alert("Please select payment method");
-                  return;
-                }
-                setStep("details");
-              }}
+              onClick={async () => {
+  if (!paymentMethod) {
+    alert("Please select payment method");
+    return;
+  }
+
+  try {
+    await fetch(
+      `http://localhost:5000/api/bookings/${bookingId}/payment-method`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          paymentMethod
+        })
+      }
+    );
+
+    setStep("details");
+
+  } catch (error) {
+    alert("Server error");
+  }
+}}
             >
               Continue
             </button>
