@@ -155,6 +155,7 @@ export default function CheckoutPage({ cartItems }) {
     transactionId.trim() && screenshot;
 
   return (
+    <div className="checkout-page">
     <div className="checkout-container">
       <div className="checkout-card">
 
@@ -307,6 +308,7 @@ export default function CheckoutPage({ cartItems }) {
         )}
 
       </div>
+    </div>
     </div>
   );
 }

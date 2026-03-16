@@ -1,12 +1,12 @@
 /* ===== PAGE BACKGROUND ===== */
 .healing-wrapper {
-  background-color: #c9eabc; /* soft green */
+  background-color:  #b9e3a5; /* soft green */
   padding-top: 50px;
   padding-bottom: 50px;
 }
 
 .healing-unique-wrapper {
-  background-color: #c9eabc;
+  background-color: #1c5008;
   padding-top: 50px;
   padding-bottom: 50px;
   border-radius: 25px 25px 0 0;
@@ -15,16 +15,16 @@
 
 /* ===== CARD ===== */
 .healing-card {
-  background-color: #63b85b; /* darker green */
+  background-color:  #a2d085; /* darker green */
   border-radius: 22px;
   padding: 20px;
-  color: #fff;
+  color: #000701;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .healing-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 14px 35px rgba(4, 173, 12, 0.644);
 }
 
 /* ===== ICON ===== */

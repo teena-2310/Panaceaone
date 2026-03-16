@@ -73,7 +73,7 @@ export default function HealingSolutions() {
         <div className="container">
           <h1 className="text-center mb-5">Healing Solutions</h1>
 
-          {/* Healing Cards */}
+          {/* Healing Cards */}<div className="Healing cards">
           <div className="row justify-content-center">
             {healings.map((healing, index) => (
               <div className="col-lg-4 col-md-6 col-sm-10 mb-4" key={index}>
@@ -92,6 +92,7 @@ export default function HealingSolutions() {
                 </div>
               </div>
             ))}
+          </div>
           </div>
           
 

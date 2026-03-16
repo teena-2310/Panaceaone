@@ -1,6 +1,12 @@
 /* =========================
    MAIN CONTAINER
 ========================= */
+.checkout-page {
+  min-height: 100vh;
+  background-color:  #b9e3a5;   /* Light green */
+  padding: 40px;
+  text-align: center;
+}
 .checkout-container {
   max-width: 650px;
   margin: 60px auto;
@@ -8,11 +14,11 @@
 }
 
 .checkout-card {
-  background: #ffffff;
+  background:  #7cb263; 
   padding: 30px;
   border-radius: 14px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e6f4ea;
+  border: 1px solid #3db45f;
 }
 
 /* =========================
