@@ -165,11 +165,11 @@ export default function CheckoutPage({ cartItems }) {
             <h2>Checkout</h2>
 
             <h3>Order Summary</h3>
-            {cartItems.map(item => (
-              <p key={item.id}>
-                {item.title} × {item.quantity}
-              </p>
-            ))}
+           {cartItems.map((item, index) => (
+  <p key={item.id || index}>
+    {item.title} × {item.quantity}
+  </p>
+))}
             <h3>Total: ₹{total}</h3>
 
             <input
