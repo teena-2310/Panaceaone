@@ -39,10 +39,11 @@ export const sendAdminNotification = async ({
 };
 
 // 2️⃣ Centralized Auto Reply
-export const sendAutoReply = async ({ type, name, email }) => {
+export const sendAutoReply = async ({ type, name, email, healingType }) => {
   try {
     let subject = "";
     let message = "";
+    let html = "";
 
     if (type === "contact") {
       subject = "Thank you for contacting Panacea One";
@@ -54,14 +55,39 @@ export const sendAutoReply = async ({ type, name, email }) => {
     }
 
     if (type === "healing") {
-      subject = "Healing Booking Confirmation - Panacea One";
-      message = `
-        <p>Dear ${name},</p>
-        <p>Thank you for booking a healing session with us. Your payment details have been received.</p>
-        <p>We will contact you shortly with further details.</p>
-        <p>Warm regards,<br/>Panacea One Team</p>
-      `;
-    }
+
+  subject = "Your Healing Session is Confirmed – Panacea One 🌿";
+
+  message = `
+    
+
+      <h2>Your Healing Session is Confirmed – Panacea One 🌿</h2>
+
+      <p>Dear ${name},</p>
+
+      <p>Thank you for your booking! 🎉</p>
+
+      <p>
+      Your booking for <strong>Panacea One – ${healingType}</strong> session
+      has been successfully confirmed.
+      </p>
+
+      <p>
+      Our team will prepare your session and contact you shortly with the details.
+      </p>
+
+      <p><em>Heal from within, Glow from outside ✨</em></p>
+
+      <p>Thank you for choosing Panacea One.</p>
+
+      <br>
+
+      <p>Warm regards,<br>
+      <strong>Team Panacea One</strong></p>
+
+  
+  `;
+} 
 
     if (type === "order") {
       subject = "Order Confirmation - Panacea One";

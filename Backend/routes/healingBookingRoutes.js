@@ -126,6 +126,7 @@ router.post("/:id/upload-proof", upload.single("screenshot"), async (req, res) =
       type: "healing",
       name: booking.name,
       email: booking.email,
+      healingType: booking.healingType,
     });
 
     res.json({

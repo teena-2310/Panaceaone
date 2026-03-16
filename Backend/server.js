@@ -78,8 +78,6 @@ app.post("/api/send-order", upload.single("screenshot"), async (req, res) => {
         <p><strong>Payment Method:</strong> ${payment}</p>
         <p><strong>Transaction ID:</strong> ${transactionId || "N/A"}</p>
         <p><strong>Total:</strong> ₹${total}</p>
-        <h4>Items:</h4>
-        <pre>${JSON.stringify(parsedItems, null, 2)}</pre>
       `,
       attachments: req.file
         ? [
