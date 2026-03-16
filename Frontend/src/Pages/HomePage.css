@@ -99,7 +99,7 @@ body {
 }
 
 .modal-content {
-  position: relative;   /* IMPORTANT */
+  position: relative;   
   background: white;
   padding: 40px 30px 30px 30px;  /* extra top padding */
   border-radius: 16px;

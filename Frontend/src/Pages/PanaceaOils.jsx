@@ -132,8 +132,6 @@ export default function PanaceaOils({ addToCart }) {
           </ul>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }

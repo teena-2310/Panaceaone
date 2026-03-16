@@ -177,7 +177,6 @@ export default function Contactpage() {
         )}
       </div>
 
-      <Footer />
     </>
   );
 }

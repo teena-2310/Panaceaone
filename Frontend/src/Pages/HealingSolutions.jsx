@@ -132,8 +132,6 @@ export default function HealingSolutions() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }
