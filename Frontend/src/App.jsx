@@ -9,26 +9,25 @@ import ContactPage from "./Pages/Contactpage";
 import Cart from "./Pages/Cart";
 import CheckoutPage from "./Pages/CheckoutPage";
 import HealingBookingPage from "./Pages/HealingBookingPage";
+import Footer from "./components/Footer"; // ✅ add footer
 
 function App() {
-  // ✅ Load cart from localStorage
+
   const [cartItems, setCartItems] = useState(() => {
     const savedCart = localStorage.getItem("cart");
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
-  // ✅ Save cart to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // ✅ Add to Cart
   const addToCart = (product) => {
     setCartItems((prev) => {
-      const existing = prev.find(item => item.id === product.id);
+      const existing = prev.find((item) => item.id === product.id);
 
       if (existing) {
-        return prev.map(item =>
+        return prev.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
@@ -39,67 +38,80 @@ function App() {
     });
   };
 
-  // ✅ Remove from Cart
   const removeFromCart = (id) => {
-    setCartItems(prev => prev.filter(item => item.id !== id));
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-   // ✅ Update Quantity
   const updateQuantity = (id, type) => {
-    setCartItems(prev =>
-    prev.map(item => {
-      if (item.id === id) {
-        if (type === "increase") {
-          return { ...item, quantity: item.quantity + 1 };
+    setCartItems((prev) =>
+      prev.map((item) => {
+        if (item.id === id) {
+          if (type === "increase") {
+            return { ...item, quantity: item.quantity + 1 };
+          }
+          if (type === "decrease" && item.quantity > 1) {
+            return { ...item, quantity: item.quantity - 1 };
+          }
         }
-        if (type === "decrease" && item.quantity > 1) {
-          return { ...item, quantity: item.quantity - 1 };
-        }
-      }
-      return item;
-    })
-  );
-};
+        return item;
+      })
+    );
+  };
 
   return (
     <Router>
-      {/* ✅ Pass real cart count to Navbar */}
-      <Navbar
-        cartCount={cartItems.reduce(
-          (total, item) => total + item.quantity,
-          0
-        )}
-      />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/healingsolutions" element={<HealingSolutions />} />
+      <div className="app-container"> {/* ✅ layout wrapper */}
 
-        <Route
-          path="/panaceaoils"
-          element={<PanaceaOils addToCart={addToCart} />}
+        <Navbar
+          cartCount={cartItems.reduce(
+            (total, item) => total + item.quantity,
+            0
+          )}
         />
 
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/healing-booking/:bookingId" element={<HealingBookingPage />} />
+        <main className="main-content"> {/* ✅ page content */}
+          <Routes>
 
-        <Route
-          path="/cart"
-          element={
-            <Cart
-              cartItems={cartItems}
-              removeFromCart={removeFromCart}
-              updateQuantity={updateQuantity}
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/healingsolutions" element={<HealingSolutions />} />
+
+            <Route
+              path="/panaceaoils"
+              element={<PanaceaOils addToCart={addToCart} />}
             />
-          }
-        />
 
-        <Route
-          path="/checkout"
-          element={<CheckoutPage cartItems={cartItems} />}
-        />
-      </Routes>
+            <Route path="/contact" element={<ContactPage />} />
+
+            <Route
+              path="/healing-booking/:bookingId"
+              element={<HealingBookingPage />}
+            />
+
+            <Route
+              path="/cart"
+              element={
+                <Cart
+                  cartItems={cartItems}
+                  removeFromCart={removeFromCart}
+                  updateQuantity={updateQuantity}
+                />
+              }
+            />
+
+            <Route
+              path="/checkout"
+              element={<CheckoutPage cartItems={cartItems} />}
+            />
+
+          </Routes>
+        </main>
+
+        
+
+      </div>
+
     </Router>
   );
 }

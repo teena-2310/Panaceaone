@@ -2,6 +2,7 @@ import React from "react";
 import "./Footer.css";
 import {
   FaFacebookF,
+  FaTwitter,
   FaInstagram,
 } from "react-icons/fa";
 
@@ -72,9 +73,6 @@ const Footer = () => {
         <div className="social-icons">
           <a href="#" aria-label="Facebook">
             <FaFacebookF />
-          </a>
-          <a href="#" aria-label="Twitter">
-            <FaTwitter />
           </a>
           <a href="#" aria-label="Instagram">
             <FaInstagram />

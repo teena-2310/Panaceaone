@@ -98,7 +98,7 @@ const HealingBookingPage = () => {
                 <p><strong>Account Number:</strong> 20078164404</p>
                 <p><strong>IFSC:</strong> SBIN0018292</p>
                 <p className="pay-note">
-                  Please transfer ₹500 and keep screenshot.
+                  Please transfer ₹200 and keep screenshot.
                 </p>
               </div>
             )}

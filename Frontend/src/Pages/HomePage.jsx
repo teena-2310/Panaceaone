@@ -96,7 +96,16 @@ export default function HomePage() {
       {/* CTA */}
       <section className="cta">
         <h2>Heal Naturally. Live Peacefully.</h2>
-        <button className="secondary-btn">WhatsApp Now</button>
+        <a
+                  href="https://wa.me/919498103668"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button className="secondary-btn">WhatsApp Now</button>
+
+                </a>
+        
+  
       </section>
 
       {/* BOOKING MODAL */}
