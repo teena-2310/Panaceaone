@@ -35,10 +35,18 @@
 
 .footer-logo-text h2 {
   font-size: 1.6rem;
-  font-weight: 700;
+  font-weight: 800;
   margin: 0;
   color: #1f6f43;
 }
+
+.footer-logo-text p {
+  font-size: 1.0rem;
+  font-weight: 450;
+  margin:0;
+  color: #1f6f43;
+}
+
 
 /* ================= LINKS SECTION ================= */
 .footer-links {
@@ -52,7 +60,7 @@
 .footer-links h4 {
   font-size: 1.1rem;
   margin-bottom: 0.8rem;
-  color: #37d451;
+  color: #074f11;
 }
 
 .footer-links ul {
