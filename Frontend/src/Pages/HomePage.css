@@ -23,31 +23,27 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-
   background: rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 20px;
   z-index: 9999;
 }
 
-/* 🔽 COMPACTED POPUP */
 .modal-content {
   position: relative;
-  width: 150px;                /* reduced width */
-  max-width: 60vh;
-  max-height: 100vh;          /* 🔑 prevents full-page height */
-  overflow-y: auto;          /* 🔑 scroll inside if needed */
-
+  width: 90%;
+  max-width: 500px;
+  max-height: 100vh;
+  overflow-y: auto;
   background: linear-gradient(135deg, #c9f1bb, #b2e5a2);
   border-radius: 16px;
-  padding: 14px;               /* reduced padding */
+  padding: 40px 30px 30px 30px;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
-  animation: toastIn 0.35s ease-out;
   display: flex;
   flex-direction: column;
+  animation: toastIn 0.35s ease-out;
 }
 
 @keyframes toastIn {
@@ -61,53 +57,7 @@ body {
   }
 }
 
-/* ================= BOOKING FORM ================= */
-.booking-form {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;  
-  width: 100%;                  /* reduced gap */
-}
-
-.booking-form input,
-.booking-form select {
-  width: 100%;
-  padding: 8px 10px;            /* reduced height */
-  border-radius: 10px;
-  border: 1px solid #7fbf94;
-  font-size: 0.9rem;          /* smaller text */
-  background: #f6fff3;
-}
-
-.booking-form button {
-  margin-top: 6px;
-  padding: 8px;                /* reduced button height */
-  border-radius: 22px;
-  background: linear-gradient(135deg, #2f8f6b, #5cc7a0);
-  color: #fff;
-  font-weight: 600;
-  font-size: 0.85rem;
-  border: rgb(34, 87, 60);
-  cursor: pointer;
-  box-shadow: 0 0 18px rgba(47, 143, 107, 0.7);
-  transition: 0.3s;
-}
-
-.booking-form button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 0 26px rgba(47, 143, 107, 0.9);
-}
-
-.modal-content {
-  position: relative;   
-  background: white;
-  padding: 40px 30px 30px 30px;  /* extra top padding */
-  border-radius: 16px;
-  width: 90%;
-  max-width: 500px;
-}
-
-/* Proper close button positioning */
+/* Close button */
 .close-btn {
   position: absolute;
   top: 15px;
@@ -125,43 +75,41 @@ body {
   transform: rotate(90deg);
 }
 
-/* Primary Button - Book Healing Call */
-.primary-btn {
-  background: linear-gradient(135deg, #287041, #228046);
-  color: #ffffff;
-  padding: 14px 32px;
-  font-size: 17px;
+/* ================= BOOKING FORM ================= */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.booking-form input,
+.booking-form select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #7fbf94;
+  font-size: 0.9rem;
+  background: #f6fff3;
+}
+
+.booking-form button {
+  margin-top: 6px;
+  padding: 8px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #2f8f6b, #5cc7a0);
+  color: #fff;
   font-weight: 600;
-  border: none;
-  border-radius: 40px;
+  font-size: 0.85rem;
+  border: rgb(34, 87, 60);
   cursor: pointer;
-  transition: all 0.35s ease;
-  box-shadow: 0 8px 20px rgba(12, 130, 40, 0.35);
-  letter-spacing: 0.5px;
+  box-shadow: 0 0 18px rgba(47, 143, 107, 0.7);
+  transition: 0.3s;
 }
 
-/* Hover Effect */
-.primary-btn:hover {
-  transform: translateY(-4px) scale(1.05);
-  background: linear-gradient(135deg, #125a3e, #0c4a32);
-  box-shadow: 0 14px 30px rgba(13, 100, 49, 0.6);
-}
-
-/* Click Effect */
-.primary-btn:active {
-  transform: scale(0.97);
-}
-
-
-
-/* Mobile toast center */
-@media (max-width: 480px) {
-  .modal-content {
-    right: 50%;
-    transform: translateX(50%);
-    width: 92%;
-    bottom: 16px;
-  }
+.booking-form button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 26px rgba(47, 143, 107, 0.9);
 }
 
 /* ================= SUCCESS TOAST ================= */
@@ -195,15 +143,6 @@ body {
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
-  }
-}
-
-@media (max-width: 480px) {
-  .success-toast {
-    right: 50%;
-    transform: translateX(50%);
-    width: 90%;
-    justify-content: center;
   }
 }
 
@@ -255,14 +194,11 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* Bright hover effect */
 .pay-btn:hover {
   transform: translateY(-4px) scale(1.05);
   background: linear-gradient(135deg, #0c4725, #1e8752);
   box-shadow: 0 12px 30px rgba(28, 124, 81, 0.6);
 }
-
-
 
 /* ================= SERVICES ================= */
 .service-section {
@@ -285,9 +221,12 @@ body {
   flex-direction: row-reverse;
 }
 
-.service-row img {
-  width: 460px;
-  height: 320px;
+/* Make images responsive */
+.service-row img,
+.benefits-image {
+  width: 100%;
+  max-width: 460px;
+  height: auto;
   object-fit: cover;
   border-radius: 22px;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
@@ -296,8 +235,8 @@ body {
 .service-row div {
   max-width: 520px;
 }
-/* ================= HEALING DROPDOWN ================= */
 
+/* ================= HEALING DROPDOWN ================= */
 .healing-select {
   width: 100%;
   padding: 12px 14px;
@@ -312,22 +251,20 @@ body {
   cursor: pointer;
 }
 
-/* Hover Effect */
 .healing-select:hover {
   border-color: #66bb6a;
 }
 
-/* Focus Effect */
 .healing-select:focus {
   border-color: #2e7d32;
   box-shadow: 0 0 6px rgba(46, 125, 50, 0.3);
 }
 
-/* Dropdown Options */
 .healing-select option {
   background: white;
   color: #1f6f43;
 }
+
 .service-row h2 {
   font-size: 30px;
   font-weight: 600;
@@ -349,12 +286,6 @@ body {
   justify-content: center;
   align-items: center;
   gap: 60px;
-}
-
-.benefits-image {
-  width: 420px;
-  border-radius: 22px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
 }
 
 /* ================= SPIRITUAL CONTENT ================= */
@@ -381,18 +312,41 @@ body {
   cursor: pointer;
 }
 
-/* ================= MOBILE ================= */
+/* ================= MOBILE RESPONSIVE ================= */
 @media (max-width: 768px) {
   .service-row,
   .service-row.reverse,
   .healing-benefits {
     flex-direction: column;
     text-align: center;
+    gap: 20px; /* smaller gap */
   }
 
   .service-row img,
   .benefits-image {
     width: 100%;
     height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-row img,
+  .benefits-image {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .modal-content {
+    width: 92%;
+    bottom: 16px;
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  .success-toast {
+    right: 50%;
+    transform: translateX(50%);
+    width: 90%;
+    justify-content: center;
   }
 }
