@@ -1,5 +1,6 @@
 /* ================= NAVBAR ================= */
 .navbar {
+  min-width: auto;
   height: 90px;
   background: #7fb069;
   display: flex;
@@ -44,7 +45,6 @@
   font-size: 20px;   /* Slightly bigger brand name */
   font-weight: 700;
   color: #1f6f43;
- 
   font-family: 'Segoe UI', sans-serif;
   text-transform: uppercase;
 }

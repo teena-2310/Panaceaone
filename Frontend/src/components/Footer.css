@@ -1,5 +1,6 @@
 /* ================= FOOTER ================= */
 .footer {
+  min-width: auto;
   background: #7daa6f;
   color: #1f6f43;
   padding: 1.2rem 2rem;

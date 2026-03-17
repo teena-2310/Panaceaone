@@ -52,13 +52,12 @@ export default function HomePage() {
           <img src="/images/flower-essence.png" alt="Flower Healing" />
           <div>
             <h2>Flower Medicine Healing</h2>
-            <h4>
+            <h5>
               Gentle emotional healing using natural flower vibrations to
               release stress, fear, and emotional trauma.
-            </h4>
+            </h5>
             <p>
-              Flower Medicine Healing restores emotional balance using natural
-              flower vibrations.
+              Flower Medicine Healing restores emotional balance, helping you reconnect with your inner calm and clarity. By working with the subtle energies of flowers, this therapy supports the release of emotional blockages, promotes self-awareness, and nurtures a sense of peace.
             </p>
           </div>
         </div>
@@ -67,13 +66,12 @@ export default function HomePage() {
           <img src="/images/hypno-therapy.png" alt="Hypno Therapy" />
           <div>
             <h2>Hypno Therapy</h2>
-            <h4>
+            <h5>
               Heal subconscious patterns and remove inner blocks through guided
               hypnotherapy.
-            </h4>
+            </h5>
             <p>
-              Hypno Therapy works with the subconscious mind to overcome
-              limiting beliefs.
+              Hypno Therapy works with the subconscious mind to uncover and release limiting beliefs, fears, and emotional patterns that may be holding you back. By guiding you into a deep, relaxed state, this therapy allows access to the root causes of stress, anxiety, or self-sabotaging behaviors.
             </p>
           </div>
         </div>
@@ -82,12 +80,12 @@ export default function HomePage() {
           <img src="/images/reiki.png" alt="Reiki Healing" />
           <div>
             <h2>Reiki & Energy Healing</h2>
-            <h4>
+            <h5>
               Balance your energy and restore harmony across mind, body, and
               soul.
-            </h4>
+            </h5>
             <p>
-              Reiki enhances overall well-being by restoring energetic harmony.
+              Reiki and Energy Healing work by channeling universal life force energy to clear blockages, balance your chakras, and promote the natural flow of energy throughout your body. This gentle therapy supports physical, emotional, and spiritual well-being, helping you feel centered, revitalized, and at peace.
             </p>
           </div>
         </div>
