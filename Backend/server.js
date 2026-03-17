@@ -123,12 +123,14 @@ app.post("/api/send-order", upload.single("screenshot"), async (req, res) => {
               ]
             : [],
         });
+if (email) {
+          await sendAutoReply({
+            type: "order",
+            name,
+            email,
+          });
+        }
 
-        await sendAutoReply({
-          type: "order",
-          name,
-          email,
-        });
 
         console.log("✅ Emails sent");
       } catch (err) {
