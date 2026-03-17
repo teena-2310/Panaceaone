@@ -130,22 +130,22 @@ export default function Contactpage() {
         <div className="contact-info-section">
           <div className="info-card">
             <div className="icon-circle"><FaRunning /></div>
-            <h3>ABOUT PANACEA</h3>
+            <h4>ABOUT PANACEA</h4>
             <p>Healing Guidance<br />Wellness Support</p>
           </div>
           <div className="info-card">
             <div className="icon-circle"><FaPhoneAlt /></div>
-            <h3>PHONE</h3>
+            <h4>PHONE</h4>
             <p>+91 94981 03668</p>
           </div>
           <div className="info-card">
             <div className="icon-circle"><FaEnvelope /></div>
-            <h3>EMAIL</h3>
+            <h4>EMAIL</h4>
             <p><a href="mailto:dhana@panacea-one.com">dhana@panacea-one.com</a></p>
           </div>
           <div className="info-card">
             <div className="icon-circle"><FaMapMarkerAlt /></div>
-            <h3>OUR LOCATION</h3>
+            <h4>OUR LOCATION</h4>
             <p>62, M3 Black Police Quarters,<br />S.M. Nagar, Avadi,<br />Chennai – 600062</p>
           </div>
         </div>

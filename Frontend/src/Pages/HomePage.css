@@ -13,7 +13,7 @@ body {
 
 .home-wrapper {
   overflow-x: hidden;
-  background: #b9e3a5;
+  background:#c9eabc;
 }
 
 /* ================= TOAST BOOKING POPUP ================= */
@@ -149,7 +149,7 @@ body {
 /* ================= HERO ================= */
 .hero {
   
-  background: #b9e3a5;
+  background: #c9eabc;
   padding: 40px 20px 35px;
   text-align: center;
 }
@@ -305,7 +305,7 @@ body {
 
 /* ================= CTA ================= */
 .cta {
-  background: #b9e3a5;
+  background: #c9eabc;
   text-align: center;
   padding: 60px 20px;
 }
