@@ -6,7 +6,7 @@
 }
 
 .healing-unique-wrapper {
-  background-color: #1c5008;
+  background-color: #5da043;
   padding-top: 50px;
   padding-bottom: 50px;
   border-radius: 25px 25px 0 0;
@@ -14,14 +14,16 @@
 }
 
 /* ===== CARD ===== */
-.healing-card {
-  background-color:  #b1d59be1; /* darker green */
+.solution-card{
+  background-color:  #6fb444;
   border-radius: 20px;
   padding: 20px;
   color: #000701;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
 }
+
 
 .healing-card:hover {
   transform: translateY(-8px);
@@ -29,7 +31,7 @@
 }
 
 .card-body {
-  background-color: rgb(75, 182, 75);
+  background-color:  #6fb444;
 }
 /* ===== ICON ===== */
 .icon {

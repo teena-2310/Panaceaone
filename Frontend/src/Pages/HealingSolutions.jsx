@@ -77,7 +77,7 @@ export default function HealingSolutions() {
           <div className="row justify-content-center">
             {healings.map((healing, index) => (
               <div className="col-lg-4 col-md-6 col-sm-10 mb-4" key={index}>
-                <div className="card h-100 shadow-sm healing-card">
+                <div className="card h-100 shadow-sm solution-card">
                   <div className="card-body text-center">
                     <div className="icon mb-3">{healing.icon}</div>
                     <h5 className="card-title mb-2">{healing.title}</h5>
