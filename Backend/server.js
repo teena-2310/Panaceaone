@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import contactRoutes from "./routes/contactRoutes.js";
 import healingBookingRoutes from "./routes/healingBookingRoutes.js";
 import cors from "cors";
-import multer from "multer";
+import multer from "multer"; 
 import { sendAdminNotification, sendAutoReply } from "./utils/sendEmail.js";
 
 const app = express();

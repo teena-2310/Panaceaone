@@ -37,7 +37,7 @@ export default function PanaceaOils({ addToCart }) {
 
   return (
     <>
-     
+  
       <div className="panacea-page">
         <div className="panacea-top-content">
           <h1>Discover Panacea Oils</h1>
