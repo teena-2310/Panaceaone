@@ -134,7 +134,7 @@ export default function CheckoutPage({ cartItems }) {
       formDataObj.append("screenshot", screenshot);
 
       const response = await fetch(
-        "http://localhost:5000/api/send-order",
+        "/api/send-order",
         {
           method: "POST",
           body: formDataObj,

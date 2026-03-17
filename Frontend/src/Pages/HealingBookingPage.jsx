@@ -57,7 +57,7 @@ const HealingBookingPage = () => {
 
   try {
     await fetch(
-      `http://localhost:5000/api/bookings/${bookingId}/payment-method`,
+      `/api/bookings/${bookingId}/payment-method`,
       {
         method: "PUT",
         headers: {

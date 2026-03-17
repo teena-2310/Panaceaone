@@ -141,7 +141,7 @@ export default function HomePage() {
 
                   try {
                     const response = await fetch(
-                      "http://localhost:5000/api/bookings/create",
+                      "/api/bookings/create",
                       {
                         method: "POST",
                         headers: {
