@@ -156,7 +156,9 @@ body {
 
 .hero p {
   margin: 20px 0;
-  color: #4a4a4a;
+  color: #18500c;
+  font-size: 18px;
+  font-weight:bold;
   line-height: 1.6;
 }
 
