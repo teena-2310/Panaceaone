@@ -21,22 +21,22 @@ export default function About() {
       description: "Balancing energy fields for mental clarity and emotional stability.",
     },
     {
-      img: "/images/pranic-healing.png",
+      img: "images/pranic-healing.png",
       title: "Pranic Healing",
       description: "Harnessing prana (life energy) to improve health and vitality.",
     },
     {
-      img: "/images/reiki.png",
+      img: "images/reiki.png",
       title: "Reiki Therapy",
       description: "Gentle hands-on healing to reduce stress and promote harmony.",
     },
     {
-      img: "/images/flower-remedies.png",
+      img: "images/flower-remedies.png",
       title: "Flower Remedies",
       description: "Natural flower essences to enhance emotional balance.",
     },
     {
-      img: "/images/mind-wellness.png",
+      img: "images/mind-wellness.png",
       title: "Mind Wellness",
       description: "Techniques to reduce anxiety, boost focus, and calm the mind.",
     },
@@ -100,7 +100,7 @@ export default function About() {
   {/* Mission */}
   <div className="vm-row">
     <img
-      src="/images/mission.jpg"
+      src="images/mission.jpg"
       alt="Mission"
       className="vm-image"
     />
@@ -127,7 +127,7 @@ export default function About() {
     </div>
 
     <img
-      src="/images/vision.png"
+      src="images/vision.png"
       alt="Vision"
       className="vm-image"
     />

@@ -50,7 +50,7 @@ export default function HomePage() {
       {/* SERVICES */}
       <section className="service-section">
         <div className="service-row">
-          <img src="/images/flower-essence.png" alt="Flower Healing" />
+          <img src="images/flower-essence.png" alt="Flower Healing" />
           <div>
             <h2>Flower Medicine Healing</h2>
             <h5>
@@ -68,7 +68,7 @@ export default function HomePage() {
         </div>
 
         <div className="service-row reverse">
-          <img src="/images/hypno-therapy.png" alt="Hypno Therapy" />
+          <img src="images/hypno-therapy.png" alt="Hypno Therapy" />
           <div>
             <h2>Hypno Therapy</h2>
             <h5>
@@ -84,7 +84,7 @@ export default function HomePage() {
         </div>
 
         <div className="service-row">
-          <img src="/images/reiki.png" alt="Reiki Healing" />
+          <img src="images/reiki.png" alt="Reiki Healing" />
           <div>
             <h2>Reiki & Energy Healing</h2>
             <h5>
