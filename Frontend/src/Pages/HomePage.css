@@ -155,7 +155,7 @@ body {
 }
 
 .hero p {
-  margin: 4px 0;
+  margin: 20px 0;
   color: #4a4a4a;
   line-height: 1.6;
 }
@@ -312,8 +312,8 @@ body {
 
 .secondary-btn {
   padding: 12px 32px;
-  background: #0d2501;
-  color: #bfe8ad;
+  background: #68b044;
+  color: #14200f;
   border: none;
   border-radius: 30px;
   cursor: pointer;
