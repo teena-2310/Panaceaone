@@ -56,6 +56,7 @@
   align-items: center;
   gap: 22px;
   margin-left: auto;
+  flex-wrap: nowrap;
 }
 
 .nav-links a,
@@ -138,7 +139,7 @@
 }
 
 /* ================= MOBILE ================= */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
 
   .nav-links {
     display: none;
