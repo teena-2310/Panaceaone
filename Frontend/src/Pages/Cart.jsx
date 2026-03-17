@@ -35,7 +35,7 @@ export default function Cart({ cartItems = [], removeFromCart, updateQuantity })
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                border: "1px solid #eee",
+                border: "1px solid #0d9a30",
                 padding: "10px",
                 borderRadius: "8px",
               }}
@@ -87,7 +87,7 @@ export default function Cart({ cartItems = [], removeFromCart, updateQuantity })
             onClick={() => navigate("/checkout")}
             style={{
               padding: "10px 20px",
-              background: "#1e88e5",
+              background: "#0a6e19",
               color: "white",
               border: "none",
               borderRadius: "5px",
