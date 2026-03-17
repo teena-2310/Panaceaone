@@ -2,7 +2,7 @@
 
 .healing-container {
   min-height: 100vh;
-  background: #699753; /* match site background */
+  background:#c9eabc; /* match site background */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +13,7 @@
 .healing-card {
   width: 100%;
   max-width: 520px;
-  background: linear-gradient(135deg, #c9f1bb, #b2e5a2);
+  background:#83bc7d;
   padding: 60px 40px 40px 40px;
   border-radius: 22px;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
@@ -74,6 +74,7 @@
 .healing-title {
   font-size: 28px;
   font-weight: 600;
+  margin: auto;
   text-align: center;
   color: #1f5c3a;
 }
@@ -87,15 +88,16 @@
 
 .healing-subtitle {
   text-align: center;
-  color: #3f684f;
-  margin-bottom: 10px;
+  color: #072c0f;
+  margin-bottom: 4px;
+  font-size: 14px;
 }
 
 /* Fields */
 .healing-field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 15px;
 }
 
 .healing-field label {
@@ -123,7 +125,7 @@
 
 /* Payment Box */
 .healing-payment-box {
-  background: #f6fff3;
+  background: #c9eabc;
   padding: 18px;
   border-radius: 16px;
   font-size: 0.95rem;
@@ -153,7 +155,7 @@
 
 /* Primary button */
 .healing-button.primary {
-  background: linear-gradient(135deg, #2f8f6b, #5cc7a0);
+  background:#0b631e;
   color: #ffffff;
 }
 
@@ -164,7 +166,7 @@
 
 /* Success button */
 .healing-button.success {
-  background: linear-gradient(135deg, #2f8f6b, #4bb58f);
+  background: #0b631e;
   color: #ffffff;
 }
 

@@ -13,6 +13,7 @@ export default function HomePage() {
     fullName: "",
     email: "",
     phone: "",
+    countryCode: "+91",
     healingType: "",
     date: "",
     time: "",
@@ -25,7 +26,7 @@ export default function HomePage() {
 
   return (
     <div className="home-wrapper">
-      
+    
 
       {/* HERO */}
       <section className="hero">
@@ -57,7 +58,11 @@ export default function HomePage() {
               release stress, fear, and emotional trauma.
             </h5>
             <p>
-              Flower Medicine Healing restores emotional balance, helping you reconnect with your inner calm and clarity. By working with the subtle energies of flowers, this therapy supports the release of emotional blockages, promotes self-awareness, and nurtures a sense of peace.
+              Flower Medicine Healing restores emotional balance, helping you
+              reconnect with your inner calm and clarity. By working with the
+              subtle energies of flowers, this therapy supports the release of
+              emotional blockages, promotes self-awareness, and nurtures a sense
+              of peace.
             </p>
           </div>
         </div>
@@ -71,7 +76,9 @@ export default function HomePage() {
               hypnotherapy.
             </h5>
             <p>
-              Hypno Therapy works with the subconscious mind to uncover and release limiting beliefs, fears, and emotional patterns that may be holding you back. By guiding you into a deep, relaxed state, this therapy allows access to the root causes of stress, anxiety, or self-sabotaging behaviors.
+              Hypno Therapy works with the subconscious mind to uncover and
+              release limiting beliefs, fears, and emotional patterns that may
+              be holding you back.
             </p>
           </div>
         </div>
@@ -85,7 +92,8 @@ export default function HomePage() {
               soul.
             </h5>
             <p>
-              Reiki and Energy Healing work by channeling universal life force energy to clear blockages, balance your chakras, and promote the natural flow of energy throughout your body. This gentle therapy supports physical, emotional, and spiritual well-being, helping you feel centered, revitalized, and at peace.
+              Reiki and Energy Healing work by channeling universal life force
+              energy to clear blockages and promote natural healing.
             </p>
           </div>
         </div>
@@ -94,16 +102,14 @@ export default function HomePage() {
       {/* CTA */}
       <section className="cta">
         <h2>Heal Naturally. Live Peacefully.</h2>
-        <a
-                  href="https://wa.me/919498103668"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <button className="secondary-btn">WhatsApp Now</button>
 
-                </a>
-        
-  
+        <a
+          href="https://wa.me/919498103668"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button className="secondary-btn">WhatsApp Now</button>
+        </a>
       </section>
 
       {/* BOOKING MODAL */}
@@ -143,6 +149,8 @@ export default function HomePage() {
                         },
                         body: JSON.stringify({
                           ...formData,
+                          phone:
+                            formData.countryCode + formData.phone,
                           amount: 500,
                         }),
                       }
@@ -153,11 +161,11 @@ export default function HomePage() {
                     if (data.success) {
                       setShowModal(false);
 
-                      // Reset form
                       setFormData({
                         fullName: "",
                         email: "",
                         phone: "",
+                        countryCode: "+91",
                         healingType: "",
                         date: "",
                         time: "",
@@ -172,19 +180,21 @@ export default function HomePage() {
                   }
                 }}
               >
+                {/* FULL NAME */}
                 <input
                   type="text"
                   placeholder="Full Name"
                   required
-                  value={formData.name}
+                  value={formData.fullName}
                   onChange={(e) =>
                     setFormData({
                       ...formData,
-                      name: e.target.value,
+                      fullName: e.target.value,
                     })
                   }
                 />
 
+                {/* EMAIL */}
                 <input
                   type="email"
                   placeholder="Email"
@@ -198,19 +208,38 @@ export default function HomePage() {
                   }
                 />
 
-                <input
-                  type="tel"
-                  placeholder="Phone Number"
-                  required
-                  value={formData.phone}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      phone: e.target.value,
-                    })
-                  }
-                />
+                {/* PHONE WITH COUNTRY CODE */}
+                <div className="phone-group">
+                  <select
+                    value={formData.countryCode}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        countryCode: e.target.value,
+                      })
+                    }
+                  >
+                    <option value="+91">🇮🇳 +91</option>
+                    <option value="+1">🇺🇸 +1</option>
+                    <option value="+44">🇬🇧 +44</option>
+                    <option value="+61">🇦🇺 +61</option>
+                  </select>
 
+                  <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    required
+                    value={formData.phone}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        phone: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+
+                {/* HEALING TYPE */}
                 <select
                   required
                   value={formData.healingType}
@@ -222,13 +251,21 @@ export default function HomePage() {
                   }
                 >
                   <option value="">Select Healing Type</option>
-                  <option value="Nerve & Spine Care">Nerve & Spine Care</option>
-                  <option value="Stress & Relaxation">Stress & Relaxation</option>
-                  <option value="Muscle & Joint Therapy">Muscle & Joint Therapy</option>
-                   <option value="Energy & Wellness">Energy & Wellness</option>
-
+                  <option value="Nerve & Spine Care">
+                    Nerve & Spine Care
+                  </option>
+                  <option value="Stress & Relaxation">
+                    Stress & Relaxation
+                  </option>
+                  <option value="Muscle & Joint Therapy">
+                    Muscle & Joint Therapy
+                  </option>
+                  <option value="Energy & Wellness">
+                    Energy & Wellness
+                  </option>
                 </select>
 
+                {/* DATE */}
                 <input
                   type="date"
                   required
@@ -241,6 +278,7 @@ export default function HomePage() {
                   }
                 />
 
+                {/* TIME */}
                 <input
                   type="time"
                   required
@@ -253,9 +291,7 @@ export default function HomePage() {
                   }
                 />
 
-                <button type="submit">
-                  Pay ₹200 & Book
-                </button>
+                <button type="submit">Pay ₹200 & Book</button>
               </form>
             </motion.div>
           </motion.div>

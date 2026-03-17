@@ -1,20 +1,23 @@
 import "dotenv/config";
-
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
+import multer from "multer";
+
 import contactRoutes from "./routes/contactRoutes.js";
 import healingBookingRoutes from "./routes/healingBookingRoutes.js";
-import cors from "cors";
-import multer from "multer"; 
 import { sendAdminNotification, sendAutoReply } from "./utils/sendEmail.js";
 
 const app = express();
 
+/* =============================
+   MIDDLEWARE
+============================= */
 app.use(express.json());
 app.use(cors());
 
 /* =============================
-   MongoDB
+   MONGODB
 ============================= */
 mongoose
   .connect(process.env.MONGO_URI)
@@ -24,22 +27,21 @@ mongoose
     process.exit(1);
   });
 
-  console.log("EMAIL HOST:", process.env.EMAIL_HOST);
 /* =============================
-   MULTER (Memory Storage)
+   MULTER
 ============================= */
 const upload = multer({
   storage: multer.memoryStorage(),
 });
 
 /* =============================
-   Routes
+   ROUTES
 ============================= */
 app.use("/api/bookings", healingBookingRoutes);
 app.use("/api/contact", contactRoutes);
 
 /* =============================
-   CHECKOUT ORDER ROUTE
+   ORDER ROUTE (FIXED)
 ============================= */
 app.post("/api/send-order", upload.single("screenshot"), async (req, res) => {
   try {
@@ -64,78 +66,88 @@ app.post("/api/send-order", upload.single("screenshot"), async (req, res) => {
     const parsedItems = JSON.parse(items);
 
     const itemsHtml = parsedItems
-  .map(
-    (item) => `
-      <tr>
-        <td>${item.title}</td>
-        <td>${item.quantity}</td>
-        <td>₹${item.price}</td>
-        <td>₹${item.price * item.quantity}</td>
-      </tr>
-    `
-  )
-  .join("");  
-    /* ===============================
-       SEND ADMIN NOTIFICATION
-    =============================== */
-    await sendAdminNotification({
-      subject: "New Order - Panacea One",
-      replyTo: req.body.email,
-      html: `
-        <h3>New Order Received</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Address:</strong> ${address}</p>
-        <p><strong>Payment Method:</strong> ${payment}</p>
-        <p><strong>Transaction ID:</strong> ${transactionId || "N/A"}</p>
-         <h4>Ordered Items</h4>
-
-    <table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse">
-      <thead>
+      .map(
+        (item) => `
         <tr>
-          <th>Product</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Total</th>
+          <td>${item.title}</td>
+          <td>${item.quantity}</td>
+          <td>₹${item.price}</td>
+          <td>₹${item.price * item.quantity}</td>
         </tr>
-      </thead>
+      `
+      )
+      .join("");
 
-      <tbody>
-        ${itemsHtml}
-      </tbody>
-    </table>
-
-    <h3>Total: ₹${total}</h3>
-      `,
-      attachments: req.file
-        ? [
-            {
-              filename: req.file.originalname,
-              content: req.file.buffer,
-            },
-          ]
-        : [],
+    // ✅ SEND RESPONSE FAST
+    res.status(200).json({
+      success: true,
+      message: "Order placed successfully",
     });
 
-    /* ===============================
-       SEND AUTO REPLY TO USER
-    =============================== */
-    if (req.body.email) {
-      await sendAutoReply({
-        type: "order",
-        name,
-        email: req.body.email,
-      });
-    }
+    // ✅ EMAIL IN BACKGROUND
+    (async () => {
+      try {
+        await sendAdminNotification({
+          subject: "New Order - Panacea One",
+          replyTo: email,
+          html: `
+            <h3>New Order Received</h3>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
+            <p><strong>Address:</strong> ${address}</p>
+            <p><strong>Payment:</strong> ${payment}</p>
+            <p><strong>Transaction ID:</strong> ${transactionId || "N/A"}</p>
 
-    res.json({ success: true });
+            <h4>Items</h4>
+            <table border="1" cellpadding="8">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Qty</th>
+                  <th>Price</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>${itemsHtml}</tbody>
+            </table>
+
+            <h3>Total: ₹${total}</h3>
+          `,
+          attachments: req.file
+            ? [
+                {
+                  filename: req.file.originalname,
+                  content: req.file.buffer,
+                },
+              ]
+            : [],
+        });
+
+        await sendAutoReply({
+          type: "order",
+          name,
+          email,
+        });
+
+        console.log("✅ Emails sent");
+      } catch (err) {
+        console.error("❌ Email error:", err);
+      }
+    })();
+
   } catch (error) {
-    console.error("Order Email Error:", error);
-    res.status(500).json({ success: false });
+    console.error("Order Error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
   }
 });
 
+/* =============================
+   SERVER
+============================= */
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

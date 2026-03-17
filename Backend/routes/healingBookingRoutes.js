@@ -6,7 +6,7 @@ import { sendAdminNotification, sendAutoReply } from "../utils/sendEmail.js";
 const router = express.Router();
 
 /* =======================================
-   USE MEMORY STORAGE (NO FILE SAVING)
+   MULTER (MEMORY STORAGE)
 ======================================= */
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -25,16 +25,22 @@ router.post("/create", async (req, res) => {
       date: req.body.date,
       time: req.body.time,
       amount: req.body.amount,
+      paymentStatus: "Pending",
+      status: "Pending",
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       bookingId: booking._id,
     });
 
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error creating booking" });
+    console.error("CREATE ERROR:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Error creating booking",
+    });
   }
 });
 
@@ -46,33 +52,42 @@ router.put("/:id/payment-method", async (req, res) => {
     const booking = await HealingBooking.findById(req.params.id);
 
     if (!booking) {
-      return res.status(404).json({ message: "Booking not found" });
+      return res.status(404).json({
+        success: false,
+        message: "Booking not found",
+      });
     }
 
     booking.paymentMethod = req.body.paymentMethod;
-
     await booking.save();
 
-    res.json({
+    return res.json({
       success: true,
       message: "Payment method updated",
     });
 
   } catch (error) {
-    res.status(500).json({ message: "Server error" });
+    console.error("PAYMENT METHOD ERROR:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
   }
 });
 
 /* =======================================
-   UPLOAD PAYMENT PROOF (EMAIL ONLY)
+   UPLOAD PAYMENT PROOF (FIXED 🔥)
 ======================================= */
 router.post("/:id/upload-proof", upload.single("screenshot"), async (req, res) => {
   try {
-
     const booking = await HealingBooking.findById(req.params.id);
 
     if (!booking) {
-      return res.status(404).json({ message: "Booking not found" });
+      return res.status(404).json({
+        success: false,
+        message: "Booking not found",
+      });
     }
 
     if (!req.body.transactionId || !req.file) {
@@ -82,61 +97,68 @@ router.post("/:id/upload-proof", upload.single("screenshot"), async (req, res) =
       });
     }
 
+    // ✅ SAVE TO DB
     booking.transactionId = req.body.transactionId;
     booking.paymentStatus = "Pending";
-
     await booking.save();
 
-    /* ===============================
-       SEND ADMIN NOTIFICATION
-    =============================== */
-
-    await sendAdminNotification({
-      subject: "New Healing Booking Payment - Panacea One",
-      replyTo: booking.email,
-      html: `
-        <h3>New Healing Booking Payment</h3>
-
-        <p><strong>Name:</strong> ${booking.name}</p>
-        <p><strong>Email:</strong> ${booking.email}</p>
-        <p><strong>Phone:</strong> ${booking.phone}</p>
-
-        <p><strong>Healing Type:</strong> ${booking.healingType}</p>
-        <p><strong>Date:</strong> ${booking.date}</p>
-        <p><strong>Time:</strong> ${booking.time}</p>
-
-        <p><strong>Payment Method:</strong> ${booking.paymentMethod}</p>
-        <p><strong>Transaction ID:</strong> ${booking.transactionId}</p>
-
-       
-      `,
-      attachments: [
-        {
-          filename: req.file.originalname,
-          content: req.file.buffer,
-        },
-      ],
-    });
-
-    /* ===============================
-       SEND AUTO REPLY TO USER
-    =============================== */
-
-    await sendAutoReply({
-      type: "healing",
-      name: booking.name,
-      email: booking.email,
-      healingType: booking.healingType,
-    });
-
+    // ✅ SEND RESPONSE IMMEDIATELY (IMPORTANT)
     res.json({
       success: true,
       message: "Payment proof submitted successfully",
     });
 
+    // =======================================
+    // ✅ BACKGROUND EMAIL (NON-BLOCKING)
+    // =======================================
+    (async () => {
+      try {
+        await sendAdminNotification({
+          subject: "New Healing Booking Payment - Panacea One",
+          replyTo: booking.email,
+          html: `
+            <h3>New Healing Booking Payment</h3>
+
+            <p><strong>Name:</strong> ${booking.name}</p>
+            <p><strong>Email:</strong> ${booking.email}</p>
+            <p><strong>Phone:</strong> ${booking.phone}</p>
+
+            <p><strong>Healing Type:</strong> ${booking.healingType}</p>
+            <p><strong>Date:</strong> ${booking.date}</p>
+            <p><strong>Time:</strong> ${booking.time}</p>
+
+            <p><strong>Payment Method:</strong> ${booking.paymentMethod}</p>
+            <p><strong>Transaction ID:</strong> ${booking.transactionId}</p>
+          `,
+          attachments: [
+            {
+              filename: req.file.originalname,
+              content: req.file.buffer,
+            },
+          ],
+        });
+
+        await sendAutoReply({
+          type: "healing",
+          name: booking.name,
+          email: booking.email,
+          healingType: booking.healingType,
+        });
+
+        console.log("✅ Emails sent successfully");
+
+      } catch (err) {
+        console.error("❌ Email error:", err);
+      }
+    })();
+
   } catch (error) {
     console.error("UPLOAD ERROR:", error);
-    res.status(500).json({ message: error.message });
+
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
   }
 });
 
@@ -145,7 +167,6 @@ router.post("/:id/upload-proof", upload.single("screenshot"), async (req, res) =
 ======================================= */
 router.put("/:id/verify", async (req, res) => {
   try {
-
     const booking = await HealingBooking.findById(req.params.id);
 
     if (!booking) {
@@ -160,16 +181,18 @@ router.put("/:id/verify", async (req, res) => {
 
     await booking.save();
 
-    res.json({
+    return res.json({
       success: true,
       message: "Booking verified successfully",
       booking,
     });
 
   } catch (error) {
-    res.status(500).json({
+    console.error("VERIFY ERROR:", error);
+
+    return res.status(500).json({
       success: false,
-      message: error.message,
+      message: "Server error",
     });
   }
 });

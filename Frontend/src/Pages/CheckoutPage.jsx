@@ -17,7 +17,8 @@ export default function CheckoutPage({ cartItems }) {
     name: "",
     email: "",
     address: "",
-    phone: ""
+    phone: "",
+    countryCode: "+91",
   });
 
   const total = cartItems.reduce(
@@ -43,7 +44,7 @@ export default function CheckoutPage({ cartItems }) {
     const { name, value } = e.target;
 
     if (name === "phone") {
-      const onlyNumbers = value.replace(/\D/g, "");
+      const onlyNumbers = value.replace(/\D/g, "").replace(/^0/, "");
       setCustomer({ ...customer, phone: onlyNumbers });
     } else {
       setCustomer({ ...customer, [name]: value });
@@ -51,7 +52,7 @@ export default function CheckoutPage({ cartItems }) {
   };
 
   // ===============================
-  // VALIDATION FUNCTIONS
+  // VALIDATION
   // ===============================
   const validateDetails = () => {
     let newErrors = {};
@@ -81,7 +82,6 @@ export default function CheckoutPage({ cartItems }) {
     }
 
     setErrors(newErrors);
-
     return Object.keys(newErrors).length === 0;
   };
 
@@ -97,12 +97,11 @@ export default function CheckoutPage({ cartItems }) {
     }
 
     setErrors(newErrors);
-
     return Object.keys(newErrors).length === 0;
   };
 
   // ===============================
-  // HANDLE CONTINUE
+  // CONTINUE
   // ===============================
   const handleContinue = () => {
     if (validateDetails()) {
@@ -111,7 +110,7 @@ export default function CheckoutPage({ cartItems }) {
   };
 
   // ===============================
-  // HANDLE SUBMIT
+  // SUBMIT ORDER
   // ===============================
   const handleSubmitOrder = async () => {
     if (!validateUpload()) return;
@@ -124,7 +123,10 @@ export default function CheckoutPage({ cartItems }) {
       formDataObj.append("name", customer.name.trim());
       formDataObj.append("email", customer.email.trim());
       formDataObj.append("address", customer.address.trim());
-      formDataObj.append("phone", customer.phone.trim());
+      formDataObj.append(
+        "phone",
+        customer.countryCode + customer.phone.trim()
+      );
       formDataObj.append("payment", paymentMethod);
       formDataObj.append("transactionId", transactionId.trim());
       formDataObj.append("total", total);
@@ -135,7 +137,7 @@ export default function CheckoutPage({ cartItems }) {
         "http://localhost:5000/api/send-order",
         {
           method: "POST",
-          body: formDataObj
+          body: formDataObj,
         }
       );
 
@@ -160,174 +162,188 @@ export default function CheckoutPage({ cartItems }) {
     /^[0-9]{10}$/.test(customer.phone) &&
     paymentMethod;
 
-  const isUploadValid =
-    transactionId.trim() && screenshot;
+  const isUploadValid = transactionId.trim() && screenshot;
 
   return (
     <div className="checkout-page">
-    <div className="checkout-container">
-      <div className="checkout-card">
+      <div className="checkout-container">
+        <div className="checkout-card">
 
-        {/* STEP 1 */}
-        {step === "details" && (
-          <>
-            <h2>Checkout</h2>
+          {/* STEP 1 */}
+          {step === "details" && (
+            <>
+              <h2>Checkout</h2>
 
-            <h3>Order Summary</h3>
-           {cartItems.map((item, index) => (
-  <p key={item.id || index}>
-    {item.title} × {item.quantity}
-  </p>
-))}
-            <h3>Total: ₹{total}</h3>
+              <h3>Order Summary</h3>
+              {cartItems.map((item, index) => (
+                <p key={item.id || index}>
+                  {item.title} × {item.quantity}
+                </p>
+              ))}
+              <h3>Total: ₹{total}</h3>
 
-            <input
-              type="text"
-              name="name"
-              placeholder="Full Name"
-              value={customer.name}
-              onChange={handleCustomerChange}
-            />
-            {errors.name && <span className="error">{errors.name}</span>}
+              <input
+                type="text"
+                name="name"
+                placeholder="Full Name"
+                value={customer.name}
+                onChange={handleCustomerChange}
+              />
+              {errors.name && <span className="error">{errors.name}</span>}
 
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={customer.email}
-              onChange={handleCustomerChange}
-            />
-            {errors.email && <span className="error">{errors.email}</span>}
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={customer.email}
+                onChange={handleCustomerChange}
+              />
+              {errors.email && <span className="error">{errors.email}</span>}
 
-            <input
-              type="text"
-              name="address"
-              placeholder="Address"
-              value={customer.address}
-              onChange={handleCustomerChange}
-            />
-            {errors.address && <span className="error">{errors.address}</span>}
+              <input
+                type="text"
+                name="address"
+                placeholder="Address"
+                value={customer.address}
+                onChange={handleCustomerChange}
+              />
+              {errors.address && <span className="error">{errors.address}</span>}
 
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone Number"
-              maxLength="10"
-              value={customer.phone}
-              onChange={handleCustomerChange}
-            />
-            {errors.phone && <span className="error">{errors.phone}</span>}
+              {/* PHONE WITH COUNTRY CODE */}
+              <div className="phone-group">
+                <select
+                  value={customer.countryCode}
+                  onChange={(e) =>
+                    setCustomer({
+                      ...customer,
+                      countryCode: e.target.value,
+                    })
+                  }
+                >
+                  <option value="+91">🇮🇳 +91</option>
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+61">🇦🇺 +61</option>
+                </select>
 
-            <select
-              value={paymentMethod}
-              onChange={(e) => setPaymentMethod(e.target.value)}
-            >
-              <option value="">Select Payment Method</option>
-              <option value="UPI">UPI</option>
-              <option value="Bank">Bank Transfer</option>
-            </select>
-            {errors.paymentMethod && (
-              <span className="error">{errors.paymentMethod}</span>
-            )}
-
-            <button
-              onClick={handleContinue}
-              disabled={!isDetailsValid}
-            >
-              Continue
-            </button>
-          </>
-        )}
-
-        {/* STEP 2 */}
-        {step === "payment" && (
-          <>
-            <h3>Payment Details</h3>
-
-            {paymentMethod === "UPI" && (
-              <div className="payment-box">
-                <p>Scan QR or pay ₹{total} to:</p>
-                <strong>9498103668@sbi</strong>
-                <img src="/images/gpay-qr.png" alt="UPI QR" width="200" />
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Phone Number"
+                  maxLength="10"
+                  value={customer.phone}
+                  onChange={handleCustomerChange}
+                />
               </div>
-            )}
+              {errors.phone && <span className="error">{errors.phone}</span>}
 
-            {paymentMethod === "Bank" && (
-              <div className="payment-box">
-                <p><strong>Account Name:</strong> DHANASEKAR S</p>
-                <p><strong>Bank:</strong> State Bank of India</p>
-                <p><strong>Account Number:</strong> 20078164404</p>
-                <p><strong>IFSC:</strong> SBIN0018292</p>
-                <p>Transfer ₹{total} and click below.</p>
-              </div>
-            )}
-
-            <div className="button-group">
-              <button className="back-btn" onClick={() => setStep("details")}>
-                Back
-              </button>
-              <button onClick={() => setStep("upload")}>
-                I Have Paid
-              </button>
-            </div>
-          </>
-        )}
-
-        {/* STEP 3 */}
-        {step === "upload" && (
-          <>
-            <h3>Upload Payment Proof</h3>
-
-            <input
-              type="text"
-              placeholder="Transaction ID"
-              value={transactionId}
-              onChange={(e) => setTransactionId(e.target.value)}
-            />
-            {errors.transactionId && (
-              <span className="error">{errors.transactionId}</span>
-            )}
-
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => setScreenshot(e.target.files[0])}
-            />
-            {errors.screenshot && (
-              <span className="error">{errors.screenshot}</span>
-            )}
-
-            {errors.submit && (
-              <span className="error">{errors.submit}</span>
-            )}
-
-            <div className="button-group">
-              <button className="back-btn" onClick={() => setStep("payment")}>
-                Back
-              </button>
-
-              <button
-                onClick={handleSubmitOrder}
-                disabled={!isUploadValid || loading}
+              <select
+                value={paymentMethod}
+                onChange={(e) => setPaymentMethod(e.target.value)}
               >
-                {loading ? "Submitting..." : "Submit Order"}
+                <option value="">Select Payment Method</option>
+                <option value="UPI">UPI</option>
+                <option value="Bank">Bank Transfer</option>
+              </select>
+              {errors.paymentMethod && (
+                <span className="error">{errors.paymentMethod}</span>
+              )}
+
+              <button onClick={handleContinue} disabled={!isDetailsValid}>
+                Continue
               </button>
+            </>
+          )}
+
+          {/* STEP 2 */}
+          {step === "payment" && (
+            <>
+              <h3>Payment Details</h3>
+
+              {paymentMethod === "UPI" && (
+                <div className="payment-box">
+                  <p>Scan QR or pay ₹{total} to:</p>
+                  <strong>9498103668@sbi</strong>
+                  <img src="/images/gpay-qr.png" alt="UPI QR" width="200" />
+                </div>
+              )}
+
+              {paymentMethod === "Bank" && (
+                <div className="payment-box">
+                  <p><strong>Account Name:</strong> DHANASEKAR S</p>
+                  <p><strong>Bank:</strong> State Bank of India</p>
+                  <p><strong>Account Number:</strong> 20078164404</p>
+                  <p><strong>IFSC:</strong> SBIN0018292</p>
+                  <p>Transfer ₹{total} and click below.</p>
+                </div>
+              )}
+
+              <div className="button-group">
+                <button className="back-btn" onClick={() => setStep("details")}>
+                  Back
+                </button>
+                <button onClick={() => setStep("upload")}>
+                  I Have Paid
+                </button>
+              </div>
+            </>
+          )}
+
+          {/* STEP 3 */}
+          {step === "upload" && (
+            <>
+              <h3>Upload Payment Proof</h3>
+
+              <input
+                type="text"
+                placeholder="Transaction ID"
+                value={transactionId}
+                onChange={(e) => setTransactionId(e.target.value)}
+              />
+              {errors.transactionId && (
+                <span className="error">{errors.transactionId}</span>
+              )}
+
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setScreenshot(e.target.files[0])}
+              />
+              {errors.screenshot && (
+                <span className="error">{errors.screenshot}</span>
+              )}
+
+              {errors.submit && (
+                <span className="error">{errors.submit}</span>
+              )}
+
+              <div className="button-group">
+                <button className="back-btn" onClick={() => setStep("payment")}>
+                  Back
+                </button>
+
+                <button
+                  onClick={handleSubmitOrder}
+                  disabled={!isUploadValid || loading}
+                >
+                  {loading ? "Submitting..." : "Submit Order"}
+                </button>
+              </div>
+            </>
+          )}
+
+          {/* SUCCESS */}
+          {step === "success" && (
+            <div className="success-box">
+              <h3>Order Submitted Successfully 🎉</h3>
+              <p>Order confirmation email sent.</p>
+              <p>Waiting for admin verification.</p>
+              <p>Redirecting to Home...</p>
             </div>
-          </>
-        )}
+          )}
 
-        {/* SUCCESS */}
-        {step === "success" && (
-          <div className="success-box">
-            <h3>Order Submitted Successfully 🎉</h3>
-            <p>Order confirmation email sent.</p>
-            <p>Waiting for admin verification.</p>
-            <p>Redirecting to Home...</p>
-          </div>
-        )}
-
+        </div>
       </div>
-    </div>
     </div>
   );
 }

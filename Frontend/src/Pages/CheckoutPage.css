@@ -3,7 +3,7 @@
 ========================= */
 .checkout-page {
   min-height: 100vh;
-  background-color:  #b9e3a5;   /* Light green */
+  background-color: #c9eabc;   /* Light green */
   padding: 40px;
   text-align: center;
 }
@@ -14,11 +14,12 @@
 }
 
 .checkout-card {
-  background:  #7cb263; 
+  background:  #7daa6f;
   padding: 30px;
   border-radius: 14px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   border: 1px solid #3db45f;
+  
 }
 
 /* =========================
@@ -27,7 +28,8 @@
 .checkout-card h2,
 .checkout-card h3 {
   margin-bottom: 15px;
-  color: #15803d; /* Main Green */
+  font-weight: bolder;
+  color: #096007; /* Main Green */
 }
 
 /* =========================
@@ -39,7 +41,7 @@
   padding: 12px;
   margin: 10px 0;
   border-radius: 8px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid #1e9022;
   font-size: 14px;
   transition: 0.2s ease;
 }
@@ -71,14 +73,31 @@
   transform: translateY(-2px);
   box-shadow: 0 8px 18px rgba(22, 163, 74, 0.25);
 }
+.phone-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
 
+.phone-group select {
+  width: 30%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #7fb069;
+  background: #f6fff3;
+}
+
+.phone-group input {
+  width: 70%;
+}
 /* =========================
    ORDER SUMMARY
 ========================= */
 .checkout-card p {
   margin: 6px 0;
-  font-size: 14px;
-  color: #374151;
+  font-size: 16px;
+  font-weight: 300px;
+  color: #075204;
 }
 
 /* =========================

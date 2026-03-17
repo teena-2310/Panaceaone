@@ -153,6 +153,22 @@ body {
   padding: 40px 20px 35px;
   text-align: center;
 }
+.phone-group {
+  display: flex;
+  gap: 10px;
+}
+
+.phone-group select {
+  width: 30%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #7fb069;
+  background: #f6fff3;
+}
+
+.phone-group input {
+  width: 70%;
+}
 
 .hero p {
   margin: 20px 0;
