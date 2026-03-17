@@ -67,7 +67,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <hr className="footer-divider" />
+      <div className="footer-divider" />
 
       <div className="footer-bottom">
         <div className="social-icons">

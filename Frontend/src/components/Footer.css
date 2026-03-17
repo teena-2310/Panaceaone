@@ -88,8 +88,8 @@
 
 /* ================= DIVIDER ================= */
 .footer-divider {
-  border: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border:#0a4e1f;
+  border-top: 1.5px solid rgba(16, 117, 26, 0.2);
   margin: 1rem 0;
 }
 
