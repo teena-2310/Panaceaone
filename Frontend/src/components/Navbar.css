@@ -15,20 +15,6 @@
   align-items: center;
 }
 
-.Navbar-logo-text h2 {
-  font-size: 1.6rem;
-  font-weight: 800;
-  margin: 0;
-  color: #1f6f43;
-}
-
-.Navbar-logo-text p {
-  font-size: 1.0rem;
-  font-weight: 450;
-  margin: 0;
-  color: #1f6f43;
-}
-
 .logo-link {
   display: flex;
   align-items: center;
@@ -36,18 +22,36 @@
   text-decoration: none;
 }
 
-/* Bigger Logo */
+/* Logo */
 .logo-link img {
   height: 100px;
   width: auto;
 }
 
-.nav-logo {
-  font-size: 20px;
-  font-weight: 700;
+/* Text wrapper */
+.Navbar-logo-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.1;
+}
+
+/* Title */
+.Navbar-logo-text h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0;
   color: #1f6f43;
-  font-family: 'Segoe UI', sans-serif;
-  text-transform: uppercase;
+  white-space: nowrap; /* 🔥 prevent breaking */
+}
+
+/* Subtitle */
+.Navbar-logo-text p {
+  font-size: 1rem;
+  font-weight: 450;
+  margin: 0;
+  color: #1f6f43;
+  white-space: nowrap; /* 🔥 prevent breaking */
 }
 
 /* ================= RIGHT MENU ================= */
@@ -70,19 +74,19 @@
   transition: all 0.25s ease;
 }
 
-/* ================= HOVER EFFECT ================= */
+/* Hover */
 .nav-links a:hover,
 .mega-trigger:hover {
   background-color: rgba(73, 101, 86, 0.1);
 }
 
-/* ================= ACTIVE NAV LINK ================= */
+/* Active */
 .nav-links a.active,
 .mega-trigger.active {
   background-color: rgba(31, 111, 67, 0.18);
   color: #235f32;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 /* ================= DROPDOWN ================= */
@@ -101,14 +105,14 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 .mega-menu a {
   color: #1f6f43;
 }
 
-/* ================= CART ICON ================= */
+/* ================= CART ================= */
 .mobile-cart {
   display: none !important;
 }
@@ -156,7 +160,6 @@
 
 /* ================= MOBILE ================= */
 @media (max-width: 1024px) {
-
   .nav-links {
     display: none;
   }
@@ -188,5 +191,36 @@
 
   .hamburger {
     display: flex;
+  }
+}
+
+/* ================= SMALL MOBILE ================= */
+@media (max-width: 480px) {
+  .navbar {
+    height: 70px;
+    padding: 0 12px;
+  }
+
+  .logo-link img {
+    height: 50px;
+  }
+
+  .Navbar-logo-text h2 {
+    font-size: 1rem;
+  }
+
+  .Navbar-logo-text p {
+    font-size: 0.65rem;
+  }
+}
+
+/* ================= ULTRA SMALL ================= */
+@media (max-width: 300px) {
+  .Navbar-logo-text p {
+    display: none; /* 🔥 hide slogan */
+  }
+
+  .Navbar-logo-text h2 {
+    font-size: 0.9rem;
   }
 }

@@ -14,6 +14,8 @@
   font-size: 12px;
 }
 
+/* ================= QUANTITY ================= */
+
 .quantity-controls {
   display: inline-flex;
   align-items: center;
@@ -47,11 +49,139 @@
   font-weight: 500;
   background: #ffffff;
 }
+
 /* ================= CART PAGE ================= */
 
 .cart-page {
   min-height: 100vh;
-  background-color: #c9eabc;  /* Light green */
-  padding: 40px;
+  background-color: #c9eabc;
+  padding: 40px 20px;
   text-align: center;
+}
+
+/* ================= CART ITEM ================= */
+
+.cart-item {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #0d9a30;
+  padding: 12px;
+  border-radius: 10px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cart-item-left {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex: 1;
+  min-width: 200px;
+}
+
+.cart-item-left img {
+  width: 60px;
+  height: auto;
+}
+
+/* ================= DETAILS ================= */
+
+.cart-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item-left h3 {
+  font-size: 16px;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+/* ================= ACTIONS ================= */
+
+.cart-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cart-remove-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.quantity-controls {
+  max-width: 100%;
+  flex-wrap: nowrap;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 480px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-item-left {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* ================= ULTRA SMALL ================= */
+
+@media (max-width: 300px) {
+  .cart-item {
+    padding: 10px;
+  }
+
+  .cart-item-left img {
+    width: 50px;
+  }
+
+  .cart-item-left h3 {
+    font-size: 14px;
+  }
+
+  .qty-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+
+  .qty-value {
+    width: 35px;
+    font-size: 14px;
+  }
+
+  .cart-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .quantity-controls {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cart-remove-btn {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+  }
 }

@@ -2,18 +2,21 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import "./Cart.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-export default function Cart({ cartItems = [], removeFromCart, updateQuantity }) {
+
+export default function Cart({
+  cartItems = [],
+  removeFromCart,
+  updateQuantity,
+}) {
   const navigate = useNavigate();
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0
+    0,
   );
 
   return (
-   <div className="cart-page">
+    <div className="cart-page">
       <h1 style={{ marginBottom: "20px" }}>Your Cart</h1>
 
       {cartItems.length === 0 ? (
@@ -28,56 +31,42 @@ export default function Cart({ cartItems = [], removeFromCart, updateQuantity })
       ) : (
         <div style={{ maxWidth: "700px", margin: "0 auto", textAlign: "left" }}>
           {cartItems.map((item) => (
-            <div
-              key={item.id}
-              style={{
-                marginBottom: "15px",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                border: "1px solid #0d9a30",
-                padding: "10px",
-                borderRadius: "8px",
-              }}
-            >
-              <div style={{ display: "flex", gap: "15px", alignItems: "center" }}>
-                <img src={item.img} alt={item.title} width="60" />
-                <div>
+            <div key={item.id} className="cart-item">
+              <div className="cart-item-left">
+                <img src={item.img} alt={item.title} />
+
+                <div className="cart-details">
                   <h3>{item.title}</h3>
                   <p>₹{item.price}</p>
-                  <div className="quantity-controls">
-                     <button 
+
+                  <div className="cart-actions">
+                    <div className="quantity-controls">
+                      <button
                         className="qty-btn"
                         onClick={() => updateQuantity(item.id, "decrease")}
-                     >
-                         −
-                     </button>
+                      >
+                        −
+                      </button>
 
-                       <span className="qty-value">{item.quantity}</span>
+                      <span className="qty-value">{item.quantity}</span>
 
-                      <button 
+                      <button
                         className="qty-btn"
                         onClick={() => updateQuantity(item.id, "increase")}
                       >
-                          +
-                         </button>
+                        +
+                      </button>
+                    </div>
+
+                    <button
+                      className="cart-remove-btn"
+                      onClick={() => removeFromCart(item.id)}
+                    >
+                      Remove
+                    </button>
                   </div>
                 </div>
               </div>
-
-              <button
-                onClick={() => removeFromCart(item.id)}
-                style={{
-                  background: "red",
-                  color: "white",
-                  border: "none",
-                  padding: "6px 12px",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                }}
-              >
-                Remove
-              </button>
             </div>
           ))}
 

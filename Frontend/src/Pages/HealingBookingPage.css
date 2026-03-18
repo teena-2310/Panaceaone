@@ -2,7 +2,7 @@
 
 .healing-container {
   min-height: 100vh;
-  background:#c9eabc; /* match site background */
+  background:#c9eabc;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,6 +13,7 @@
 .healing-card {
   width: 100%;
   max-width: 520px;
+  min-width: 280px; /* 🔥 FIX */
   background:#83bc7d;
   padding: 60px 40px 40px 40px;
   border-radius: 22px;
@@ -24,40 +25,31 @@
   position: relative;
 }
 
-
-/* 🔙 Back Button Styling */
+/* Back Button */
 .back-button {
   position: absolute;
   top: 15px;
   left: 15px;
-
   width: 30px;
   height: 30px;
-
   border-radius: 50%;
   border: none;
-
   background: linear-gradient(135deg, #198430, #379455);
   color: #ffffff;
-
   font-size: 20px;
   font-weight: bold;
-
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-
   transition: all 0.3s ease;
   box-shadow: 0 6px 15px rgba(58, 192, 56, 0.4);
 }
 
-/* Hover Effect */
 .back-button:hover {
   transform: translateX(-3px) scale(1.08);
   box-shadow: 0 10px 25px rgba(23, 88, 80, 0.6);
 }
-
 
 @keyframes fadeInBooking {
   from {
@@ -153,57 +145,26 @@
   box-shadow: 0 0 18px rgba(47, 143, 107, 0.5);
 }
 
-/* Primary button */
-.healing-button.primary {
+.healing-button.primary,
+.healing-button.success {
   background:#0b631e;
   color: #ffffff;
 }
 
-.healing-button.primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 28px rgba(47, 143, 107, 0.8);
-}
-
-/* Success button */
-.healing-button.success {
-  background: #0b631e;
-  color: #ffffff;
-}
-
-.healing-button.success:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 28px rgba(47, 143, 107, 0.8);
-}
-
-/* Secondary button */
 .healing-button.secondary {
   background: #1f5c3a;
   color: #bfe8ad;
 }
 
-.healing-button.secondary:hover {
-  background: #14482c;
-  transform: translateY(-2px);
-}
-
-/* Success Box */
+/* Success */
 .healing-success {
   text-align: center;
   padding: 24px;
   background: #d7f6c8;
   border-radius: 18px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
-.healing-success h3 {
-  color: #1f5c3a;
-  margin-bottom: 8px;
-}
-
-.healing-success p {
-  color: #2f6d4a;
-}
-
+/* UPI */
 .upi-id-box {
   background: #f1f5f2;
   padding: 10px;
@@ -212,17 +173,22 @@
   margin: 10px 0;
 }
 
+/* QR FIX */
 .qr-wrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 15px 0;
 }
 
 .qr-image {
   width: 220px;
+  max-width: 100%; /* 🔥 FIX */
+  height: auto;
   border-radius: 12px;
 }
 
+/* Notes */
 .pay-note {
   font-size: 14px;
   color: #555;
@@ -233,36 +199,30 @@
   font-weight: 500;
 }
 
-.form-error {
-  color: #e53935;
-  font-size: 14px;
-  margin-top: 6px;
-}
-
-.healing-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.spinner {
-  width: 18px;
-  height: 18px;
-  border: 3px solid #fff;
-  border-top: 3px solid transparent;
-  border-radius: 50%;
-  display: inline-block;
-  animation: spin 0.6s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 /* Mobile */
 @media (max-width: 480px) {
   .healing-card {
     padding: 25px;
+  }
+}
+
+/* 🔥 ULTRA SMALL FIX */
+@media (max-width: 300px) {
+
+  .healing-card {
+    min-width: 100%;
+    padding: 20px;
+  }
+
+  .qr-image {
+    width: 180px;
+  }
+
+  .healing-payment-box {
+    padding: 12px;
+  }
+
+  .upi-id-box {
+    font-size: 14px;
   }
 }
