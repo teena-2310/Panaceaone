@@ -100,7 +100,9 @@ export default function HomePage() {
 
       {/* CTA */}
       <section className="cta">
-        <h2>Heal Naturally. Live Peacefully.</h2>
+        <h2 style={{ textAlign: "center" }}>
+          Heal Naturally. Live Peacefully.
+        </h2>
 
         <a
           href="https://wa.me/919498103668"
