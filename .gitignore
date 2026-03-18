@@ -1,0 +1,31 @@
+# dependencies
+node_modules/
+Backend/node_modules/
+Frontend/node_modules/
+
+# build files
+dist/
+build/
+Frontend/dist/
+Frontend/build/
+Backend/dist/
+Backend/build/
+
+# env files
+.env
+Backend/.env
+Frontend/.env
+
+# framework/cache
+.next/
+out/
+.cache/
+.vite/
+coverage/
+
+# logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
