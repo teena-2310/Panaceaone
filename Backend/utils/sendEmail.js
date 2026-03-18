@@ -3,26 +3,39 @@ import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 dotenv.config();
 
-// Create transporter (reusable)
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
-  port: 465,               // 465 for SSL, 587 for TLS
-  secure: true,            // true for 465
+  port: process.env.EMAIL_PORT || 465,
+  secure: true,
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,  // app password if Gmail
+    pass: process.env.EMAIL_PASS,
   },
   tls: {
     rejectUnauthorized: false,
   },
 });
 
+// Verify transporter (runs once)
+transporter.verify((error) => {
+  if (error) {
+    console.error("❌ Email server error:", error);
+  } else {
+    console.log("✅ Email server is ready");
+  }
+});
+
 // Send Admin Notification
-export const sendAdminNotification = async ({ subject, html, attachments = [], replyTo = null }) => {
+export const sendAdminNotification = async ({
+  subject,
+  html,
+  attachments = [],
+  replyTo = null,
+}) => {
   try {
     await transporter.sendMail({
       from: `"Panacea One Website" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,  // admin email
+      to: process.env.EMAIL_USER,
       replyTo,
       subject,
       html,
@@ -35,7 +48,13 @@ export const sendAdminNotification = async ({ subject, html, attachments = [], r
 };
 
 // Centralized Auto Reply
-export const sendAutoReply = async ({ type, name, email, healingType, products = [] }) => {
+export const sendAutoReply = async ({
+  type,
+  name,
+  email,
+  healingType,
+  products = [],
+}) => {
   try {
     let subject = "";
     let message = "";
