@@ -26,8 +26,6 @@ export default function HomePage() {
 
   return (
     <div className="home-wrapper">
-    
-
       {/* HERO */}
       <section className="hero">
         <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -141,7 +139,7 @@ export default function HomePage() {
 
                   try {
                     const response = await fetch(
-                      "/api/bookings/create",
+                      `${import.meta.env.VITE_API_URL}/bookings/create`,
                       {
                         method: "POST",
                         headers: {
@@ -149,11 +147,10 @@ export default function HomePage() {
                         },
                         body: JSON.stringify({
                           ...formData,
-                          phone:
-                            formData.countryCode + formData.phone,
+                          phone: formData.countryCode + formData.phone,
                           amount: 500,
                         }),
-                      }
+                      },
                     );
 
                     const data = await response.json();
@@ -251,18 +248,14 @@ export default function HomePage() {
                   }
                 >
                   <option value="">Select Healing Type</option>
-                  <option value="Nerve & Spine Care">
-                    Nerve & Spine Care
-                  </option>
+                  <option value="Nerve & Spine Care">Nerve & Spine Care</option>
                   <option value="Stress & Relaxation">
                     Stress & Relaxation
                   </option>
                   <option value="Muscle & Joint Therapy">
                     Muscle & Joint Therapy
                   </option>
-                  <option value="Energy & Wellness">
-                    Energy & Wellness
-                  </option>
+                  <option value="Energy & Wellness">Energy & Wellness</option>
                 </select>
 
                 {/* DATE */}

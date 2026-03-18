@@ -23,7 +23,7 @@ export default function CheckoutPage({ cartItems }) {
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0
+    0,
   );
 
   useEffect(() => {
@@ -37,9 +37,6 @@ export default function CheckoutPage({ cartItems }) {
     }
   }, [step, navigate]);
 
-  // ===============================
-  // HANDLE INPUT CHANGE
-  // ===============================
   const handleCustomerChange = (e) => {
     const { name, value } = e.target;
 
@@ -51,35 +48,23 @@ export default function CheckoutPage({ cartItems }) {
     }
   };
 
-  // ===============================
-  // VALIDATION
-  // ===============================
   const validateDetails = () => {
     let newErrors = {};
 
-    if (!customer.name.trim()) {
-      newErrors.name = "Full name is required";
-    }
+    if (!customer.name.trim()) newErrors.name = "Full name is required";
 
-    if (!customer.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(customer.email)) {
+    if (!customer.email.trim()) newErrors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(customer.email))
       newErrors.email = "Enter a valid email";
-    }
 
-    if (!customer.address.trim()) {
-      newErrors.address = "Address is required";
-    }
+    if (!customer.address.trim()) newErrors.address = "Address is required";
 
-    if (!customer.phone.trim()) {
-      newErrors.phone = "Phone number is required";
-    } else if (!/^[0-9]{10}$/.test(customer.phone)) {
+    if (!customer.phone.trim()) newErrors.phone = "Phone number is required";
+    else if (!/^[0-9]{10}$/.test(customer.phone))
       newErrors.phone = "Phone number must be 10 digits";
-    }
 
-    if (!paymentMethod) {
+    if (!paymentMethod)
       newErrors.paymentMethod = "Please select a payment method";
-    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -88,30 +73,19 @@ export default function CheckoutPage({ cartItems }) {
   const validateUpload = () => {
     let newErrors = {};
 
-    if (!transactionId.trim()) {
+    if (!transactionId.trim())
       newErrors.transactionId = "Transaction ID is required";
-    }
 
-    if (!screenshot) {
-      newErrors.screenshot = "Please upload payment proof";
-    }
+    if (!screenshot) newErrors.screenshot = "Please upload payment proof";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  // ===============================
-  // CONTINUE
-  // ===============================
   const handleContinue = () => {
-    if (validateDetails()) {
-      setStep("payment");
-    }
+    if (validateDetails()) setStep("payment");
   };
 
-  // ===============================
-  // SUBMIT ORDER
-  // ===============================
   const handleSubmitOrder = async () => {
     if (!validateUpload()) return;
 
@@ -123,10 +97,7 @@ export default function CheckoutPage({ cartItems }) {
       formDataObj.append("name", customer.name.trim());
       formDataObj.append("email", customer.email.trim());
       formDataObj.append("address", customer.address.trim());
-      formDataObj.append(
-        "phone",
-        customer.countryCode + customer.phone.trim()
-      );
+      formDataObj.append("phone", customer.countryCode + customer.phone.trim());
       formDataObj.append("payment", paymentMethod);
       formDataObj.append("transactionId", transactionId.trim());
       formDataObj.append("total", total);
@@ -134,20 +105,17 @@ export default function CheckoutPage({ cartItems }) {
       formDataObj.append("screenshot", screenshot);
 
       const response = await fetch(
-        "/api/send-order",
+        `${import.meta.env.VITE_API_URL}/send-order`,
         {
           method: "POST",
           body: formDataObj,
-        }
+        },
       );
 
       const data = await response.json();
 
-      if (data.success) {
-        setStep("success");
-      } else {
-        setErrors({ submit: "Failed to submit order. Try again." });
-      }
+      if (data.success) setStep("success");
+      else setErrors({ submit: "Failed to submit order. Try again." });
     } catch (error) {
       setErrors({ submit: "Server error. Please try later." });
     }
@@ -168,8 +136,6 @@ export default function CheckoutPage({ cartItems }) {
     <div className="checkout-page">
       <div className="checkout-container">
         <div className="checkout-card">
-
-          {/* STEP 1 */}
           {step === "details" && (
             <>
               <h2>Checkout</h2>
@@ -183,7 +149,6 @@ export default function CheckoutPage({ cartItems }) {
               <h3>Total: ₹{total}</h3>
 
               <input
-                type="text"
                 name="name"
                 placeholder="Full Name"
                 value={customer.name}
@@ -192,7 +157,6 @@ export default function CheckoutPage({ cartItems }) {
               {errors.name && <span className="error">{errors.name}</span>}
 
               <input
-                type="email"
                 name="email"
                 placeholder="Email"
                 value={customer.email}
@@ -201,41 +165,32 @@ export default function CheckoutPage({ cartItems }) {
               {errors.email && <span className="error">{errors.email}</span>}
 
               <input
-                type="text"
                 name="address"
                 placeholder="Address"
                 value={customer.address}
                 onChange={handleCustomerChange}
               />
-              {errors.address && <span className="error">{errors.address}</span>}
+              {errors.address && (
+                <span className="error">{errors.address}</span>
+              )}
 
-              {/* PHONE WITH COUNTRY CODE */}
               <div className="phone-group">
                 <select
                   value={customer.countryCode}
                   onChange={(e) =>
-                    setCustomer({
-                      ...customer,
-                      countryCode: e.target.value,
-                    })
+                    setCustomer({ ...customer, countryCode: e.target.value })
                   }
                 >
                   <option value="+91">🇮🇳 +91</option>
                   <option value="+1">🇺🇸 +1</option>
-                  <option value="+44">🇬🇧 +44</option>
-                  <option value="+61">🇦🇺 +61</option>
                 </select>
-
                 <input
-                  type="text"
                   name="phone"
                   placeholder="Phone Number"
-                  maxLength="10"
                   value={customer.phone}
                   onChange={handleCustomerChange}
                 />
               </div>
-              {errors.phone && <span className="error">{errors.phone}</span>}
 
               <select
                 value={paymentMethod}
@@ -245,9 +200,6 @@ export default function CheckoutPage({ cartItems }) {
                 <option value="UPI">UPI</option>
                 <option value="Bank">Bank Transfer</option>
               </select>
-              {errors.paymentMethod && (
-                <span className="error">{errors.paymentMethod}</span>
-              )}
 
               <button onClick={handleContinue} disabled={!isDetailsValid}>
                 Continue
@@ -255,7 +207,6 @@ export default function CheckoutPage({ cartItems }) {
             </>
           )}
 
-          {/* STEP 2 */}
           {step === "payment" && (
             <>
               <h3>Payment Details</h3>
@@ -264,84 +215,38 @@ export default function CheckoutPage({ cartItems }) {
                 <div className="payment-box">
                   <p>Scan QR or pay ₹{total} to:</p>
                   <strong>9498103668@sbi</strong>
-                  <img src="/images/gpay-qr.png" alt="UPI QR" width="200" />
+                  <img src="/images/gpay-qr.png" alt="UPI QR" />
                 </div>
               )}
 
-              {paymentMethod === "Bank" && (
-                <div className="payment-box">
-                  <p><strong>Account Name:</strong> DHANASEKAR S</p>
-                  <p><strong>Bank:</strong> State Bank of India</p>
-                  <p><strong>Account Number:</strong> 20078164404</p>
-                  <p><strong>IFSC:</strong> SBIN0018292</p>
-                  <p>Transfer ₹{total} and click below.</p>
-                </div>
-              )}
-
-              <div className="button-group">
-                <button className="back-btn" onClick={() => setStep("details")}>
-                  Back
-                </button>
-                <button onClick={() => setStep("upload")}>
-                  I Have Paid
-                </button>
-              </div>
+              <button onClick={() => setStep("upload")}>I Have Paid</button>
             </>
           )}
 
-          {/* STEP 3 */}
           {step === "upload" && (
             <>
-              <h3>Upload Payment Proof</h3>
-
               <input
-                type="text"
                 placeholder="Transaction ID"
                 value={transactionId}
                 onChange={(e) => setTransactionId(e.target.value)}
               />
-              {errors.transactionId && (
-                <span className="error">{errors.transactionId}</span>
-              )}
 
               <input
                 type="file"
-                accept="image/*"
                 onChange={(e) => setScreenshot(e.target.files[0])}
               />
-              {errors.screenshot && (
-                <span className="error">{errors.screenshot}</span>
-              )}
 
-              {errors.submit && (
-                <span className="error">{errors.submit}</span>
-              )}
-
-              <div className="button-group">
-                <button className="back-btn" onClick={() => setStep("payment")}>
-                  Back
-                </button>
-
-                <button
-                  onClick={handleSubmitOrder}
-                  disabled={!isUploadValid || loading}
-                >
-                  {loading ? "Submitting..." : "Submit Order"}
-                </button>
-              </div>
+              <button onClick={handleSubmitOrder}>
+                {loading ? "Submitting..." : "Submit Order"}
+              </button>
             </>
           )}
 
-          {/* SUCCESS */}
           {step === "success" && (
             <div className="success-box">
               <h3>Order Submitted Successfully 🎉</h3>
-              <p>Order confirmation email sent.</p>
-              <p>Waiting for admin verification.</p>
-              <p>Redirecting to Home...</p>
             </div>
           )}
-
         </div>
       </div>
     </div>

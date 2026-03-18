@@ -1,16 +1,11 @@
 import React from "react";
 import "./Footer.css";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-} from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-top">
-
         {/* Logo Section */}
         <div className="footer-logo">
           <img
@@ -29,11 +24,21 @@ const Footer = () => {
           <div>
             <h4>Company</h4>
             <ul>
-              <li><a href="/">Home</a></li>
-              <li><a href="/about">About Panacea One</a></li>
-              <li><a href="/healingsolutions">Healing Solutions</a></li>
-              <li><a href="/Panaceaoils">Panacea Oils</a></li>
-              <li><a href="/contact">Contact</a></li>
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/About">About Panacea One</a>
+              </li>
+              <li>
+                <a href="/HealingSolutions">Healing Solutions</a>
+              </li>
+              <li>
+                <a href="/Panaceaoils">Panacea Oils</a>
+              </li>
+              <li>
+                <a href="/Contact">Contact</a>
+              </li>
             </ul>
           </div>
 
@@ -42,7 +47,8 @@ const Footer = () => {
             <h4>Connect</h4>
             <ul>
               <li>
-                📍 62, M3 Black, Police Quarters, S.M. Nagar,<br />
+                📍 62, M3 Black, Police Quarters, S.M. Nagar,
+                <br />
                 Avadi, Chennai 600062
               </li>
 
@@ -55,10 +61,7 @@ const Footer = () => {
 
               <li>
                 ✉️{" "}
-                <a
-                  href="mailto:dhana@panacea-one.com"
-                  className="footer-link"
-                >
+                <a href="mailto:dhana@panacea-one.com" className="footer-link">
                   dhana@panacea-one.com
                 </a>
               </li>
@@ -79,9 +82,7 @@ const Footer = () => {
           </a>
         </div>
 
-        <p>
-          © {new Date().getFullYear()} Panacea One — All Rights Reserved.
-        </p>
+        <p>© {new Date().getFullYear()} Panacea One — All Rights Reserved.</p>
       </div>
     </footer>
   );
