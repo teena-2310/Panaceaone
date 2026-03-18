@@ -1,6 +1,7 @@
 // HomePage.jsx
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaWhatsapp } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -103,10 +104,11 @@ export default function HomePage() {
 
         <a
           href="https://wa.me/919498103668"
+          className="whatsapp-float"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <button className="secondary-btn">WhatsApp Now</button>
+          <FaWhatsapp />
         </a>
       </section>
 
