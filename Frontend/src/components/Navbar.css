@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   padding: 0 56px;
-  position: relative;   /* ADD THIS */
+  position: relative;
 }
 
 /* ================= LEFT LOGO ================= */
@@ -14,6 +14,7 @@
   display: flex;
   align-items: center;
 }
+
 .Navbar-logo-text h2 {
   font-size: 1.6rem;
   font-weight: 800;
@@ -24,7 +25,7 @@
 .Navbar-logo-text p {
   font-size: 1.0rem;
   font-weight: 450;
-  margin:0;
+  margin: 0;
   color: #1f6f43;
 }
 
@@ -35,20 +36,19 @@
   text-decoration: none;
 }
 
-/* 🔥 Bigger Logo */
+/* Bigger Logo */
 .logo-link img {
-  height: 100px;   /* Increased logo height */
+  height: 100px;
   width: auto;
 }
 
 .nav-logo {
-  font-size: 20px;   /* Slightly bigger brand name */
+  font-size: 20px;
   font-weight: 700;
   color: #1f6f43;
   font-family: 'Segoe UI', sans-serif;
   text-transform: uppercase;
 }
-
 
 /* ================= RIGHT MENU ================= */
 .nav-links {
@@ -67,6 +67,22 @@
   cursor: pointer;
   padding: 10px 15px;
   border-radius: 5px;
+  transition: all 0.25s ease;
+}
+
+/* ================= HOVER EFFECT ================= */
+.nav-links a:hover,
+.mega-trigger:hover {
+  background-color: rgba(73, 101, 86, 0.1);
+}
+
+/* ================= ACTIVE NAV LINK ================= */
+.nav-links a.active,
+.mega-trigger.active {
+  background-color: rgba(31, 111, 67, 0.18);
+  color: #235f32;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
 
 /* ================= DROPDOWN ================= */
@@ -92,11 +108,11 @@
   color: #1f6f43;
 }
 
+/* ================= CART ICON ================= */
 .mobile-cart {
   display: none !important;
 }
 
-/* ================= CART ICON ================= */
 .nav-cart {
   margin-left: 18px;
   margin-right: 6px;
@@ -150,7 +166,7 @@
     flex-direction: column;
     align-items: center;
     position: absolute;
-    top: 110px;   /* Updated from 70px */
+    top: 110px;
     left: 0;
     width: 100%;
     background: #8acb6c;
@@ -159,7 +175,6 @@
     z-index: 1000;
   }
 
-  /* Show Cart Text */
   .mobile-cart {
     display: block !important;
     font-weight: 600;
@@ -167,12 +182,10 @@
     text-decoration: none;
   }
 
-  /* Hide Desktop Cart Icon */
   .nav-cart {
     display: none;
   }
 
-  /* Show Hamburger */
   .hamburger {
     display: flex;
   }
