@@ -3,12 +3,27 @@ import { sendAdminNotification, sendAutoReply } from "../utils/sendEmail.js";
 
 export const createContact = async (req, res) => {
   try {
-    const { name, email, message } = req.body;
+    let { name, email, message } = req.body;
 
+    // ✅ TRIM INPUTS
+    name = name?.trim();
+    email = email?.trim();
+    message = message?.trim();
+
+    // ✅ VALIDATION
     if (!name || !email || !message) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
+      });
+    }
+
+    // ✅ EMAIL FORMAT CHECK
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid email format",
       });
     }
 
@@ -18,12 +33,14 @@ export const createContact = async (req, res) => {
       message,
     });
 
+    // ✅ SEND RESPONSE FIRST
     res.status(201).json({
       success: true,
       message: "Message sent successfully",
       data: newContact,
     });
 
+    // ✅ BACKGROUND EMAIL
     (async () => {
       try {
         await sendAdminNotification({

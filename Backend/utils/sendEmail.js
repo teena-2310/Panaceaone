@@ -5,7 +5,7 @@ dotenv.config();
 
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
-  port: process.env.EMAIL_PORT || 465,
+  port: Number(process.env.EMAIL_PORT) || 465, // ✅ FIX
   secure: true,
   auth: {
     user: process.env.EMAIL_USER,
@@ -47,14 +47,8 @@ export const sendAdminNotification = async ({
   }
 };
 
-// Centralized Auto Reply
-export const sendAutoReply = async ({
-  type,
-  name,
-  email,
-  healingType,
-  products = [],
-}) => {
+// Auto Reply
+export const sendAutoReply = async ({ type, name, email, healingType }) => {
   try {
     let subject = "";
     let message = "";
@@ -63,7 +57,7 @@ export const sendAutoReply = async ({
       subject = "Thank you for contacting Panacea One";
       message = `
         <p>Dear ${name},</p>
-        <p>Thank you for contacting us. We have received your message and will get back to you soon.</p>
+        <p>Thank you for contacting us. We will get back to you soon.</p>
         <p>Warm regards,<br/>Panacea One Team</p>
       `;
     }
@@ -73,12 +67,9 @@ export const sendAutoReply = async ({
       message = `
         <h2>Your Healing Session is Confirmed – Panacea One 🌿</h2>
         <p>Dear ${name},</p>
-        <p>Thank you for your booking! 🎉</p>
-        <p>Your booking for <strong>Panacea One – ${healingType}</strong> session has been successfully confirmed.</p>
-        <p>Our team will prepare your session and contact you shortly with the details.</p>
-        <p><em>Heal from within, Glow from outside ✨</em></p>
-        <p>Thank you for choosing Panacea One.</p>
-        <p>Warm regards,<br><strong>Team Panacea One</strong></p>
+        <p>Your session for <strong>${healingType}</strong> is confirmed.</p>
+        <p>We will contact you shortly.</p>
+        <p>Team Panacea One</p>
       `;
     }
 
@@ -86,9 +77,8 @@ export const sendAutoReply = async ({
       subject = "Order Confirmation - Panacea One";
       message = `
         <p>Dear ${name},</p>
-        <p>Thank you for your order. We have received your order request.</p>
-        <p>Our team is currently processing your order and will ensure it is handled promptly. If we require any additional information, we will contact you directly.</p>
-        <p>Best regards,<br/>The Panacea One Team</p>
+        <p>Your order has been received and is being processed.</p>
+        <p>Thank you!</p>
       `;
     }
 
